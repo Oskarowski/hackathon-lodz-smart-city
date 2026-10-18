@@ -1,0 +1,77 @@
+:root {
+  --color-text: #1C2430;
+  --color-text-secondary: #5A6575;
+  --color-text-body: #2B3442;
+  --color-bg: #F5F7FA;
+  --color-surface: #FFFFFF;
+  --color-line: #D9E1EA;
+  --color-line-strong: #C9D3DF;
+  --color-track: #7D8A9C;
+  --color-control-border: #7D8A9C;
+  --color-panel-sidebar: #1C2430;
+  --color-camera-bg: #141920;
+
+  --status-progress-text: #174E8C;
+  --status-progress-bg: #E8EFF8;
+  --status-progress-fg: #1D5FA8;
+  --status-done-text: #1E6B33;
+  --status-done-bg: #E3F4E8;
+  --status-done-fg: #1E8E3E;
+  --status-warning-text: #8A5300;
+  --status-warning-bg: #FDF1DD;
+  --status-warning-fg: #B26A00;
+  --status-urgent-text: #A61F1F;
+  --status-urgent-bg: #FDECEC;
+  --status-urgent-fg: #C62828;
+
+  --font-family: Montserrat, sans-serif;
+  --font-weight-light: 300;
+  --font-weight-regular: 400;
+  --font-weight-medium: 500;
+  --font-weight-semibold: 600;
+  --font-weight-bold: 700;
+  --font-weight-extrabold: 800;
+  --font-size-caption: 11px;
+  --font-size-small: 12px;
+  --font-size-body-sm: 13px;
+  --font-size-body: 14px;
+  --font-size-body-lg: 15px;
+  --font-size-title-sm: 16px;
+  --font-size-section: 17px;
+  --font-size-title: 18px;
+  --font-size-title-lg: 20px;
+  --font-size-display-sm: 22px;
+  --font-size-display: 24px;
+  --font-size-display-lg: 26px;
+  --font-size-hero: 28px;
+  --font-size-metric: 32px;
+
+  --radius-tag: 6px;
+  --radius-input: 10px;
+  --radius-icon: 12px;
+  --radius-card: 16px;
+  --radius-card-lg: 20px;
+  --radius-sheet: 24px;
+  --radius-pill: 999px;
+
+  --space-1: 4px;
+  --space-1-5: 6px;
+  --space-2: 8px;
+  --space-2-5: 10px;
+  --space-3: 12px;
+  --space-3-5: 14px;
+  --space-4: 16px;
+  --space-4-5: 18px;
+  --space-5: 20px;
+  --space-6: 24px;
+  --space-7: 28px;
+  --space-8: 32px;
+
+  --size-touch-min: 44px;
+  --size-button-primary: 52px;
+  --size-header: 74px;
+  --size-header-start: 126px;
+  --size-tab-bar: 72px;
+  --size-screen-width: 390px;
+  --size-screen-height: 844px;
+}

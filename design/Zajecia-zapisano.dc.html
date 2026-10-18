@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="pl">
+<head>
+<meta charset="utf-8">
+<title>Zapisano na zajęcia</title>
+<script src="./support.js"></script>
+<link rel="stylesheet" href="tokens/theme.css">
+</head>
+<body>
+<x-dc>
+<helmet>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0}
+a{color:inherit}a:hover{color:inherit}
+:focus-visible{outline:3px solid #1C2430;outline-offset:2px;box-shadow:0 0 0 2px #FFFFFF}
+</style>
+</helmet>
+<div style="width: 390px; height: 844px; display: flex; flex-direction: column; background: #FFFFFF; font-family: Montserrat, sans-serif; color: #1C2430; overflow: hidden">
+  <main style="flex: 1; overflow: auto; display: flex; flex-direction: column">
+    <dc-import name="Potwierdzenie" wariant="duzy" tytul="Zapisano na zajęcia" opis="Modelarstwo dla dzieci" karta="true" zamknij-href="Zajecia-lista.dc.html" hint-size="390px,348px"></dc-import>
+    <div style="padding: 18px 28px 0; display: flex; flex-direction: column; gap: 18px">
+      <div style="margin-top: 8px; width: 100%; box-sizing: border-box; background: #F5F7FA; border-radius: 16px; padding: 14px 16px; display: flex; gap: 12px; text-align: left; align-items: flex-start">
+        <svg aria-hidden="true" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" style="flex: none; stroke: var(--theme-primary, #1D5FA8)"><rect x="3" y="5" width="18" height="16" rx="3"/><path d="M3 10h18M8 3v4M16 3v4"/></svg>
+        <dl style="margin: 0; display: flex; flex-direction: column; gap: 10px">
+          <div style="display: flex; flex-direction: column; gap: 2px">
+            <dt style="font-size: 13px; color: #5A6575">Termin</dt>
+            <dd style="margin: 0; font-size: 14px; font-weight: 600; line-height: 1.5">sob., [DATA] · [GODZINA]</dd>
+          </div>
+          <div style="display: flex; flex-direction: column; gap: 2px">
+            <dt style="font-size: 13px; color: #5A6575">Miejsce</dt>
+            <dd style="margin: 0; font-size: 14px; font-weight: 600; line-height: 1.5">[ADRES DOMU KULTURY]</dd>
+          </div>
+        </dl>
+      </div>
+    </div>
+  </main>
+
+  <div style="padding: 16px 20px 28px; display: flex; flex-direction: column; gap: 10px">
+    <a href="Sprawy-lista.dc.html" style="min-height: 52px; border-radius: 999px; background: var(--theme-primary, #1D5FA8); color: #FFFFFF; text-decoration: none; display: flex; align-items: center; justify-content: center; font-size: 15px; font-weight: 700">Zobacz w Moich sprawach</a>
+    <button type="button" onClick="{{dodaj}}" style="min-height: 52px; border-radius: 999px; border: 1.5px solid #7D8A9C; background: #FFFFFF; color: #1C2430; display: flex; align-items: center; justify-content: center; box-sizing: border-box; font: 600 15px Montserrat, sans-serif; cursor: pointer">
+      <span aria-live="polite" style="display: flex; align-items: center; gap: 8px">
+        <sc-if value="{{niedodano}}" hint-placeholder-val="{{ true }}">
+          <svg aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" style="flex: none"><rect x="3" y="5" width="18" height="16" rx="3"/><path d="M3 10h18M8 3v4M16 3v4M12 13v5M9.5 15.5h5"/></svg>
+          Dodaj do kalendarza
+        </sc-if>
+        <sc-if value="{{dodano}}" hint-placeholder-val="{{ false }}">
+          <svg aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#1E8E3E" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" style="flex: none"><path d="M20 6L9 17l-5-5"/></svg>
+          Dodano do kalendarza
+        </sc-if>
+      </span>
+    </button>
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":390,"height":844}}'>
+class Component extends DCLogic {
+  constructor(props) {
+    super(props);
+    this.state = { dodano: false };
+  }
+  renderVals() {
+    return {
+      dodano: this.state.dodano,
+      niedodano: !this.state.dodano,
+      dodaj: () => this.setState({ dodano: true })
+    };
+  }
+}
+</script>
+</body>
+</html>

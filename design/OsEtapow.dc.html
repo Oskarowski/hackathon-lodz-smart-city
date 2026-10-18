@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang="pl">
+<head>
+<meta charset="utf-8">
+<title>Komponent – Oś etapów</title>
+<script src="./support.js"></script>
+<link rel="stylesheet" href="tokens/theme.css">
+</head>
+<body>
+<x-dc>
+<helmet>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0}
+</style>
+</helmet>
+<ol role="list" aria-label="{{nazwa}}" style="margin: 0; padding: 0; list-style: none; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 6px; font-family: Montserrat, sans-serif; color: #1C2430">
+  <sc-for list="{{etapy}}" as="etap" hint-placeholder-count="3">
+    <sc-if value="{{etap.zakonczony}}" hint-placeholder-val="{{ false }}">
+      <li style="display: flex; flex-direction: column; gap: 8px; min-width: 0">
+        <span aria-hidden="true" style="height: 6px; border-radius: 3px; background: #1E8E3E"></span>
+        <span style="display: flex; flex-direction: column; gap: 4px">
+          <svg aria-hidden="true" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" style="flex: none; color: #1E8E3E"><path d="M20 6L9 17l-5-5"/></svg>
+          <span style="position: relative; min-width: 0; font-size: 12px; font-weight: 600; line-height: 1.35; color: #1C2430">{{etap.etykieta}}<span style="position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap"> (zakończony)</span></span>
+        </span>
+      </li>
+    </sc-if>
+    <sc-if value="{{etap.biezacy}}" hint-placeholder-val="{{ false }}">
+      <li aria-current="step" style="display: flex; flex-direction: column; gap: 8px; min-width: 0">
+        <span aria-hidden="true" style="height: 6px; border-radius: 3px; background: #1D5FA8"></span>
+        <span style="display: flex; flex-direction: column; gap: 4px; color: #174E8C">
+          <svg aria-hidden="true" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" style="flex: none"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>
+          <span style="min-width: 0; font-size: 12px; font-weight: 700; line-height: 1.35">{{etap.etykieta}}</span>
+        </span>
+      </li>
+    </sc-if>
+    <sc-if value="{{etap.przyszly}}" hint-placeholder-val="{{ true }}">
+      <li style="display: flex; flex-direction: column; gap: 8px; min-width: 0">
+        <span aria-hidden="true" style="height: 6px; border-radius: 3px; border: 1.5px solid #7D8A9C; box-sizing: border-box"></span>
+        <span style="min-width: 0; margin-top: 18px; font-size: 12px; font-weight: 600; line-height: 1.35; color: #5A6575">{{etap.etykieta}}</span>
+      </li>
+    </sc-if>
+  </sc-for>
+</ol>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"nazwa":{"editor":"text","default":"Status zgłoszenia"},"etap1":{"editor":"text","default":"Przyjęte"},"etap2":{"editor":"text","default":"Przekazane Straży Miejskiej"},"etap3":{"editor":"text","default":"Uprzątnięte"},"biezacy":{"editor":"enum","options":["1","2","3","4"],"default":"2"},"$preview":{"width":350,"height":64}}'>
+class Component extends DCLogic {
+  renderVals() {
+    const podany = Number(this.props.biezacy ?? '2');
+    const biezacy = Number.isInteger(podany) && podany >= 1 && podany <= 4 ? podany : 1;
+    const etykiety = [
+      this.props.etap1 ?? this.props['etap-1'] ?? 'Przyjęte',
+      this.props.etap2 ?? this.props['etap-2'] ?? 'Przekazane Straży Miejskiej',
+      this.props.etap3 ?? this.props['etap-3'] ?? 'Uprzątnięte',
+    ];
+    return {
+      nazwa: this.props.nazwa ?? 'Status zgłoszenia',
+      etapy: etykiety.map((etykieta, i) => ({
+        etykieta,
+        zakonczony: i + 1 < biezacy,
+        biezacy: i + 1 === biezacy,
+        przyszly: i + 1 > biezacy,
+      })),
+    };
+  }
+}
+</script>
+</body>
+</html>

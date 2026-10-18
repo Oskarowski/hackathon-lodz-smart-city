@@ -1,0 +1,106 @@
+<!doctype html>
+<html lang="pl">
+<head>
+<meta charset="utf-8">
+<title>Panel instytucji – przydział zadań</title>
+<script src="./support.js"></script>
+<link rel="stylesheet" href="tokens/theme.css">
+</head>
+<body>
+<x-dc>
+<helmet>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0}
+a{color:inherit}a:hover{color:inherit}
+:focus-visible{outline:3px solid #1C2430;outline-offset:2px;box-shadow:0 0 0 2px #FFFFFF}
+</style>
+</helmet>
+<div style="min-height: 800px; display: flex; flex-wrap: wrap; background: #F5F7FA; font-family: Montserrat, sans-serif; color: #1C2430; container-type: inline-size">
+  <div style="flex: 0 1 auto; display: flex; max-width: 100%"><dc-import name="PanelBoczny" aktywna="przydzial" hint-size="240px,800px"></dc-import></div>
+
+  <main style="flex: 999 1 560px; min-width: 0; padding: 28px 32px 24px; box-sizing: border-box; display: flex; flex-direction: column; gap: 24px">
+    <div style="display: flex; flex-direction: column; gap: 6px">
+      <h1 style="margin: 0; font-size: 26px; font-weight: 800">Przydział zadań</h1>
+      <p style="margin: 0; font-size: 14px; color: #5A6575">Potrzeby seniorów zgłoszone przez opiekunów i telefonicznie.</p>
+    </div>
+
+    <div style="display: flex; flex-wrap: wrap; gap: 16px; align-items: flex-start">
+      <section aria-labelledby="potrzeba" style="flex: 1 1 320px; min-width: 0; background: #FFFFFF; border-radius: 16px; padding: 20px; box-sizing: border-box; display: flex; flex-direction: column; gap: 12px">
+        <h2 id="potrzeba" style="margin: 0; font-size: 13px; font-weight: 700; color: #5A6575">Potrzeba</h2>
+        <p style="margin: 0; font-size: 22px; font-weight: 800">Spacer</p>
+        <p style="margin: 0; font-size: 14px; font-weight: 600">[IMIĘ SENIORA] · Osiedle Parkowe</p>
+        <p style="margin: 0; display: flex; align-items: center; gap: 8px; font-size: 14px; font-weight: 600"><svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex: none; stroke: var(--theme-primary, #1D5FA8)"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M16 3v4M8 3v4M3 10h18"/></svg>Jutro, [DATA] · 10:00</p>
+        <span style="align-self: flex-start; font-size: 11px; font-weight: 700; color: var(--theme-primary, #1D5FA8); background: var(--theme-primary-soft, #E8EFF8); border-radius: 6px; padding: 3px 8px">Wymagany poziom 2</span>
+        <p style="margin: 0; font-size: 13px; color: #5A6575">Zgłoszenie od opiekuna: [IMIĘ OPIEKUNA]</p>
+      </section>
+
+      <div style="flex: 1 1 320px; min-width: 0; background: #FFFFFF; border-radius: 16px; padding: 20px; box-sizing: border-box; display: flex; flex-direction: column; gap: 16px">
+        <fieldset disabled="{{przydzielono}}" style="margin: 0; padding: 0; border: 0; min-width: 0; display: flex; flex-direction: column; gap: 10px">
+          <legend style="float: left; width: 100%; padding: 0 0 2px; font-size: 13px; font-weight: 700; color: #5A6575">Wolontariusze z osiedla</legend>
+          <label style="min-height: 56px; padding: 12px 14px; border-radius: 12px; border: {{igor.obrys}}; background: #FFFFFF; display: flex; align-items: center; gap: 12px; box-sizing: border-box; cursor: pointer">
+            <input type="radio" name="wolontariusz" value="igor" checked="{{igor.wybrany}}" onChange="{{igor.wybierz}}" style="flex: none; width: 20px; height: 20px; margin: 0; accent-color: var(--theme-primary, #1D5FA8)">
+            <span style="font-size: 14px; font-weight: 700">Igor · poziom 2 · dostępny jutro</span>
+          </label>
+          <label style="min-height: 56px; padding: 12px 14px; border-radius: 12px; border: {{drugi.obrys}}; background: #FFFFFF; display: flex; align-items: center; gap: 12px; box-sizing: border-box; cursor: pointer">
+            <input type="radio" name="wolontariusz" value="drugi" checked="{{drugi.wybrany}}" onChange="{{drugi.wybierz}}" style="flex: none; width: 20px; height: 20px; margin: 0; accent-color: var(--theme-primary, #1D5FA8)">
+            <span style="font-size: 14px; font-weight: 700">[IMIĘ] · poziom 2 · dostępny jutro</span>
+          </label>
+          <label style="min-height: 56px; padding: 12px 14px; border-radius: 12px; border: 2px solid #D9E1EA; background: #FFFFFF; display: flex; align-items: center; gap: 12px; box-sizing: border-box; color: #5A6575; cursor: not-allowed">
+            <input type="radio" name="wolontariusz" value="trzeci" disabled aria-describedby="za-niski-poziom" style="flex: none; width: 20px; height: 20px; margin: 0">
+            <span style="display: flex; flex-direction: column; gap: 2px">
+              <span style="font-size: 14px; font-weight: 600">[IMIĘ] · poziom 1</span>
+              <span id="za-niski-poziom" style="font-size: 12px; color: #5A6575">Za niski poziom dla spaceru</span>
+            </span>
+          </label>
+        </fieldset>
+
+        <sc-if value="{{przydzielanie}}" hint-placeholder-val="{{ true }}">
+          <button type="button" onClick="{{przydziel}}" style="align-self: flex-start; min-height: 44px; padding: 0 22px; border-radius: 999px; border: 0; background: var(--theme-primary, #1D5FA8); color: #FFFFFF; font: 700 14px Montserrat, sans-serif">Przydziel zadanie</button>
+        </sc-if>
+        <sc-if value="{{przydzielono}}" hint-placeholder-val="{{ false }}">
+          <div id="przydzielono-wynik" tabindex="-1" style="display: flex; align-items: flex-start; gap: 10px; padding: 14px 16px; border-radius: 12px; border: 1.5px solid #1E8E3E; background: #E3F4E8; color: #1E6B33">
+            <span aria-hidden="true" style="flex: none; width: 28px; height: 28px; border-radius: 14px; background: #1E8E3E; color: #FFFFFF; display: flex; align-items: center; justify-content: center"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg></span>
+            <p style="margin: 0; font-size: 14px; line-height: 1.45"><strong style="font-weight: 700">Przydzielono: {{wybranyImie}}.</strong> Senior zobaczy imię, zdjęcie i to, co sprawdziła instytucja. Adres widzi tylko {{wybranyImie}}, na czas zadania.</p>
+          </div>
+        </sc-if>
+        <p style="margin: 0; font-size: 12px; color: #5A6575">Przypomnij seniorowi o haśle pierwszej wizyty.</p>
+      </div>
+    </div>
+
+    <p style="margin: auto 0 0; font-size: 12px; color: #5A6575">Moje Osiedle nie jest kanałem alarmowym. W nagłej sytuacji dzwoń 112.</p>
+  </main>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1280,"height":800}}'>
+class Component extends DCLogic {
+  constructor(props) {
+    super(props);
+    this.state = { wybrany: 'igor', przydzielono: false };
+  }
+  componentDidUpdate(prevProps, prevState) {
+    if (!prevState.przydzielono && this.state.przydzielono) {
+      document.getElementById('przydzielono-wynik').focus();
+    }
+  }
+  renderVals() {
+    const { wybrany, przydzielono } = this.state;
+    const imiona = { igor: 'Igor', drugi: '[IMIĘ]' };
+    const opcja = (id) => ({
+      wybrany: wybrany === id,
+      obrys: wybrany === id ? '2px solid var(--theme-primary, #1D5FA8)' : '2px solid #D9E1EA',
+      wybierz: () => this.setState({ wybrany: id })
+    });
+    return {
+      igor: opcja('igor'),
+      drugi: opcja('drugi'),
+      wybranyImie: imiona[wybrany],
+      przydzielono: przydzielono,
+      przydzielanie: !przydzielono,
+      przydziel: () => this.setState({ przydzielono: true })
+    };
+  }
+}
+</script>
+</body>
+</html>

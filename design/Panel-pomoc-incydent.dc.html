@@ -1,0 +1,91 @@
+<!doctype html>
+<html lang="pl">
+<head>
+<meta charset="utf-8">
+<title>Panel instytucji – incydenty</title>
+<script src="./support.js"></script>
+<link rel="stylesheet" href="tokens/theme.css">
+</head>
+<body>
+<x-dc>
+<helmet>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0}
+a{color:inherit}a:hover{color:inherit}
+:focus-visible{outline:3px solid #1C2430;outline-offset:2px;box-shadow:0 0 0 2px #FFFFFF}
+</style>
+</helmet>
+<div style="min-height: 800px; display: flex; flex-wrap: wrap; background: #F5F7FA; font-family: Montserrat, sans-serif; color: #1C2430; container-type: inline-size">
+  <div style="flex: 0 1 auto; display: flex; max-width: 100%"><dc-import name="PanelBoczny" aktywna="incydenty" hint-size="240px,800px"></dc-import></div>
+
+  <main style="flex: 999 1 560px; min-width: 0; padding: 28px 32px 24px; box-sizing: border-box; display: flex; flex-direction: column; gap: 24px">
+    <div style="display: flex; flex-direction: column; gap: 6px">
+      <h1 style="margin: 0; font-size: 26px; font-weight: 800">Incydenty</h1>
+      <p style="margin: 0; font-size: 14px; color: #5A6575">Zgłoszenia o problemach podczas wizyt. Każda decyzja trafia do dziennika zdarzeń.</p>
+    </div>
+
+    <article aria-labelledby="incydent-otwarty" style="background: #FFFFFF; border-radius: 16px; padding: 20px; display: flex; flex-direction: column; gap: 10px">
+      <span style="align-self: flex-start; display: flex; align-items: center; gap: 4px; font-size: 11px; font-weight: 700; color: #A61F1F; background: #FDECEC; border-radius: 6px; padding: 3px 8px"><svg aria-hidden="true" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" style="flex: none"><circle cx="12" cy="12" r="9"/><path d="M12 8v4M12 16h.01"/></svg>Incydent</span>
+      <h2 id="incydent-otwarty" style="margin: 0; font-size: 17px; font-weight: 700">Prośba o pieniądze ponad limit zakupów</h2>
+      <span style="font-size: 13px; color: #5A6575">Wolontariusz: [IMIĘ] · poziom 1 · Osiedle Parkowe</span>
+      <span style="font-size: 13px; color: #5A6575">Zgłoszone przez opiekuna · [DATA] · [GODZINA]</span>
+      <sc-if value="{{otwarty}}" hint-placeholder-val="{{ true }}">
+        <div style="display: flex; flex-direction: column; gap: 10px; margin-top: 4px; max-width: 520px">
+          <label style="display: flex; flex-direction: column; gap: 6px; font-size: 13px; font-weight: 600">Notatka do dziennika
+            <textarea rows="3" style="min-height: 44px; padding: 10px 12px; border-radius: 10px; border: 1px solid #7D8A9C; background: #FFFFFF; font: 500 14px Montserrat, sans-serif; color: #1C2430; resize: vertical"></textarea>
+          </label>
+          <div style="display: flex; flex-wrap: wrap; gap: 10px">
+            <button type="button" onClick="{{zawies}}" style="min-height: 44px; padding: 0 20px; border-radius: 999px; border: 1.5px solid #C62828; background: #FFFFFF; color: #A61F1F; font: 700 14px Montserrat, sans-serif">Zawieś konto</button>
+            <button type="button" onClick="{{zamknij}}" style="min-height: 44px; padding: 0 20px; border-radius: 999px; border: 1.5px solid #7D8A9C; background: #FFFFFF; color: #1C2430; font: 600 14px Montserrat, sans-serif">Zamknij bez działań</button>
+          </div>
+        </div>
+      </sc-if>
+      <sc-if value="{{zawieszono}}" hint-placeholder-val="{{ false }}">
+        <div id="incydent-wynik-zawieszono" tabindex="-1" style="display: flex; flex-direction: column; gap: 8px; margin-top: 4px">
+          <span style="align-self: flex-start; display: flex; align-items: center; gap: 4px; font-size: 11px; font-weight: 700; color: #A61F1F; background: #FDECEC; border-radius: 6px; padding: 3px 8px"><svg aria-hidden="true" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" style="flex: none"><circle cx="12" cy="12" r="9"/><path d="M12 8v4M12 16h.01"/></svg>Konto zawieszone</span>
+          <p style="margin: 0; font-size: 14px; font-weight: 600">Wolontariusz nie dostaje nowych zadań. Zapisaliśmy decyzję w dzienniku zdarzeń.</p>
+        </div>
+      </sc-if>
+      <sc-if value="{{zamknieto}}" hint-placeholder-val="{{ false }}">
+        <div id="incydent-wynik-zamknieto" tabindex="-1" style="display: flex; flex-direction: column; gap: 8px; margin-top: 4px">
+          <span style="align-self: flex-start; display: flex; align-items: center; gap: 4px; font-size: 11px; font-weight: 700; color: #1E6B33; background: #E3F4E8; border-radius: 6px; padding: 3px 8px"><svg aria-hidden="true" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" style="flex: none"><path d="M20 6L9 17l-5-5"/></svg>Zamknięte bez działań</span>
+          <p style="margin: 0; font-size: 14px; font-weight: 600">Zapisaliśmy decyzję w dzienniku zdarzeń.</p>
+        </div>
+      </sc-if>
+    </article>
+
+    <article aria-labelledby="incydent-zamkniety" style="background: #FFFFFF; border-radius: 16px; padding: 20px; display: flex; flex-direction: column; gap: 10px">
+      <span style="align-self: flex-start; display: flex; align-items: center; gap: 4px; font-size: 11px; font-weight: 700; color: #1E6B33; background: #E3F4E8; border-radius: 6px; padding: 3px 8px"><svg aria-hidden="true" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" style="flex: none"><path d="M20 6L9 17l-5-5"/></svg>Wyjaśnione</span>
+      <h2 id="incydent-zamkniety" style="margin: 0; font-size: 15px; font-weight: 700">Spóźnienie na wizytę · [DATA]</h2>
+    </article>
+
+    <p style="margin: auto 0 0; font-size: 12px; color: #5A6575">Moje Osiedle nie jest kanałem alarmowym. W nagłej sytuacji dzwoń 112.</p>
+  </main>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1280,"height":800}}'>
+class Component extends DCLogic {
+  constructor(props) {
+    super(props);
+    this.state = { decyzja: null };
+  }
+  componentDidUpdate(prevProps, prevState) {
+    if (prevState.decyzja === null && this.state.decyzja !== null) {
+      document.getElementById('incydent-wynik-' + this.state.decyzja).focus();
+    }
+  }
+  renderVals() {
+    const { decyzja } = this.state;
+    return {
+      otwarty: decyzja === null,
+      zawieszono: decyzja === 'zawieszono',
+      zamknieto: decyzja === 'zamknieto',
+      zawies: () => this.setState({ decyzja: 'zawieszono' }),
+      zamknij: () => this.setState({ decyzja: 'zamknieto' })
+    };
+  }
+}
+</script>
+</body>
+</html>

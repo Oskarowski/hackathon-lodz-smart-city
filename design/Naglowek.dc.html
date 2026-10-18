@@ -1,0 +1,92 @@
+<!doctype html>
+<html lang="pl">
+<head>
+<meta charset="utf-8">
+<title>Komponent – Nagłówek</title>
+<script src="./support.js"></script>
+<link rel="stylesheet" href="tokens/theme.css">
+</head>
+<body>
+<x-dc>
+<helmet>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0}
+</style>
+</helmet>
+<sc-if value="{{jestEkran}}" hint-placeholder-val="{{ true }}">
+  <header style="background: var(--theme-primary, #1D5FA8); color: #FFFFFF; padding: 12px 16px 18px 8px; display: flex; align-items: center; gap: 4px; height: 74px; box-sizing: border-box; font-family: Montserrat, sans-serif">
+    <sc-if value="{{wsteczLinkiem}}" hint-placeholder-val="{{ true }}">
+      <a href="{{wsteczHref}}" aria-label="{{wsteczEtykieta}}" style="width: 44px; height: 44px; display: flex; align-items: center; justify-content: center; color: #FFFFFF">
+        <svg aria-hidden="true" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg>
+      </a>
+    </sc-if>
+    <sc-if value="{{wsteczPrzyciskiem}}" hint-placeholder-val="{{ false }}">
+      <button type="button" aria-label="{{wsteczEtykieta}}" onClick="{{naWstecz}}" style="width: 44px; height: 44px; display: flex; align-items: center; justify-content: center; color: #FFFFFF; border: 0; background: transparent">
+        <svg aria-hidden="true" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg>
+      </button>
+    </sc-if>
+    <div style="display: flex; flex-direction: column; gap: 2px">
+      <h1 style="margin: 0; font-size: 18px; font-weight: 700">{{tytul}}</h1>
+      <sc-if value="{{maPodtytul}}" hint-placeholder-val="{{ true }}">
+        <span style="font-size: 12px; font-weight: 500; opacity: 0.9">{{podtytul}}</span>
+      </sc-if>
+    </div>
+    <sc-if value="{{maAkcje}}" hint-placeholder-val="{{ false }}">
+      <a href="{{akcjaHref}}" style="flex: none; margin-left: auto; min-height: 44px; padding: 0 14px; border-radius: 999px; background: rgba(255, 255, 255, 0.16); color: #FFFFFF; font: 600 13px Montserrat, sans-serif; text-decoration: none; display: flex; align-items: center; gap: 6px">
+        <svg aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg>{{akcjaEtykieta}}
+      </a>
+    </sc-if>
+  </header>
+</sc-if>
+<sc-if value="{{jestStart}}" hint-placeholder-val="{{ false }}">
+  <header style="background: var(--theme-primary, #1D5FA8); color: #FFFFFF; padding: 12px 12px 18px 8px; display: flex; flex-direction: column; gap: 8px; height: 126px; box-sizing: border-box; font-family: Montserrat, sans-serif">
+    <div style="display: flex; align-items: center; gap: 4px">
+      <a href="{{wsteczHref}}" aria-label="{{wsteczEtykieta}}" style="width: 44px; height: 44px; display: flex; align-items: center; justify-content: center; color: #FFFFFF">
+        <svg aria-hidden="true" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg>
+      </a>
+      <div style="flex: 1; display: flex; align-items: center; gap: 10px">
+        <span role="img" aria-label="Twoje Miasto" style="font-size: 14px; letter-spacing: -0.02em"><span aria-hidden="true" style="font-weight: 300">Twoje</span><span aria-hidden="true" style="font-weight: 800">Miasto</span><span aria-hidden="true" style="font-weight: 800; color: var(--theme-brand-dot, #D9C7F5)">.</span></span>
+        <span aria-hidden="true" style="width: 1px; height: 16px; background: rgba(255, 255, 255, 0.45)"></span>
+        <h1 style="margin: 0; font-size: 16px; font-weight: 700">{{tytul}}</h1>
+      </div>
+      <a href="Sprawy-lista.dc.html" aria-label="Powiadomienia – Moje sprawy" style="width: 44px; height: 44px; color: #FFFFFF; display: flex; align-items: center; justify-content: center; position: relative">
+        <svg aria-hidden="true" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9"/><path d="M10.3 21a1.94 1.94 0 0 0 3.4 0"/></svg>
+        <span aria-hidden="true" style="position: absolute; top: 10px; right: 11px; width: 8px; height: 8px; border-radius: 4px; background: #F5B83D"></span>
+      </a>
+    </div>
+    <a href="Wiecej.dc.html" aria-label="Osiedle: {{podtytul}}. Zmień w zakładce Więcej" style="align-self: flex-start; margin-left: 12px; min-height: 44px; padding: 0 14px 0 12px; border-radius: 999px; background: rgba(255, 255, 255, 0.16); color: #FFFFFF; font: 600 14px Montserrat, sans-serif; text-decoration: none; box-sizing: border-box; display: flex; align-items: center; gap: 8px">
+      <svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s-7-6.2-7-11a7 7 0 0 1 14 0c0 4.8-7 11-7 11z"/><circle cx="12" cy="10" r="2.5"/></svg>
+      {{podtytul}}
+    </a>
+  </header>
+</sc-if>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"tytul":{"editor":"text","default":"Budżet obywatelski"},"podtytul":{"editor":"text","default":"Projekty z Osiedla Parkowego"},"wsteczHref":{"editor":"text","default":"Start.dc.html"},"wsteczEtykieta":{"editor":"text","default":"Wróć do Start"},"akcjaEtykieta":{"editor":"text","default":""},"akcjaHref":{"editor":"text","default":"#"},"wariant":{"editor":"enum","options":["ekran","start"],"default":"ekran"},"naWstecz":{"editor":null,"tsType":"() => void"},"$preview":{"width":390,"height":74}}'>
+class Component extends DCLogic {
+  renderVals() {
+    const podtytul = this.props.podtytul ?? 'Projekty z Osiedla Parkowego';
+    const akcjaEtykieta = this.props.akcjaEtykieta ?? '';
+    const wariant = this.props.wariant ?? 'ekran';
+    const naWstecz = this.props.naWstecz;
+    const wsteczPrzyciskiem = typeof naWstecz === 'function';
+    return {
+      tytul: this.props.tytul ?? 'Budżet obywatelski',
+      podtytul,
+      maPodtytul: podtytul !== '',
+      wsteczHref: this.props.wsteczHref ?? 'Start.dc.html',
+      wsteczEtykieta: this.props.wsteczEtykieta ?? 'Wróć do Start',
+      wsteczLinkiem: !wsteczPrzyciskiem,
+      wsteczPrzyciskiem,
+      naWstecz,
+      akcjaEtykieta,
+      akcjaHref: this.props.akcjaHref ?? '#',
+      maAkcje: akcjaEtykieta !== '',
+      jestEkran: wariant !== 'start',
+      jestStart: wariant === 'start',
+    };
+  }
+}
+</script>
+</body>
+</html>

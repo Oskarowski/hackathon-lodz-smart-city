@@ -1,0 +1,132 @@
+<!doctype html>
+<html lang="pl">
+<head>
+<meta charset="utf-8">
+<title>Twoje Miasto – aplikacja miejska</title>
+<script src="./support.js"></script>
+<link rel="stylesheet" href="tokens/theme.css">
+</head>
+<body>
+<x-dc>
+<helmet>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0}
+a{color:inherit}a:hover{color:inherit}
+:focus-visible{outline:3px solid #1C2430;outline-offset:2px;box-shadow:0 0 0 2px #FFFFFF}
+</style>
+</helmet>
+<div style="width: 390px; height: 844px; display: flex; flex-direction: column; background: #F5F7FA; font-family: Montserrat, sans-serif; color: #1C2430; overflow: hidden">
+  <header style="background: var(--theme-primary, #1D5FA8); color: #FFFFFF; padding: 28px 20px 76px; display: flex; flex-direction: column; gap: 6px">
+    <h1 aria-label="Twoje Miasto" style="margin: 0; font-size: 28px; font-weight: 400; letter-spacing: -0.03em; line-height: 1"><span style="font-weight: 300">Twoje</span><span style="font-weight: 800">Miasto</span><span style="font-weight: 800; color: var(--theme-brand-dot, #D9C7F5)">.</span></h1>
+    <p style="margin: 0; font-size: 13px; font-weight: 500; opacity: 0.9">Dzień dobry! Co dziś załatwiamy?</p>
+  </header>
+
+  <main style="flex: 1; overflow: auto; padding: 0 20px 24px; display: flex; flex-direction: column; gap: 24px">
+    <section aria-label="Karta Mieszkańca" style="margin-top: -52px; background: #FFFFFF; border-radius: 20px; padding: 16px; display: flex; align-items: center; gap: 14px; box-shadow: 0 6px 20px rgba(28, 36, 48, 0.10)">
+      <div aria-hidden="true" style="width: 64px; height: 42px; border-radius: 8px; background: var(--theme-primary, #1D5FA8); display: flex; align-items: flex-end; padding: 6px; box-sizing: border-box">
+        <span style="width: 18px; height: 12px; border-radius: 3px; background: var(--theme-brand-dot, #D9C7F5)"></span>
+      </div>
+      <div style="flex: 1; display: flex; flex-direction: column; gap: 4px">
+        <span style="font-size: 15px; font-weight: 700">Karta Mieszkańca</span>
+        <span style="font-size: 12px; font-weight: 600; color: #1E7A36; display: flex; align-items: center; gap: 6px"><span aria-hidden="true" style="width: 8px; height: 8px; border-radius: 4px; background: #1E8E3E"></span>Aktywna</span>
+      </div>
+      <button type="button" style="min-height: 44px; padding: 0 16px; border-radius: 999px; border: 1.5px solid var(--theme-primary, #1D5FA8); background: #FFFFFF; color: var(--theme-primary, #1D5FA8); font: 600 13px Montserrat, sans-serif; cursor: pointer" onClick="{{pokazKarte}}">Pokaż kartę</button>
+    </section>
+
+    <section aria-labelledby="uslugi" style="display: flex; flex-direction: column; gap: 12px">
+      <h2 id="uslugi" style="margin: 0; font-size: 17px; font-weight: 700">Usługi</h2>
+      <div style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px">
+        <a href="Wejscie-zgoda.dc.html" style="grid-column: span 2; text-decoration: none; background: #FFFFFF; border: 2px solid var(--theme-accent, #7A3EB1); border-radius: 16px; padding: 16px; display: flex; align-items: center; gap: 14px; color: #1C2430">
+          <span aria-hidden="true" style="width: 48px; height: 48px; border-radius: 14px; background: var(--theme-accent, #7A3EB1); color: #FFFFFF; display: flex; align-items: center; justify-content: center">
+            <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21h18"/><path d="M5 21V9l5-4 5 4v12"/><path d="M15 21v-8h4v8"/><path d="M8.5 12h3M8.5 16h3"/></svg>
+          </span>
+          <span style="flex: 1; display: flex; flex-direction: column; gap: 3px">
+            <span style="display: flex; align-items: center; gap: 8px"><span style="font-size: 16px; font-weight: 700">Moje Osiedle</span><span style="font-size: 12px; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; color: #FFFFFF; background: var(--theme-accent, #7A3EB1); border-radius: 999px; padding: 3px 8px">Nowość</span></span>
+            <span style="font-size: 12px; color: #5A6575; line-height: 1.4">Zgłaszaj, głosuj i dołączaj do wydarzeń w swojej okolicy</span>
+          </span>
+          <svg aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#5A6575" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"/></svg>
+        </a>
+        <button type="button" onClick="{{bilety}}" style="text-decoration: none; background: #FFFFFF; border-radius: 16px; padding: 16px; display: flex; flex-direction: column; gap: 10px; color: #1C2430; min-height: 96px; box-sizing: border-box; border: 0; font: inherit; text-align: left; cursor: pointer">
+          <svg aria-hidden="true" width="24" height="24" viewBox="0 0 24 24" fill="none" style="stroke: var(--theme-primary, #1D5FA8)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="3" width="14" height="15" rx="3"/><path d="M5 11h14M8 21l1.5-3M16 21l-1.5-3"/><path d="M8.5 14.5h.01M15.5 14.5h.01"/></svg>
+          <span style="font-size: 14px; font-weight: 600">Bilety</span>
+        </button>
+        <button type="button" onClick="{{parkowanie}}" style="text-decoration: none; background: #FFFFFF; border-radius: 16px; padding: 16px; display: flex; flex-direction: column; gap: 10px; color: #1C2430; min-height: 96px; box-sizing: border-box; border: 0; font: inherit; text-align: left; cursor: pointer">
+          <svg aria-hidden="true" width="24" height="24" viewBox="0 0 24 24" fill="none" style="stroke: var(--theme-primary, #1D5FA8)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="4"/><path d="M9 17V7h4a3 3 0 0 1 0 6H9"/></svg>
+          <span style="font-size: 14px; font-weight: 600">Parkowanie</span>
+        </button>
+        <button type="button" onClick="{{znizki}}" style="text-decoration: none; background: #FFFFFF; border-radius: 16px; padding: 16px; display: flex; flex-direction: column; gap: 10px; color: #1C2430; min-height: 96px; box-sizing: border-box; border: 0; font: inherit; text-align: left; cursor: pointer">
+          <svg aria-hidden="true" width="24" height="24" viewBox="0 0 24 24" fill="none" style="stroke: var(--theme-primary, #1D5FA8)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M20.6 13.4l-7.2 7.2a2 2 0 0 1-2.8 0L3 13V3h10l7.6 7.6a2 2 0 0 1 0 2.8z"/><circle cx="7.5" cy="7.5" r="1.5"/></svg>
+          <span style="font-size: 14px; font-weight: 600">Zniżki u partnerów</span>
+        </button>
+        <button type="button" onClick="{{wydarzenia}}" style="text-decoration: none; background: #FFFFFF; border-radius: 16px; padding: 16px; display: flex; flex-direction: column; gap: 10px; color: #1C2430; min-height: 96px; box-sizing: border-box; border: 0; font: inherit; text-align: left; cursor: pointer">
+          <svg aria-hidden="true" width="24" height="24" viewBox="0 0 24 24" fill="none" style="stroke: var(--theme-primary, #1D5FA8)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="16" rx="3"/><path d="M3 10h18M8 3v4M16 3v4"/></svg>
+          <span style="font-size: 14px; font-weight: 600">Wydarzenia w mieście</span>
+        </button>
+      </div>
+      <p role="status" aria-live="polite" style="margin: 0; min-height: 0; font-size: 13px; line-height: 1.5; color: #174E8C; background: {{komunikatTlo}}; border-radius: 12px; padding: {{komunikatOdstep}}">{{komunikat}}</p>
+    </section>
+
+    <section aria-labelledby="aktualnosci" style="display: flex; flex-direction: column; gap: 12px">
+      <h2 id="aktualnosci" style="margin: 0; font-size: 17px; font-weight: 700">Aktualności</h2>
+      <article style="background: #FFFFFF; border-radius: 16px; overflow: hidden">
+        <div style="height: 120px; background: #E2EBF4; display: flex; align-items: center; justify-content: center; font-size: 12px; font-weight: 600; color: #5A6575">[ZDJĘCIE Z MIASTA]</div>
+        <div style="padding: 14px 16px; display: flex; flex-direction: column; gap: 4px">
+          <span style="font-size: 12px; font-weight: 600; color: #5A6575; text-transform: uppercase; letter-spacing: 0.06em">Miasto</span>
+          <span style="font-size: 15px; font-weight: 700; line-height: 1.35">[TYTUŁ AKTUALNOŚCI]</span>
+        </div>
+      </article>
+    </section>
+  </main>
+
+  <nav aria-label="Nawigacja aplikacji miejskiej" style="display: flex; background: #FFFFFF; border-top: 1px solid #D9E1EA; padding: 6px 8px 18px">
+    <a href="Main.dc.html" aria-current="page" style="flex: 1; min-height: 48px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 4px; text-decoration: none; color: var(--theme-primary, #1D5FA8); font-size: 12px; font-weight: 700">
+      <svg aria-hidden="true" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11l9-7 9 7v9a1 1 0 0 1-1 1h-5v-6H9v6H4a1 1 0 0 1-1-1z"/></svg>Start</a>
+    <button type="button" onClick="{{pasekKarta}}" style="flex: 1; min-height: 48px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 4px; text-decoration: none; border: 0; padding: 0; background: transparent; font: inherit; color: #5A6575; font-size: 12px; font-weight: 600; cursor: pointer">
+      <svg aria-hidden="true" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="6" width="18" height="12" rx="2"/><path d="M3 10h18"/></svg>Karta</button>
+    <button type="button" onClick="{{pasekBilety}}" style="flex: 1; min-height: 48px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 4px; text-decoration: none; border: 0; padding: 0; background: transparent; font: inherit; color: #5A6575; font-size: 12px; font-weight: 600; cursor: pointer">
+      <svg aria-hidden="true" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9a2 2 0 0 0 0 6v3h18v-3a2 2 0 0 0 0-6V6H3z"/><path d="M13 6v12"/></svg>Bilety</button>
+    <button type="button" onClick="{{pasekWiecej}}" style="flex: 1; min-height: 48px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 4px; text-decoration: none; border: 0; padding: 0; background: transparent; font: inherit; color: #5A6575; font-size: 12px; font-weight: 600; cursor: pointer">
+      <svg aria-hidden="true" width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><circle cx="5" cy="12" r="1.8"/><circle cx="12" cy="12" r="1.8"/><circle cx="19" cy="12" r="1.8"/></svg>Więcej</button>
+  </nav>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":390,"height":844}}'>
+class Component extends DCLogic {
+  constructor(props) {
+    super(props);
+    this.state = { komunikat: '' };
+  }
+  componentWillUnmount() {
+    clearTimeout(this.ponowienie);
+  }
+  oglos(tekst) {
+    if (this.state.komunikat !== tekst) {
+      this.setState({ komunikat: tekst });
+      return;
+    }
+    this.setState({ komunikat: '' }, () => {
+      this.ponowienie = setTimeout(() => this.setState({ komunikat: tekst }), 0);
+    });
+  }
+  renderVals() {
+    const { komunikat } = this.state;
+    const wPrzygotowaniu = (nazwa) => () => this.oglos('„' + nazwa + '” – w przygotowaniu.');
+    return {
+      komunikat,
+      komunikatTlo: komunikat ? '#E8EFF8' : 'transparent',
+      komunikatOdstep: komunikat ? '10px 14px' : '0',
+      pokazKarte: wPrzygotowaniu('Pokaż kartę'),
+      bilety: wPrzygotowaniu('Bilety'),
+      parkowanie: wPrzygotowaniu('Parkowanie'),
+      znizki: wPrzygotowaniu('Zniżki u partnerów'),
+      wydarzenia: wPrzygotowaniu('Wydarzenia w mieście'),
+      pasekKarta: wPrzygotowaniu('Karta'),
+      pasekBilety: wPrzygotowaniu('Bilety'),
+      pasekWiecej: wPrzygotowaniu('Więcej')
+    };
+  }
+}
+</script>
+</body>
+</html>

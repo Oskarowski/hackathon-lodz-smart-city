@@ -1,0 +1,99 @@
+<!doctype html>
+<html lang="pl">
+<head>
+<meta charset="utf-8">
+<title>Tablica – wpis oficjalny</title>
+<script src="./support.js"></script>
+<link rel="stylesheet" href="tokens/theme.css">
+</head>
+<body>
+<x-dc>
+<helmet>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0}
+a{color:inherit}a:hover{color:inherit}
+:focus-visible{outline:3px solid #1C2430;outline-offset:2px;box-shadow:0 0 0 2px #FFFFFF}
+</style>
+</helmet>
+<div style="width: 390px; height: 844px; display: flex; flex-direction: column; background: #F5F7FA; font-family: Montserrat, sans-serif; color: #1C2430; overflow: hidden">
+  <dc-import name="Naglowek" tytul="Klub książki" podtytul="Tablica · wpis oficjalny" wstecz-href="Tablica-sasiedzi.dc.html" wstecz-etykieta="Wróć do tablicy" hint-size="390px,74px"></dc-import>
+
+  <main style="flex: 1; overflow: auto; padding: 20px; display: flex; flex-direction: column; gap: 18px">
+    <div style="display: flex; align-items: center; gap: 12px">
+      <span aria-hidden="true" style="flex: none; width: 44px; height: 44px; border-radius: 12px; background: var(--theme-primary, #1D5FA8); color: #FFFFFF; display: flex; align-items: center; justify-content: center">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20V3H6.5A2.5 2.5 0 0 0 4 5.5z"/><path d="M4 19.5A2.5 2.5 0 0 0 6.5 22H20v-5"/></svg>
+      </span>
+      <span style="display: flex; flex-direction: column; gap: 4px">
+        <span style="align-self: flex-start; font-size: 12px; font-weight: 700; color: #FFFFFF; background: var(--theme-primary, #1D5FA8); border-radius: 6px; padding: 3px 8px; display: flex; align-items: center; gap: 4px">
+          <svg aria-hidden="true" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>Oficjalne
+        </span>
+        <span style="font-size: 13px; font-weight: 600">Biblioteka Miejska, Filia nr [NR]</span>
+      </span>
+    </div>
+
+    <section aria-label="Szczegóły wydarzenia" style="background: #FFFFFF; border-radius: 16px; padding: 4px 16px">
+      <div style="display: flex; align-items: center; gap: 12px; padding: 14px 0; border-bottom: 1px solid #D9E1EA">
+        <svg aria-hidden="true" width="22" height="22" viewBox="0 0 24 24" fill="none" style="stroke: var(--theme-primary, #1D5FA8)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="16" rx="3"/><path d="M3 10h18M8 3v4M16 3v4"/></svg>
+        <span style="display: flex; flex-direction: column; gap: 2px"><span style="font-size: 14px; font-weight: 700">śr., [DATA] · 18:00</span><span style="font-size: 12px; color: #5A6575">co tydzień</span></span>
+      </div>
+      <div style="display: flex; align-items: center; gap: 12px; padding: 14px 0">
+        <svg aria-hidden="true" width="22" height="22" viewBox="0 0 24 24" fill="none" style="stroke: var(--theme-primary, #1D5FA8)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s-7-6.2-7-11a7 7 0 0 1 14 0c0 4.8-7 11-7 11z"/><circle cx="12" cy="10" r="2.5"/></svg>
+        <span style="display: flex; flex-direction: column; gap: 2px"><span style="font-size: 14px; font-weight: 700">[ADRES FILII]</span><span style="font-size: 12px; color: #5A6575">Osiedle Parkowe</span></span>
+      </div>
+    </section>
+
+    <p style="margin: 0; font-size: 14px; line-height: 1.6; color: #2B3442">[OPIS WYDARZENIA OD BIBLIOTEKI]</p>
+
+    <p style="margin: 0; font-size: 12px; color: #5A6575; display: flex; align-items: center; gap: 8px">
+      <svg aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12a9 9 0 1 1-3-6.7L21 8"/><path d="M21 3v5h-5"/></svg>
+      Wpis pobrany automatycznie z kalendarza biblioteki
+    </p>
+  </main>
+
+  <div style="background: #FFFFFF; border-top: 1px solid #D9E1EA; padding: 12px 16px 24px">
+    <div style="display: flex; gap: 10px">
+      <button type="button" aria-pressed="{{udzial}}" onClick="{{przelaczUdzial}}" style="flex: 1; min-height: 52px; border-radius: 999px; border: 0; background: var(--theme-primary, #1D5FA8); color: #FFFFFF; display: flex; align-items: center; justify-content: center; gap: 6px; font: 700 15px Montserrat, sans-serif"><sc-if value="{{udzial}}" hint-placeholder-val="{{ false }}"><svg aria-hidden="true" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" style="flex: none"><path d="M20 6L9 17l-5-5"/></svg></sc-if>Wezmę udział</button>
+      <button type="button" aria-label="Dodaj do kalendarza" onClick="{{dodajDoKalendarza}}" style="width: 52px; height: 52px; border-radius: 26px; border: 1.5px solid #7D8A9C; background: #FFFFFF; color: #1C2430; display: flex; align-items: center; justify-content: center">
+        <svg aria-hidden="true" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="16" rx="3"/><path d="M3 10h18M8 3v4M16 3v4M12 13v5M9.5 15.5h5"/></svg>
+      </button>
+    </div>
+    <p role="status" aria-live="polite" style="margin: 0; min-height: 0; font-size: 13px; line-height: 1.5; color: #174E8C; {{komunikatStyl}}">{{komunikat}}</p>
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":390,"height":844}}'>
+class Component extends DCLogic {
+  constructor(props) {
+    super(props);
+    this.state = { udzial: false, komunikat: '' };
+  }
+
+  componentWillUnmount() {
+    clearTimeout(this.ponowienie);
+  }
+
+  oglos(tekst) {
+    if (this.state.komunikat !== tekst) {
+      this.setState({ komunikat: tekst });
+      return;
+    }
+    this.setState({ komunikat: '' }, () => {
+      this.ponowienie = setTimeout(() => this.setState({ komunikat: tekst }), 0);
+    });
+  }
+
+  renderVals() {
+    const { udzial, komunikat } = this.state;
+    return {
+      udzial,
+      przelaczUdzial: () => this.setState({ udzial: !udzial }),
+      dodajDoKalendarza: () => this.oglos('Dodano do kalendarza.'),
+      komunikat,
+      komunikatStyl: komunikat ? 'margin-top: 10px; background: #E8EFF8; border-radius: 12px; padding: 10px 14px' : '',
+    };
+  }
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="pl">
+<head>
+<meta charset="utf-8">
+<title>Zgłoszono odbiór gabarytów</title>
+<script src="./support.js"></script>
+<link rel="stylesheet" href="tokens/theme.css">
+</head>
+<body>
+<x-dc>
+<helmet>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0}
+a{color:inherit}a:hover{color:inherit}
+:focus-visible{outline:3px solid #1C2430;outline-offset:2px;box-shadow:0 0 0 2px #FFFFFF}
+</style>
+</helmet>
+<div style="width: 390px; height: 844px; display: flex; flex-direction: column; background: #FFFFFF; font-family: Montserrat, sans-serif; color: #1C2430; overflow: hidden">
+  <main style="flex: 1; overflow: auto; display: flex; flex-direction: column">
+    <dc-import name="Potwierdzenie" wariant="kompaktowy" tytul="Zgłoszono odbiór gabarytów" opis="Zgłoszenie nr [NUMER]" zamknij-href="Start.dc.html" hint-size="390px,245px"></dc-import>
+    <div style="padding: 18px 20px 0; display: flex; flex-direction: column; gap: 18px">
+      <section aria-label="Szczegóły zgłoszenia" style="background: #F5F7FA; border-radius: 16px; padding: 4px 16px">
+        <div style="display: flex; justify-content: space-between; gap: 12px; padding: 12px 0; border-bottom: 1px solid #D9E1EA; font-size: 14px"><span style="color: #5A6575">Rozpoznano</span><span style="font-weight: 600; text-align: right">Meble – gabaryt</span></div>
+        <div style="display: flex; justify-content: space-between; gap: 12px; padding: 12px 0; border-bottom: 1px solid #D9E1EA; font-size: 14px"><span style="color: #5A6575">Termin odbioru</span><span style="font-weight: 700; text-align: right">czw., [DATA]</span></div>
+        <div style="display: flex; justify-content: space-between; gap: 12px; padding: 12px 0; font-size: 14px"><span style="color: #5A6575">Miejsce</span><span style="font-weight: 600; text-align: right">[ADRES]</span></div>
+      </section>
+
+      <section aria-labelledby="limit" style="display: flex; flex-direction: column; gap: 8px">
+        <div style="display: flex; justify-content: space-between; align-items: baseline">
+          <h2 id="limit" style="margin: 0; font-size: 14px; font-weight: 700">Dodatkowe odbiory w tym roku</h2>
+          <span style="font-size: 14px; font-weight: 700">1 z 2</span>
+        </div>
+        <div aria-hidden="true" style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 6px">
+          <span style="height: 8px; border-radius: 4px; background: var(--theme-primary, #1D5FA8)"></span>
+          <span style="height: 8px; border-radius: 4px; background: #FFFFFF; border: 1.5px solid #7D8A9C; box-sizing: border-box"></span>
+        </div>
+      </section>
+
+      <section aria-labelledby="status" style="display: flex; flex-direction: column; gap: 12px">
+        <h2 id="status" style="margin: 0; font-size: 14px; font-weight: 700">Status</h2>
+        <dc-import name="OsEtapow" nazwa="Status zgłoszenia" etap-1="Przyjęte" etap-2="Zaplanowane" etap-3="Odebrane" biezacy="2" hint-size="100%,48px"></dc-import>
+      </section>
+    </div>
+  </main>
+
+  <div style="padding: 16px 20px 24px; display: flex; flex-direction: column; gap: 10px">
+    <a href="Sprawy-lista.dc.html" style="min-height: 52px; border-radius: 999px; background: var(--theme-primary, #1D5FA8); color: #FFFFFF; text-decoration: none; display: flex; align-items: center; justify-content: center; font-size: 15px; font-weight: 700">Zobacz w Moich sprawach</a>
+    <a href="Gabaryty-zdjecie.dc.html" style="min-height: 52px; border-radius: 999px; border: 1.5px solid #7D8A9C; color: #1C2430; text-decoration: none; display: flex; align-items: center; justify-content: center; font-size: 15px; font-weight: 600; box-sizing: border-box">Zgłoś coś jeszcze</a>
+    <p style="margin: 4px 0 0; font-size: 12px; color: #5A6575; text-align: center">Moje Osiedle nie jest kanałem alarmowym. W nagłej sytuacji dzwoń 112.</p>
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":390,"height":844}}'>
+class Component extends DCLogic {
+  renderVals() {
+    return {};
+  }
+}
+</script>
+</body>
+</html>

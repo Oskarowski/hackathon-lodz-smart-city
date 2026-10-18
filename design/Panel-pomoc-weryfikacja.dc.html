@@ -1,0 +1,181 @@
+<!doctype html>
+<html lang="pl">
+<head>
+<meta charset="utf-8">
+<title>Panel instytucji – weryfikacja profili</title>
+<script src="./support.js"></script>
+<link rel="stylesheet" href="tokens/theme.css">
+</head>
+<body>
+<x-dc>
+<helmet>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0}
+a{color:inherit}a:hover{color:inherit}
+:focus-visible{outline:3px solid #1C2430;outline-offset:2px;box-shadow:0 0 0 2px #FFFFFF}
+</style>
+</helmet>
+<div style="position: relative; min-height: 800px; display: flex; flex-wrap: wrap; background: #F5F7FA; font-family: Montserrat, sans-serif; color: #1C2430; container-type: inline-size">
+  <div style="flex: 0 1 auto; display: flex; max-width: 100%"><dc-import name="PanelBoczny" aktywna="weryfikacja" hint-size="240px,800px"></dc-import></div>
+
+  <main style="flex: 999 1 560px; min-width: 0; padding: 28px 32px 24px; box-sizing: border-box; display: flex; flex-direction: column; gap: 24px">
+    <div style="display: flex; flex-direction: column; gap: 6px">
+      <h1 style="margin: 0; font-size: 26px; font-weight: 800">Weryfikacja profili</h1>
+      <p style="margin: 0; font-size: 14px; color: #5A6575">Profile seniorów i wolontariuszy z osiedli, które czekają na zatwierdzenie.</p>
+    </div>
+
+    <div role="group" aria-label="Pokaż profile" style="display: flex; flex-wrap: wrap; gap: 8px">
+      <button type="button" aria-pressed="{{wszystkie.wcisniety}}" onClick="{{wszystkie.wybierz}}" style="min-height: 44px; padding: 0 16px; border-radius: 999px; border: {{wszystkie.obrys}}; background: {{wszystkie.tlo}}; color: {{wszystkie.kolor}}; font: 600 13px Montserrat, sans-serif">Wszystkie</button>
+      <button type="button" aria-pressed="{{seniorzy.wcisniety}}" onClick="{{seniorzy.wybierz}}" style="min-height: 44px; padding: 0 16px; border-radius: 999px; border: {{seniorzy.obrys}}; background: {{seniorzy.tlo}}; color: {{seniorzy.kolor}}; font: 600 13px Montserrat, sans-serif">Seniorzy</button>
+      <button type="button" aria-pressed="{{wolontariusze.wcisniety}}" onClick="{{wolontariusze.wybierz}}" style="min-height: 44px; padding: 0 16px; border-radius: 999px; border: {{wolontariusze.obrys}}; background: {{wolontariusze.tlo}}; color: {{wolontariusze.kolor}}; font: 600 13px Montserrat, sans-serif">Wolontariusze</button>
+    </div>
+
+    <p role="status" aria-live="polite" style="margin: 0; position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap">{{komunikat}}</p>
+
+    <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 16px; align-items: start">
+      <sc-if value="{{pokazSeniorow}}" hint-placeholder-val="{{ true }}">
+        <article aria-labelledby="profil-senior" style="background: #FFFFFF; border-radius: 16px; padding: 20px; display: flex; flex-direction: column; gap: 12px">
+          <span style="align-self: flex-start; font-size: 11px; font-weight: 700; color: var(--theme-primary, #1D5FA8); background: var(--theme-primary-soft, #E8EFF8); border-radius: 6px; padding: 3px 8px">Senior</span>
+          <div style="display: flex; gap: 12px; align-items: center">
+            <div aria-hidden="true" style="flex: none; width: 48px; height: 48px; border-radius: 24px; background: #DCE4EE; color: #4A5565; display: flex; align-items: center; justify-content: center"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 21v-1a8 8 0 0 1 16 0v1"/></svg></div>
+            <div style="min-width: 0; display: flex; flex-direction: column; gap: 4px">
+              <h2 id="profil-senior" style="margin: 0; font-size: 17px; font-weight: 700">[IMIĘ I NAZWISKO SENIORA]</h2>
+              <span style="font-size: 13px; color: #5A6575">Osiedle Parkowe · zgłoszenie od opiekuna: [IMIĘ OPIEKUNA]</span>
+            </div>
+          </div>
+          <span style="display: flex; align-items: center; gap: 8px; font-size: 13px; font-weight: 600">
+            <svg role="img" aria-label="Spełnione" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#1E8E3E" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" style="flex: none"><circle cx="12" cy="12" r="10"/><path d="M7.5 12.5l3 3 6-6.5"/></svg>Hasło pierwszej wizyty: ustalone</span>
+          <sc-if value="{{zatwierdzanie}}" hint-placeholder-val="{{ true }}">
+            <div style="display: flex; flex-wrap: wrap; gap: 10px; margin-top: 4px">
+              <button type="button" onClick="{{zatwierdz}}" style="min-height: 44px; padding: 0 22px; border-radius: 999px; border: 0; background: var(--theme-primary, #1D5FA8); color: #FFFFFF; font: 700 14px Montserrat, sans-serif">Zatwierdź profil</button>
+              <button type="button" onClick="{{popros}}" style="min-height: 44px; padding: 0 20px; border-radius: 999px; border: 1.5px solid #7D8A9C; background: #FFFFFF; color: #1C2430; font: 600 14px Montserrat, sans-serif">Poproś o uzupełnienie</button>
+            </div>
+          </sc-if>
+          <sc-if value="{{zatwierdzono}}" hint-placeholder-val="{{ false }}">
+            <span id="wynik-zatwierdzono" tabindex="-1" style="display: flex; align-items: center; gap: 10px; margin-top: 4px; font-size: 14px; font-weight: 700; color: #1E6B33">
+              <span aria-hidden="true" style="flex: none; width: 28px; height: 28px; border-radius: 14px; background: #1E8E3E; color: #FFFFFF; display: flex; align-items: center; justify-content: center"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg></span>
+              Zatwierdzono · profil widoczny dla przydziału zadań
+            </span>
+          </sc-if>
+          <sc-if value="{{poproszono}}" hint-placeholder-val="{{ false }}">
+            <span id="wynik-poproszono" tabindex="-1" style="display: flex; align-items: center; gap: 10px; margin-top: 4px; font-size: 14px; font-weight: 700; color: #1E6B33">
+              <span aria-hidden="true" style="flex: none; width: 28px; height: 28px; border-radius: 14px; background: #1E8E3E; color: #FFFFFF; display: flex; align-items: center; justify-content: center"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg></span>
+              Wysłaliśmy prośbę do opiekuna
+            </span>
+          </sc-if>
+        </article>
+      </sc-if>
+
+      <sc-if value="{{pokazWolontariuszy}}" hint-placeholder-val="{{ true }}">
+        <article aria-labelledby="profil-wolontariusz-2" style="background: #FFFFFF; border-radius: 16px; padding: 20px; display: flex; flex-direction: column; gap: 12px">
+          <span style="align-self: flex-start; font-size: 11px; font-weight: 700; color: var(--theme-primary, #1D5FA8); background: var(--theme-primary-soft, #E8EFF8); border-radius: 6px; padding: 3px 8px">Wolontariusz · wnioskuje o poziom 2</span>
+          <div style="display: flex; gap: 12px; align-items: center">
+            <div aria-hidden="true" style="flex: none; width: 48px; height: 48px; border-radius: 24px; background: #DCE4EE; color: #4A5565; display: flex; align-items: center; justify-content: center"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 21v-1a8 8 0 0 1 16 0v1"/></svg></div>
+            <div style="min-width: 0; display: flex; flex-direction: column; gap: 4px">
+              <h2 id="profil-wolontariusz-2" style="margin: 0; font-size: 17px; font-weight: 700">[IMIĘ]</h2>
+              <span style="font-size: 13px; color: #5A6575">Osiedle Parkowe</span>
+            </div>
+          </div>
+          <h3 id="wymagania-2" style="margin: 0; font-size: 13px; font-weight: 700; color: #5A6575">Wymagania poziomu 2</h3>
+          <ul aria-labelledby="wymagania-2" style="margin: 0; padding: 0; list-style: none; display: flex; flex-direction: column; gap: 8px; font-size: 13px; font-weight: 600">
+            <li style="display: flex; align-items: center; gap: 8px"><svg role="img" aria-label="Spełnione" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#1E8E3E" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" style="flex: none"><circle cx="12" cy="12" r="10"/><path d="M7.5 12.5l3 3 6-6.5"/></svg>Konto mieszkańca z Kartą Mieszkańca</li>
+            <li style="display: flex; align-items: center; gap: 8px"><svg role="img" aria-label="Spełnione" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#1E8E3E" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" style="flex: none"><circle cx="12" cy="12" r="10"/><path d="M7.5 12.5l3 3 6-6.5"/></svg>Rozmowa</li>
+            <li style="display: flex; align-items: center; gap: 8px"><svg role="img" aria-label="Spełnione" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#1E8E3E" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" style="flex: none"><circle cx="12" cy="12" r="10"/><path d="M7.5 12.5l3 3 6-6.5"/></svg>Szkolenie</li>
+            <li style="display: flex; align-items: center; gap: 8px"><svg role="img" aria-label="Spełnione" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#1E8E3E" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" style="flex: none"><circle cx="12" cy="12" r="10"/><path d="M7.5 12.5l3 3 6-6.5"/></svg>Porozumienie wolontariackie</li>
+          </ul>
+          <sc-if value="{{nadawanie}}" hint-placeholder-val="{{ true }}">
+            <button type="button" onClick="{{nadaj}}" style="align-self: flex-start; min-height: 44px; margin-top: 4px; padding: 0 22px; border-radius: 999px; border: 0; background: var(--theme-primary, #1D5FA8); color: #FFFFFF; font: 700 14px Montserrat, sans-serif">Nadaj poziom 2</button>
+          </sc-if>
+          <sc-if value="{{nadano}}" hint-placeholder-val="{{ false }}">
+            <span id="wynik-nadano" tabindex="-1" style="display: flex; align-items: center; gap: 10px; margin-top: 4px; font-size: 14px; font-weight: 700; color: #1E6B33">
+              <span aria-hidden="true" style="flex: none; width: 28px; height: 28px; border-radius: 14px; background: #1E8E3E; color: #FFFFFF; display: flex; align-items: center; justify-content: center"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg></span>
+              Nadano poziom 2
+            </span>
+          </sc-if>
+        </article>
+      </sc-if>
+
+      <sc-if value="{{pokazWolontariuszy}}" hint-placeholder-val="{{ true }}">
+        <article aria-labelledby="profil-wolontariusz-3" style="background: #FFFFFF; border-radius: 16px; padding: 20px; display: flex; flex-direction: column; gap: 12px">
+          <span style="align-self: flex-start; font-size: 11px; font-weight: 700; color: var(--theme-primary, #1D5FA8); background: var(--theme-primary-soft, #E8EFF8); border-radius: 6px; padding: 3px 8px">Wolontariusz · wnioskuje o poziom 3</span>
+          <div style="display: flex; gap: 12px; align-items: center">
+            <div aria-hidden="true" style="flex: none; width: 48px; height: 48px; border-radius: 24px; background: #DCE4EE; color: #4A5565; display: flex; align-items: center; justify-content: center"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 21v-1a8 8 0 0 1 16 0v1"/></svg></div>
+            <div style="min-width: 0; display: flex; flex-direction: column; gap: 4px">
+              <h2 id="profil-wolontariusz-3" style="margin: 0; font-size: 17px; font-weight: 700">[IMIĘ 2]</h2>
+              <span style="font-size: 13px; color: #5A6575">Osiedle Parkowe</span>
+            </div>
+          </div>
+          <h3 id="wymagania-3" style="margin: 0; font-size: 13px; font-weight: 700; color: #5A6575">Wymagania poziomu 3</h3>
+          <ul aria-labelledby="wymagania-3" style="margin: 0; padding: 0; list-style: none; display: flex; flex-direction: column; gap: 8px; font-size: 13px; font-weight: 600">
+            <li style="display: flex; align-items: center; gap: 8px"><svg role="img" aria-label="Spełnione" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#1E8E3E" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" style="flex: none"><circle cx="12" cy="12" r="10"/><path d="M7.5 12.5l3 3 6-6.5"/></svg>Konto mieszkańca z Kartą Mieszkańca</li>
+            <li style="display: flex; align-items: center; gap: 8px"><svg role="img" aria-label="Spełnione" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#1E8E3E" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" style="flex: none"><circle cx="12" cy="12" r="10"/><path d="M7.5 12.5l3 3 6-6.5"/></svg>Rozmowa</li>
+            <li style="display: flex; align-items: center; gap: 8px"><svg role="img" aria-label="Spełnione" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#1E8E3E" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" style="flex: none"><circle cx="12" cy="12" r="10"/><path d="M7.5 12.5l3 3 6-6.5"/></svg>Szkolenie</li>
+            <li style="display: flex; align-items: center; gap: 8px"><svg role="img" aria-label="Spełnione" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#1E8E3E" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" style="flex: none"><circle cx="12" cy="12" r="10"/><path d="M7.5 12.5l3 3 6-6.5"/></svg>Porozumienie wolontariackie</li>
+            <li style="display: flex; flex-wrap: wrap; align-items: center; gap: 8px"><svg role="img" aria-label="Niespełnione" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#7D8A9C" stroke-width="2" style="flex: none"><circle cx="12" cy="12" r="10"/></svg>Zaświadczenie o niekaralności
+              <span style="display: flex; align-items: center; gap: 4px; font-size: 11px; font-weight: 700; color: #8A5300; background: #FDF1DD; border-radius: 6px; padding: 3px 8px"><svg aria-hidden="true" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" style="flex: none"><path d="M10.3 3.9L1.8 18a2 2 0 0 0 1.7 3h17a2 2 0 0 0 1.7-3L13.7 3.9a2 2 0 0 0-3.4 0z"/><path d="M12 9v4M12 17h.01"/></svg>Brak dokumentu</span></li>
+          </ul>
+          <sc-if value="{{proszenieOZaswiadczenie}}" hint-placeholder-val="{{ true }}">
+            <button type="button" onClick="{{poprosOZaswiadczenie}}" style="align-self: flex-start; min-height: 44px; margin-top: 4px; padding: 0 20px; border-radius: 999px; border: 1.5px solid #7D8A9C; background: #FFFFFF; color: #1C2430; font: 600 14px Montserrat, sans-serif">Poproś o zaświadczenie</button>
+          </sc-if>
+          <sc-if value="{{poproszonoOZaswiadczenie}}" hint-placeholder-val="{{ false }}">
+            <span id="wynik-zaswiadczenie" tabindex="-1" style="display: flex; align-items: center; gap: 10px; margin-top: 4px; font-size: 14px; font-weight: 700; color: #1E6B33">
+              <span aria-hidden="true" style="flex: none; width: 28px; height: 28px; border-radius: 14px; background: #1E8E3E; color: #FFFFFF; display: flex; align-items: center; justify-content: center"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg></span>
+              Wysłaliśmy prośbę o zaświadczenie
+            </span>
+          </sc-if>
+        </article>
+      </sc-if>
+    </div>
+
+    <p style="margin: auto 0 0; font-size: 12px; color: #5A6575">Moje Osiedle nie jest kanałem alarmowym. W nagłej sytuacji dzwoń 112.</p>
+  </main>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1280,"height":800}}'>
+class Component extends DCLogic {
+  constructor(props) {
+    super(props);
+    this.state = { filtr: 'wszystkie', zatwierdzono: false, poproszono: false, nadano: false, poproszonoOZaswiadczenie: false, komunikat: '' };
+  }
+  componentDidUpdate(prevProps, prevState) {
+    const wyniki = { zatwierdzono: 'wynik-zatwierdzono', poproszono: 'wynik-poproszono', nadano: 'wynik-nadano', poproszonoOZaswiadczenie: 'wynik-zaswiadczenie' };
+    const nowy = Object.keys(wyniki).find((flaga) => !prevState[flaga] && this.state[flaga]);
+    if (nowy) document.getElementById(wyniki[nowy]).focus();
+  }
+  renderVals() {
+    const { filtr, zatwierdzono, poproszono, nadano, poproszonoOZaswiadczenie, komunikat } = this.state;
+    const pigulka = (id) => {
+      const wybrana = filtr === id;
+      return {
+        wcisniety: wybrana ? 'true' : 'false',
+        tlo: wybrana ? '#1C2430' : '#FFFFFF',
+        kolor: wybrana ? '#FFFFFF' : '#1C2430',
+        obrys: wybrana ? '0' : '1px solid #7D8A9C',
+        wybierz: () => this.setState({ filtr: id })
+      };
+    };
+    return {
+      komunikat,
+      wszystkie: pigulka('wszystkie'),
+      seniorzy: pigulka('seniorzy'),
+      wolontariusze: pigulka('wolontariusze'),
+      pokazSeniorow: filtr !== 'wolontariusze',
+      pokazWolontariuszy: filtr !== 'seniorzy',
+      zatwierdzono: zatwierdzono,
+      poproszono: poproszono,
+      zatwierdzanie: !zatwierdzono && !poproszono,
+      zatwierdz: () => this.setState({ zatwierdzono: true, komunikat: 'Zatwierdzono profil [IMIĘ I NAZWISKO SENIORA]. Profil jest widoczny dla przydziału zadań.' }),
+      popros: () => this.setState({ poproszono: true, komunikat: 'Wysłaliśmy prośbę do opiekuna o uzupełnienie profilu [IMIĘ I NAZWISKO SENIORA].' }),
+      nadano: nadano,
+      nadawanie: !nadano,
+      nadaj: () => this.setState({ nadano: true, komunikat: 'Nadano poziom 2: [IMIĘ].' }),
+      poproszonoOZaswiadczenie: poproszonoOZaswiadczenie,
+      proszenieOZaswiadczenie: !poproszonoOZaswiadczenie,
+      poprosOZaswiadczenie: () => this.setState({ poproszonoOZaswiadczenie: true, komunikat: 'Wysłaliśmy prośbę o zaświadczenie o niekaralności: [IMIĘ 2].' })
+    };
+  }
+}
+</script>
+</body>
+</html>

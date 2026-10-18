@@ -1,0 +1,12 @@
+:root {
+  --theme-primary: #1D5FA8;
+  --theme-accent: #7A3EB1;
+  --theme-primary-soft: #E8EFF8;
+  --theme-brand-dot: #D9C7F5;
+  --theme-brand-dot-on-dark: #C9B3F0;
+  --theme-app-name: "Twoje Miasto";
+  --theme-card-name: "Karta Mieszkańca";
+  --theme-wordmark-light: "Twoje";
+  --theme-wordmark-bold: "Miasto";
+  --theme-wordmark-dot: ".";
+}

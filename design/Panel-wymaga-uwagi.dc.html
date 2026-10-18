@@ -1,0 +1,249 @@
+<!doctype html>
+<html lang="pl">
+<head>
+<meta charset="utf-8">
+<title>Panel urzędu – wymaga uwagi</title>
+<script src="./support.js"></script>
+<link rel="stylesheet" href="tokens/theme.css">
+</head>
+<body>
+<x-dc>
+<helmet>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0}
+a{color:inherit}a:hover{color:inherit}
+:focus-visible{outline:3px solid #1C2430;outline-offset:2px;box-shadow:0 0 0 2px #FFFFFF}
+</style>
+</helmet>
+<div style="min-height: 800px; display: flex; flex-wrap: wrap; background: #F5F7FA; font-family: Montserrat, sans-serif; color: #1C2430; container-type: inline-size">
+  <div style="flex: 0 1 auto; display: flex; max-width: 100%"><dc-import name="PanelBoczny" panel="urzad" aktywna="wymaga-uwagi" licznik="{{otwarteTekst}}" hint-size="240px,800px"></dc-import></div>
+
+  <main style="flex: 999 1 560px; min-width: 0; padding: 28px 32px 24px; box-sizing: border-box; display: flex; flex-direction: column; gap: 20px">
+    <div style="display: flex; flex-direction: column; gap: 6px">
+      <h1 style="margin: 0; font-size: 26px; font-weight: 800">Wymaga uwagi</h1>
+      <p style="margin: 0; font-size: 14px; color: #5A6575">Zgłoszenia, których nie rozstrzygnęliśmy automatycznie.</p>
+      <p style="margin: 0; font-size: 13px; color: #5A6575">Kolejność: od najpilniejszych</p>
+      <p role="status" aria-live="polite" style="position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; margin: 0">{{komunikat}}</p>
+    </div>
+
+    <sc-if value="{{wszystkoRozpatrzone}}" hint-placeholder-val="{{ false }}">
+      <section style="background: #FFFFFF; border-radius: 16px; padding: 28px 20px; display: flex; flex-direction: column; align-items: center; gap: 10px; text-align: center">
+        <span aria-hidden="true" style="width: 56px; height: 56px; border-radius: 999px; background: #E3F4E8; color: #1E8E3E; display: flex; align-items: center; justify-content: center"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg></span>
+        <h2 style="margin: 0; font-size: 20px; font-weight: 800">Wszystko rozpatrzone</h2>
+        <p style="margin: 0; font-size: 14px; color: #5A6575">Nowe zgłoszenia, których nie rozstrzygniemy automatycznie, pojawią się tutaj.</p>
+      </section>
+    </sc-if>
+
+    <article style="background: #FFFFFF; border-radius: 16px; padding: 20px; display: flex; flex-direction: column; gap: 14px">
+      <div style="display: flex; flex-direction: column; gap: 10px">
+        <span style="align-self: flex-start; display: flex; align-items: center; gap: 4px; font-size: 11px; font-weight: 700; color: #A61F1F; background: #FDECEC; border-radius: 6px; padding: 3px 8px"><svg aria-hidden="true" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" style="flex: none"><circle cx="12" cy="12" r="9"/><path d="M12 8v4M12 16h.01"/></svg>Powtarzające się miejsce</span>
+        <h2 style="margin: 0; font-size: 17px; font-weight: 700">7. zgłoszenie dzikiego wysypiska w tym miejscu w 30 dni</h2>
+        <span style="font-size: 13px; color: #5A6575">Wysypiska · Osiedle Parkowe · [ADRES], nieużytek</span>
+        <div style="display: flex; flex-direction: column; gap: 4px; font-size: 13px; color: #1C2430">
+          <span>Ostatnie zgłoszenie: dziś, [GODZINA] · decyzja do: [DATA]</span>
+          <span>Powód: 7 zgłoszeń z tego miejsca w 30 dni</span>
+        </div>
+      </div>
+
+      <div style="display: flex; flex-wrap: wrap; gap: 12px">
+        <div role="img" aria-label="Zdjęcie ze zgłoszenia" style="flex: none; width: 160px; height: 120px; border-radius: 12px; background: #DCE4EE; display: flex; align-items: center; justify-content: center; font-size: 11px; font-weight: 600; color: #4A5565"><span aria-hidden="true">[ZDJĘCIE]</span></div>
+        <div role="img" aria-label="Miejsce na mapie" style="position: relative; flex: none; width: 160px; height: 120px; border-radius: 12px; overflow: hidden; background: #E9EEF3">
+          <span aria-hidden="true" style="position: absolute; left: 0; right: 0; top: 42px; height: 8px; background: #FFFFFF"></span>
+          <span aria-hidden="true" style="position: absolute; top: 0; bottom: 0; left: 86px; width: 8px; background: #FFFFFF"></span>
+          <span aria-hidden="true" style="position: absolute; left: 0; right: 0; top: 92px; height: 5px; background: #FFFFFF"></span>
+          <span aria-hidden="true" style="position: absolute; left: 10px; top: 58px; width: 64px; height: 26px; border-radius: 6px; background: #D5E8D4"></span>
+          <span aria-hidden="true" style="position: absolute; left: 102px; top: 8px; width: 50px; height: 28px; border-radius: 5px; background: #DCE2EA"></span>
+          <span aria-hidden="true" style="position: absolute; left: 62px; top: 20px; color: #C62828"><svg width="28" height="28" viewBox="0 0 24 24" fill="currentColor" stroke="#FFFFFF" stroke-width="1.2"><path d="M12 22s-7-6.2-7-11.5a7 7 0 0 1 14 0C19 15.8 12 22 12 22z"/><circle cx="12" cy="10.5" r="2.6" fill="#FFFFFF" stroke="none"/></svg></span>
+        </div>
+      </div>
+
+      <div style="display: flex; flex-direction: column; gap: 8px; max-width: 520px">
+        <h3 style="margin: 0; font-size: 14px; font-weight: 700">Poprzednie zgłoszenia z tego miejsca</h3>
+        <ul style="margin: 0; padding: 0; list-style: none; display: flex; flex-direction: column; gap: 6px; font-size: 13px">
+          <li style="display: flex; flex-wrap: wrap; align-items: center; gap: 8px">[DATA] ·<span style="display: flex; align-items: center; gap: 4px; font-size: 11px; font-weight: 700; color: #1E6B33; background: #E3F4E8; border-radius: 6px; padding: 3px 8px"><svg aria-hidden="true" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" style="flex: none"><path d="M20 6L9 17l-5-5"/></svg>Uprzątnięte</span></li>
+          <li style="display: flex; flex-wrap: wrap; align-items: center; gap: 8px">[DATA] ·<span style="display: flex; align-items: center; gap: 4px; font-size: 11px; font-weight: 700; color: #1E6B33; background: #E3F4E8; border-radius: 6px; padding: 3px 8px"><svg aria-hidden="true" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" style="flex: none"><path d="M20 6L9 17l-5-5"/></svg>Uprzątnięte</span></li>
+          <li style="display: flex; flex-wrap: wrap; align-items: center; gap: 8px">[DATA] ·<span style="display: flex; align-items: center; gap: 4px; font-size: 11px; font-weight: 700; color: #174E8C; background: #E8EFF8; border-radius: 6px; padding: 3px 8px"><svg aria-hidden="true" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" style="flex: none"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>Przyjęte</span>· dołączone do tej sprawy</li>
+          <li style="color: #5A6575">+ [N] zgłoszeń dołączonych do tej sprawy</li>
+        </ul>
+      </div>
+
+      <sc-if value="{{karta1Otwarta}}" hint-placeholder-val="{{ true }}">
+        <div style="display: flex; flex-direction: column; gap: 10px; max-width: 520px">
+          <label style="display: flex; flex-direction: column; gap: 6px; font-size: 13px; font-weight: 600">Przekaż do
+            <select value="{{sluzba}}" onChange="{{wybierzSluzbe}}" style="min-height: 44px; padding: 0 12px; border-radius: 10px; border: 1px solid #7D8A9C; background: #FFFFFF; font: 600 14px Montserrat, sans-serif; color: #1C2430"><option value="Straż Miejska">Straż Miejska</option><option value="MPO">MPO</option><option value="Zarząd dróg">Zarząd dróg</option></select>
+          </label>
+          <label style="display: flex; flex-direction: column; gap: 6px; font-size: 13px; font-weight: 600">Notatka dla służby
+            <textarea rows="2" value="{{notatka}}" onChange="{{wpiszNotatke}}" style="padding: 10px 12px; border-radius: 10px; border: 1px solid #7D8A9C; font: 500 14px Montserrat, sans-serif; color: #1C2430; resize: vertical"></textarea>
+          </label>
+          <button type="button" onClick="{{przekaz}}" style="align-self: flex-start; min-height: 44px; padding: 0 22px; border-radius: 999px; border: 0; background: var(--theme-primary, #1D5FA8); color: #FFFFFF; font: 700 14px Montserrat, sans-serif">Przekaż: {{sluzba}}</button>
+        </div>
+      </sc-if>
+      <sc-if value="{{karta1Przekazana}}" hint-placeholder-val="{{ false }}">
+        <div id="karta1-wynik" tabindex="-1" style="display: flex; flex-direction: column; gap: 8px">
+          <span style="align-self: flex-start; display: flex; align-items: center; gap: 4px; font-size: 11px; font-weight: 700; color: #174E8C; background: #E8EFF8; border-radius: 6px; padding: 3px 8px"><svg aria-hidden="true" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" style="flex: none"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>Przekazane {{sluzbaCelownik}}</span>
+          <span style="font-size: 14px; color: #1C2430">Notatka: {{notatka}} · Zapisaliśmy decyzję w rejestrze.</span>
+        </div>
+      </sc-if>
+    </article>
+
+    <article style="background: #FFFFFF; border-radius: 16px; padding: 20px; display: flex; flex-direction: column; gap: 14px">
+      <div style="display: flex; flex-direction: column; gap: 10px">
+        <span style="align-self: flex-start; display: flex; align-items: center; gap: 4px; font-size: 11px; font-weight: 700; color: #8A5300; background: #FDF1DD; border-radius: 6px; padding: 3px 8px"><svg aria-hidden="true" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" style="flex: none"><path d="M10.3 3.9L1.8 18a2 2 0 0 0 1.7 3h17a2 2 0 0 0 1.7-3L13.7 3.9a2 2 0 0 0-3.4 0z"/><path d="M12 9v4M12 17h.01"/></svg>Podejrzane zdjęcie</span>
+        <h2 style="margin: 0; font-size: 17px; font-weight: 700">Zdjęcie prawdopodobnie zmodyfikowane przez AI</h2>
+        <span style="font-size: 13px; color: #5A6575">Gabaryty · Osiedle Nad Rzeką · [ADRES]</span>
+        <div style="display: flex; flex-direction: column; gap: 4px; font-size: 13px; color: #1C2430">
+          <span>Zgłoszone: [DATA] · [GODZINA] · decyzja do: [DATA]</span>
+          <span>Powód: Detektor: [N]% – niespójne cienie</span>
+        </div>
+      </div>
+
+      <div style="display: flex; flex-direction: column; gap: 8px">
+        <div role="img" aria-label="Zdjęcie ze zgłoszenia" style="flex: none; width: 160px; height: 120px; border-radius: 12px; background: #DCE4EE; display: flex; align-items: center; justify-content: center; font-size: 11px; font-weight: 600; color: #4A5565"><span aria-hidden="true">[ZDJĘCIE]</span></div>
+        <span style="font-size: 12px; color: #5A6575">Detektor wskazuje, mieszkaniec dostaje wynik dopiero po decyzji urzędnika.</span>
+      </div>
+
+      <sc-if value="{{karta2Otwarta}}" hint-placeholder-val="{{ true }}">
+        <div style="display: flex; flex-wrap: wrap; gap: 10px">
+          <button type="button" id="karta2-odrzuc" onClick="{{odrzuc}}" style="min-height: 44px; padding: 0 20px; border-radius: 999px; border: 1.5px solid #C62828; background: #FFFFFF; color: #A61F1F; font: 700 14px Montserrat, sans-serif">Odrzuć</button>
+          <button type="button" id="karta2-przyjmij" onClick="{{przyjmij}}" style="min-height: 44px; padding: 0 20px; border-radius: 999px; border: 1.5px solid #7D8A9C; background: #FFFFFF; color: #1C2430; font: 600 14px Montserrat, sans-serif">Przyjmij mimo to</button>
+        </div>
+      </sc-if>
+      <sc-if value="{{karta2Odrzucanie}}" hint-placeholder-val="{{ false }}">
+        <div style="display: flex; flex-direction: column; gap: 14px; max-width: 520px">
+          <fieldset id="karta2-powod" tabindex="-1" style="margin: 0; padding: 0; border: 0; min-width: 0; display: flex; flex-direction: column; gap: 4px">
+            <legend style="float: left; width: 100%; padding: 0 0 4px; font-size: 13px; font-weight: 700">Powód odrzucenia</legend>
+            <label style="min-height: 44px; display: flex; align-items: center; gap: 10px; font-size: 14px; cursor: pointer">
+              <input type="radio" name="powod-odrzucenia" value="ai" checked="{{powodAi}}" onChange="{{wybierzAi}}" style="flex: none; width: 20px; height: 20px; margin: 0; accent-color: var(--theme-primary, #1D5FA8)">Zdjęcie zmodyfikowane
+            </label>
+            <label style="min-height: 44px; display: flex; align-items: center; gap: 10px; font-size: 14px; cursor: pointer">
+              <input type="radio" name="powod-odrzucenia" value="duplikat" checked="{{powodDuplikat}}" onChange="{{wybierzDuplikat}}" style="flex: none; width: 20px; height: 20px; margin: 0; accent-color: var(--theme-primary, #1D5FA8)">Duplikat
+            </label>
+            <label style="min-height: 44px; display: flex; align-items: center; gap: 10px; font-size: 14px; cursor: pointer">
+              <input type="radio" name="powod-odrzucenia" value="poza-miastem" checked="{{powodPozaMiastem}}" onChange="{{wybierzPozaMiastem}}" style="flex: none; width: 20px; height: 20px; margin: 0; accent-color: var(--theme-primary, #1D5FA8)">Poza granicami miasta
+            </label>
+          </fieldset>
+          <section aria-labelledby="karta2-wiadomosc" style="background: #F5F7FA; border-radius: 12px; padding: 14px 16px; display: flex; flex-direction: column; gap: 6px">
+            <h3 id="karta2-wiadomosc" style="margin: 0; font-size: 14px; font-weight: 700">Wiadomość do osoby zgłaszającej</h3>
+            <p style="margin: 0; font-size: 14px; font-weight: 700">Nie możemy przyjąć tego zgłoszenia</p>
+            <p style="margin: 0; font-size: 14px; line-height: 1.5">{{opisOdrzucenia}}</p>
+            <p style="margin: 4px 0 0; font-size: 13px; font-weight: 700">Co możesz zrobić</p>
+            <p style="margin: 0; font-size: 14px; line-height: 1.5">{{coZrobicOdrzucenie}}</p>
+          </section>
+          <div style="display: flex; flex-wrap: wrap; gap: 10px">
+            <button type="button" onClick="{{potwierdzOdrzucenie}}" style="min-height: 44px; padding: 0 20px; border-radius: 999px; border: 1.5px solid #C62828; background: #FFFFFF; color: #A61F1F; font: 700 14px Montserrat, sans-serif">Potwierdź odrzucenie</button>
+            <button type="button" onClick="{{anulujOdrzucenie}}" style="min-height: 44px; padding: 0 20px; border-radius: 999px; border: 1.5px solid #7D8A9C; background: #FFFFFF; color: #1C2430; font: 600 14px Montserrat, sans-serif">Anuluj</button>
+          </div>
+        </div>
+      </sc-if>
+      <sc-if value="{{karta2Odrzucona}}" hint-placeholder-val="{{ false }}">
+        <div style="display: flex; flex-direction: column; gap: 10px">
+          <span style="align-self: flex-start; display: flex; align-items: center; gap: 4px; font-size: 11px; font-weight: 700; color: #A61F1F; background: #FDECEC; border-radius: 6px; padding: 3px 8px"><svg aria-hidden="true" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" style="flex: none"><circle cx="12" cy="12" r="9"/><path d="M12 8v4M12 16h.01"/></svg>Odrzucone</span>
+          <span style="font-size: 14px; color: #1C2430">Odrzucono · wysłaliśmy informację osobie zgłaszającej</span>
+          <button type="button" id="karta2-cofnij" onClick="{{cofnijOdrzucenie}}" style="align-self: flex-start; min-height: 44px; padding: 0 20px; border-radius: 999px; border: 1.5px solid #7D8A9C; background: #FFFFFF; color: #1C2430; font: 600 14px Montserrat, sans-serif">Cofnij</button>
+        </div>
+      </sc-if>
+      <sc-if value="{{karta2Przyjmowanie}}" hint-placeholder-val="{{ false }}">
+        <div style="display: flex; flex-direction: column; gap: 10px; max-width: 520px">
+          <label style="display: flex; flex-direction: column; gap: 6px; font-size: 13px; font-weight: 600">Uzasadnienie (trafi do rejestru decyzji)
+            <textarea id="karta2-uzasadnienie" rows="3" value="{{uzasadnienie}}" onChange="{{wpiszUzasadnienie}}" style="padding: 10px 12px; border-radius: 10px; border: 1px solid #7D8A9C; font: 500 14px Montserrat, sans-serif; color: #1C2430; resize: vertical"></textarea>
+          </label>
+          <div style="display: flex; flex-wrap: wrap; gap: 10px">
+            <button type="button" onClick="{{zapiszPrzyjecie}}" style="min-height: 44px; padding: 0 22px; border-radius: 999px; border: 0; background: var(--theme-primary, #1D5FA8); color: #FFFFFF; font: 700 14px Montserrat, sans-serif">Zapisz i przyjmij</button>
+            <button type="button" onClick="{{anulujPrzyjecie}}" style="min-height: 44px; padding: 0 20px; border-radius: 999px; border: 1.5px solid #7D8A9C; background: #FFFFFF; color: #1C2430; font: 600 14px Montserrat, sans-serif">Anuluj</button>
+          </div>
+        </div>
+      </sc-if>
+      <sc-if value="{{karta2Przyjeta}}" hint-placeholder-val="{{ false }}">
+        <div id="karta2-przyjeta" tabindex="-1" style="display: flex; flex-direction: column; gap: 8px">
+          <span style="align-self: flex-start; display: flex; align-items: center; gap: 4px; font-size: 11px; font-weight: 700; color: #174E8C; background: #E8EFF8; border-radius: 6px; padding: 3px 8px"><svg aria-hidden="true" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" style="flex: none"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>Przyjęte</span>
+          <span style="font-size: 14px; color: #1C2430">Przyjęto mimo ostrzeżenia · decyzja zapisana w rejestrze · [Imię urzędnika]</span>
+        </div>
+      </sc-if>
+    </article>
+
+    <p style="margin: auto 0 0; font-size: 12px; color: #5A6575">Moje Osiedle nie jest kanałem alarmowym. W nagłej sytuacji dzwoń 112.</p>
+  </main>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1280,"height":800}}'>
+class Component extends DCLogic {
+  constructor(props) {
+    super(props);
+    this.state = { karta1: 'otwarta', sluzba: 'Straż Miejska', notatka: 'Prośba o fotopułapkę', karta2: 'otwarta', powod: 'ai', uzasadnienie: '', komunikat: '' };
+  }
+  componentDidUpdate(prevProps, prevState) {
+    if (prevState.karta1 === 'otwarta' && this.state.karta1 === 'przekazana') {
+      document.getElementById('karta1-wynik').focus();
+    }
+    if (prevState.karta2 === this.state.karta2) return;
+    if (this.state.karta2 === 'odrzucanie') document.getElementById('karta2-powod').focus();
+    if (this.state.karta2 === 'odrzucona') document.getElementById('karta2-cofnij').focus();
+    if (this.state.karta2 === 'przyjmowanie') document.getElementById('karta2-uzasadnienie').focus();
+    if (this.state.karta2 === 'przyjeta') document.getElementById('karta2-przyjeta').focus();
+    if (this.state.karta2 === 'otwarta') {
+      document.getElementById(prevState.karta2 === 'przyjmowanie' ? 'karta2-przyjmij' : 'karta2-odrzuc').focus();
+    }
+  }
+  componentWillUnmount() {
+    clearTimeout(this.ponowienie);
+  }
+  oglos(tekst, zmiana) {
+    if (this.state.komunikat !== tekst) {
+      this.setState({ ...zmiana, komunikat: tekst });
+      return;
+    }
+    this.setState({ ...zmiana, komunikat: '' }, () => {
+      this.ponowienie = setTimeout(() => this.setState({ komunikat: tekst }), 0);
+    });
+  }
+  renderVals() {
+    const { karta1, sluzba, notatka, karta2, powod, uzasadnienie, komunikat } = this.state;
+    const celownik = { 'Straż Miejska': 'Straży Miejskiej', 'MPO': 'MPO', 'Zarząd dróg': 'Zarządowi dróg' };
+    const wiadomosci = {
+      'ai': { opis: 'Po sprawdzeniu uznaliśmy, że zdjęcie zostało zmodyfikowane.', coZrobic: 'Zrób zdjęcie bez filtrów i edycji.' },
+      'duplikat': { opis: 'To zdjęcie zostało już wcześniej wysłane.', coZrobic: 'Jeśli to nowy problem w tym samym miejscu, zrób nowe zdjęcie.' },
+      'poza-miastem': { opis: 'Miejsce ze zdjęcia leży poza granicami miasta.', coZrobic: 'Zgłoś problem w gminie, w której leży to miejsce.' }
+    };
+    const koncowe = ['przekazana', 'odrzucona', 'przyjeta'];
+    const otwarte = [karta1, karta2].filter((stan) => !koncowe.includes(stan)).length;
+    return {
+      otwarteTekst: String(otwarte),
+      wszystkoRozpatrzone: otwarte === 0,
+      komunikat,
+      karta1Otwarta: karta1 === 'otwarta',
+      karta1Przekazana: karta1 === 'przekazana',
+      sluzba,
+      sluzbaCelownik: celownik[sluzba],
+      notatka,
+      karta2Otwarta: karta2 === 'otwarta',
+      karta2Odrzucanie: karta2 === 'odrzucanie',
+      karta2Odrzucona: karta2 === 'odrzucona',
+      karta2Przyjmowanie: karta2 === 'przyjmowanie',
+      karta2Przyjeta: karta2 === 'przyjeta',
+      uzasadnienie,
+      powodAi: powod === 'ai',
+      powodDuplikat: powod === 'duplikat',
+      powodPozaMiastem: powod === 'poza-miastem',
+      opisOdrzucenia: wiadomosci[powod].opis,
+      coZrobicOdrzucenie: wiadomosci[powod].coZrobic,
+      wybierzAi: () => this.setState({ powod: 'ai' }),
+      wybierzDuplikat: () => this.setState({ powod: 'duplikat' }),
+      wybierzPozaMiastem: () => this.setState({ powod: 'poza-miastem' }),
+      wybierzSluzbe: (e) => this.setState({ sluzba: e.target.value }),
+      wpiszNotatke: (e) => this.setState({ notatka: e.target.value }),
+      przekaz: () => this.oglos(`Przekazaliśmy sprawę ${celownik[sluzba]}. Zapisaliśmy decyzję w rejestrze.`, { karta1: 'przekazana' }),
+      odrzuc: () => this.setState({ karta2: 'odrzucanie' }),
+      anulujOdrzucenie: () => this.setState({ karta2: 'otwarta' }),
+      potwierdzOdrzucenie: () => this.oglos('Odrzuciliśmy zgłoszenie. Wysłaliśmy informację osobie zgłaszającej.', { karta2: 'odrzucona' }),
+      cofnijOdrzucenie: () => this.oglos('Cofnęliśmy odrzucenie. Zgłoszenie znów czeka na decyzję.', { karta2: 'otwarta' }),
+      przyjmij: () => this.setState({ karta2: 'przyjmowanie' }),
+      wpiszUzasadnienie: (e) => this.setState({ uzasadnienie: e.target.value }),
+      anulujPrzyjecie: () => this.setState({ karta2: 'otwarta' }),
+      zapiszPrzyjecie: () => this.oglos('Przyjęliśmy zgłoszenie mimo ostrzeżenia. Zapisaliśmy decyzję w rejestrze.', { karta2: 'przyjeta' })
+    };
+  }
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,110 @@
+<!doctype html>
+<html lang="pl">
+<head>
+<meta charset="utf-8">
+<title>Propozycje zajęć na osiedlu</title>
+<script src="./support.js"></script>
+<link rel="stylesheet" href="tokens/theme.css">
+</head>
+<body>
+<x-dc>
+<helmet>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0}
+a{color:inherit}a:hover{color:inherit}
+:focus-visible{outline:3px solid #1C2430;outline-offset:2px;box-shadow:0 0 0 2px #FFFFFF}
+</style>
+</helmet>
+<div style="width: 390px; height: 844px; display: flex; flex-direction: column; background: #F5F7FA; font-family: Montserrat, sans-serif; color: #1C2430; overflow: hidden">
+  <dc-import name="Naglowek" tytul="Propozycje zajęć" podtytul="Osiedle Parkowe" wstecz-href="Start.dc.html" wstecz-etykieta="Wróć do Start" hint-size="390px,74px"></dc-import>
+
+  <main style="flex: 1; overflow: auto; padding: 18px 16px 24px; display: flex; flex-direction: column; gap: 12px">
+    <div style="display: flex; flex-direction: column; gap: 6px">
+      <h2 style="margin: 0; font-size: 18px; font-weight: 800">Zajęcia, na które czeka osiedle</h2>
+      <p style="margin: 0; font-size: 13px; line-height: 1.5; color: #5A6575">Gdy zbierze się dość chętnych, instytucja dostaje powiadomienie i proponuje terminy.</p>
+    </div>
+
+    <article style="background: #FFFFFF; border-radius: 16px; padding: 16px; display: flex; flex-direction: column; gap: 12px; border: 2px solid var(--theme-accent, #7A3EB1)">
+      <div style="display: flex; justify-content: space-between; align-items: baseline; gap: 12px">
+        <h3 style="margin: 0; font-size: 16px; font-weight: 700">Druk 3D dla dzieci</h3>
+        <span style="font-size: 14px; font-weight: 800; color: var(--theme-accent, #7A3EB1)">96%</span>
+      </div>
+      <div role="progressbar" aria-label="Postęp do progu: Druk 3D dla dzieci" aria-valuemin="0" aria-valuemax="100" aria-valuenow="96" style="height: 8px; border-radius: 4px; background: #FFFFFF; border: 1.5px solid #7D8A9C; box-sizing: border-box; overflow: hidden">
+        <div style="width: 96%; height: 100%; border-radius: 4px; background: var(--theme-accent, #7A3EB1)"></div>
+      </div>
+      <span style="font-size: 12px; color: #5A6575">Brakuje kilku osób do progu</span>
+      <a href="Zajecia-prog.dc.html" style="min-height: 48px; border-radius: 999px; background: var(--theme-primary, #1D5FA8); color: #FFFFFF; text-decoration: none; display: flex; align-items: center; justify-content: center; font-size: 14px; font-weight: 700">Chcę wziąć udział</a>
+    </article>
+
+    <article style="background: #FFFFFF; border-radius: 16px; padding: 16px; display: flex; flex-direction: column; gap: 12px">
+      <h3 style="margin: 0; font-size: 16px; font-weight: 700">Modelarstwo dla dzieci</h3>
+      <div style="display: flex; flex-direction: column; gap: 8px">
+        <div aria-hidden="true" style="height: 8px; border-radius: 4px; background: #1E8E3E"></div>
+        <div style="display: flex; justify-content: space-between; align-items: center; gap: 12px">
+          <span style="display: flex; align-items: center; gap: 4px; padding: 5px 10px 5px 8px; border-radius: 999px; font-size: 12px; font-weight: 700; white-space: nowrap; color: #1E6B33; background: #E3F4E8"><svg aria-hidden="true" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" style="flex: none"><path d="M20 6L9 17l-5-5"/></svg>Zakwalifikowane</span>
+          <span style="font-size: 13px; font-weight: 700; color: #1E6B33">100% progu</span>
+        </div>
+      </div>
+      <span style="font-size: 13px; font-weight: 600; display: flex; align-items: center; gap: 8px">
+        <svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" style="stroke: var(--theme-primary, #1D5FA8)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="16" rx="3"/><path d="M3 10h18M8 3v4M16 3v4"/></svg>
+        Dom kultury proponuje terminy
+      </span>
+      <a href="Zajecia-termin.dc.html" style="min-height: 48px; border-radius: 999px; border: 1.5px solid var(--theme-primary, #1D5FA8); background: #FFFFFF; color: var(--theme-primary, #1D5FA8); font-size: 14px; font-weight: 700; text-decoration: none; display: flex; align-items: center; justify-content: center; box-sizing: border-box">Wybierz termin</a>
+    </article>
+
+    <article style="background: #FFFFFF; border-radius: 16px; padding: 16px; display: flex; flex-direction: column; gap: 12px">
+      <div style="display: flex; justify-content: space-between; align-items: baseline; gap: 12px">
+        <h3 style="margin: 0; font-size: 16px; font-weight: 700">Cyberbezpieczeństwo dla seniorów</h3>
+        <span style="font-size: 14px; font-weight: 800; color: #2B3442">74%</span>
+      </div>
+      <div role="progressbar" aria-label="Postęp do progu: Cyberbezpieczeństwo dla seniorów" aria-valuemin="0" aria-valuemax="100" aria-valuenow="74" style="height: 8px; border-radius: 4px; background: #FFFFFF; border: 1.5px solid #7D8A9C; box-sizing: border-box; overflow: hidden">
+        <div style="width: 74%; height: 100%; border-radius: 4px; background: var(--theme-primary, #1D5FA8)"></div>
+      </div>
+      <div style="display: flex; flex-direction: column">
+        <sc-if value="{{niezapisano}}" hint-placeholder-val="{{ true }}">
+          <button type="button" onClick="{{zapisz}}" style="min-height: 48px; border: 0; border-radius: 999px; background: var(--theme-primary, #1D5FA8); color: #FFFFFF; display: flex; align-items: center; justify-content: center; font: 700 14px Montserrat, sans-serif; cursor: pointer">Chcę wziąć udział</button>
+        </sc-if>
+        <p id="zajecia-zapisano" tabindex="-1" style="margin: 0; min-height: 0; display: flex; align-items: flex-start; gap: 8px; font-size: 14px; font-weight: 600; line-height: 1.5; color: #1C2430">
+          <sc-if value="{{zapisano}}" hint-placeholder-val="{{ false }}">
+            <svg aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#1E8E3E" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" style="flex: none; margin-top: 1px"><path d="M20 6L9 17l-5-5"/></svg>
+            <span>Zapisaliśmy Twoje zainteresowanie. Damy Ci znać, gdy zbierze się próg.</span>
+          </sc-if>
+        </p>
+      </div>
+    </article>
+
+    <a href="Zajecia-propozycja.dc.html" style="width: 100%; min-height: 52px; border-radius: 999px; border: 1.5px dashed #7D8A9C; background: #FFFFFF; color: #1C2430; font-size: 15px; font-weight: 700; display: flex; align-items: center; justify-content: center; gap: 8px; text-decoration: none; box-sizing: border-box">
+      <svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg>
+      Zaproponuj zajęcia
+    </a>
+  </main>
+
+  <dc-import name="PasekZakladek" aktywna="brak" hint-size="390px,72px"></dc-import>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":390,"height":844}}'>
+class Component extends DCLogic {
+  constructor(props) {
+    super(props);
+    this.state = { zapisano: false };
+  }
+
+  componentDidUpdate(prevProps, prevState) {
+    if (!prevState.zapisano && this.state.zapisano) {
+      document.getElementById('zajecia-zapisano').focus();
+    }
+  }
+
+  renderVals() {
+    const { zapisano } = this.state;
+    return {
+      zapisano,
+      niezapisano: !zapisano,
+      zapisz: () => this.setState({ zapisano: true }),
+    };
+  }
+}
+</script>
+</body>
+</html>

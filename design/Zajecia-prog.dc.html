@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="pl">
+<head>
+<meta charset="utf-8">
+<title>Próg osiągnięty</title>
+<script src="./support.js"></script>
+<link rel="stylesheet" href="tokens/theme.css">
+</head>
+<body>
+<x-dc>
+<helmet>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0}
+a{color:inherit}a:hover{color:inherit}
+:focus-visible{outline:3px solid #1C2430;outline-offset:2px;box-shadow:0 0 0 2px #FFFFFF}
+</style>
+</helmet>
+<div style="width: 390px; height: 844px; display: flex; flex-direction: column; background: #FFFFFF; font-family: Montserrat, sans-serif; color: #1C2430; overflow: hidden">
+  <main style="flex: 1; display: flex; flex-direction: column">
+    <dc-import name="Potwierdzenie" wariant="duzy" tytul="Próg osiągnięty – powiadomiliśmy instytucje" opis="Druk 3D dla dzieci" karta="true" zamknij-href="Zajecia-lista.dc.html" hint-size="390px,410px"></dc-import>
+    <div style="padding: 18px 28px 0; display: flex; flex-direction: column; gap: 18px">
+      <div style="display: flex; flex-direction: column; gap: 8px">
+        <div aria-hidden="true" style="height: 8px; border-radius: 4px; background: #1E8E3E"></div>
+        <div style="display: flex; justify-content: space-between; align-items: center; gap: 12px">
+          <span style="display: flex; align-items: center; gap: 4px; padding: 5px 10px 5px 8px; border-radius: 999px; font-size: 12px; font-weight: 700; white-space: nowrap; color: #1E6B33; background: #E3F4E8"><svg aria-hidden="true" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" style="flex: none"><path d="M20 6L9 17l-5-5"/></svg>Zakwalifikowane</span>
+          <span style="font-size: 13px; font-weight: 700; color: #1E6B33">100% progu</span>
+        </div>
+      </div>
+
+      <div style="margin-top: 8px; width: 100%; box-sizing: border-box; background: #F5F7FA; border-radius: 16px; padding: 14px 16px; display: flex; gap: 12px; text-align: left; align-items: flex-start">
+        <svg aria-hidden="true" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" style="flex: none; stroke: var(--theme-primary, #1D5FA8)"><rect x="3" y="5" width="18" height="16" rx="3"/><path d="M3 10h18M8 3v4M16 3v4"/></svg>
+        <span style="font-size: 13px; line-height: 1.5; color: #2B3442">Instytucja zaproponuje terminy. Dostaniesz powiadomienie i zapiszesz się jednym kliknięciem.</span>
+      </div>
+    </div>
+  </main>
+
+  <div style="padding: 16px 20px 28px; display: flex; flex-direction: column; gap: 10px">
+    <a href="Sprawy-lista.dc.html" style="min-height: 52px; border-radius: 999px; background: var(--theme-primary, #1D5FA8); color: #FFFFFF; text-decoration: none; display: flex; align-items: center; justify-content: center; font-size: 15px; font-weight: 700">Zobacz w Moich sprawach</a>
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":390,"height":844}}'>
+class Component extends DCLogic {
+  renderVals() {
+    return {};
+  }
+}
+</script>
+</body>
+</html>

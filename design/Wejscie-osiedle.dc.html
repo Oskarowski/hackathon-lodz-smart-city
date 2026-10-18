@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="pl">
+<head>
+<meta charset="utf-8">
+<title>Moje Osiedle – potwierdź osiedle</title>
+<script src="./support.js"></script>
+<link rel="stylesheet" href="tokens/theme.css">
+</head>
+<body>
+<x-dc>
+<helmet>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0}
+a{color:inherit}a:hover{color:inherit}
+:focus-visible{outline:3px solid #1C2430;outline-offset:2px;box-shadow:0 0 0 2px #FFFFFF}
+</style>
+</helmet>
+<div style="width: 390px; height: 844px; display: flex; flex-direction: column; background: #F5F7FA; font-family: Montserrat, sans-serif; color: #1C2430; overflow: hidden">
+  <dc-import name="Naglowek" tytul="Potwierdź osiedle" podtytul="Krok 2 z 2" wstecz-href="Wejscie-zgoda.dc.html" wstecz-etykieta="Wróć do zgody" hint-size="390px,74px"></dc-import>
+
+  <main style="flex: 1; overflow: auto; padding: 20px 16px 16px; display: flex; flex-direction: column; gap: 16px">
+    <section aria-label="Osiedle Parkowe na mapie" style="position: relative; height: 240px; flex: none; border-radius: 16px; overflow: hidden; background: #E9EEF3">
+      <span aria-hidden="true" style="position: absolute; left: 0; right: 0; top: 28px; height: 12px; background: #FFFFFF"></span>
+      <span aria-hidden="true" style="position: absolute; left: 0; right: 0; top: 206px; height: 8px; background: #FFFFFF"></span>
+      <span aria-hidden="true" style="position: absolute; top: 0; bottom: 0; left: 44px; width: 12px; background: #FFFFFF"></span>
+      <span aria-hidden="true" style="position: absolute; top: 0; bottom: 0; left: 300px; width: 14px; background: #FFFFFF"></span>
+      <span aria-hidden="true" style="position: absolute; left: 70px; top: 54px; width: 216px; height: 138px; border-radius: 24px; background: var(--theme-primary-soft, #E8EFF8); border: 2px dashed var(--theme-primary, #1D5FA8); box-sizing: border-box"></span>
+      <span aria-hidden="true" style="position: absolute; left: 92px; top: 74px; width: 64px; height: 36px; border-radius: 6px; background: #DCE2EA"></span>
+      <span aria-hidden="true" style="position: absolute; left: 92px; top: 132px; width: 92px; height: 40px; border-radius: 8px; background: #D5E8D4"></span>
+      <span aria-hidden="true" style="position: absolute; left: 204px; top: 74px; width: 60px; height: 56px; border-radius: 6px; background: #DCE2EA"></span>
+      <span aria-hidden="true" style="position: absolute; left: 170px; top: 82px; color: var(--theme-primary, #1D5FA8)"><svg width="40" height="40" viewBox="0 0 24 24" fill="currentColor" stroke="#FFFFFF" stroke-width="1.2"><path d="M12 22s-7-6.2-7-11.5a7 7 0 0 1 14 0C19 15.8 12 22 12 22z"/><circle cx="12" cy="10.5" r="2.6" fill="#FFFFFF" stroke="none"/></svg></span>
+    </section>
+
+    <div style="display: flex; flex-direction: column; gap: 4px">
+      <h2 style="margin: 0; font-size: 20px; font-weight: 700; line-height: 1.3">Osiedle Parkowe</h2>
+      <p style="margin: 0; font-size: 14px; line-height: 1.5; color: #5A6575">Przypisaliśmy Cię po adresie [ADRES].</p>
+    </div>
+  </main>
+
+  <div style="padding: 16px 20px 24px; display: flex; flex-direction: column; gap: 10px">
+    <a href="Start.dc.html" style="min-height: 52px; border-radius: 999px; background: var(--theme-primary, #1D5FA8); color: #FFFFFF; text-decoration: none; display: flex; align-items: center; justify-content: center; font-size: 15px; font-weight: 700">To moje osiedle</a>
+    <button type="button" aria-expanded="{{rozwinieteAria}}" aria-controls="wybor-osiedla" onClick="{{przelaczWybor}}" style="min-height: 52px; border-radius: 999px; border: 1.5px solid #7D8A9C; background: #FFFFFF; color: #1C2430; display: flex; align-items: center; justify-content: center; gap: 8px; box-sizing: border-box; font-family: inherit; font-size: 15px; font-weight: 600; cursor: pointer">Zmień osiedle<svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" style="transform: rotate({{obrotStrzalki}}); transition: transform 0.15s"><path d="M6 9l6 6 6-6"/></svg></button>
+    <fieldset id="wybor-osiedla" hidden="{{ukryte}}" style="margin: 0; padding: 4px 16px 16px; border: 0; min-width: 0; background: #FFFFFF; border-radius: 16px; display: {{wyswietlanie}}; flex-direction: column">
+      <legend style="float: left; width: 100%; padding: 12px 0 4px; font-size: 13px; font-weight: 700; color: #5A6575">Wybierz osiedle</legend>
+      <label style="min-height: 48px; display: flex; align-items: center; gap: 14px; box-sizing: border-box; border-bottom: 1px solid #D9E1EA; cursor: pointer">
+        <input type="radio" name="osiedle" value="centrum" checked="{{centrum}}" onChange="{{wybierzCentrum}}" style="flex: none; width: 20px; height: 20px; margin: 0; accent-color: var(--theme-primary, #1D5FA8)">
+        <span style="font-size: 15px; font-weight: 600">Centrum</span>
+      </label>
+      <label style="min-height: 48px; display: flex; align-items: center; gap: 14px; box-sizing: border-box; border-bottom: 1px solid #D9E1EA; cursor: pointer">
+        <input type="radio" name="osiedle" value="polnoc" checked="{{polnoc}}" onChange="{{wybierzPolnoc}}" style="flex: none; width: 20px; height: 20px; margin: 0; accent-color: var(--theme-primary, #1D5FA8)">
+        <span style="font-size: 15px; font-weight: 600">Północ</span>
+      </label>
+      <label style="min-height: 48px; margin-bottom: 12px; display: flex; align-items: center; gap: 14px; box-sizing: border-box; cursor: pointer">
+        <input type="radio" name="osiedle" value="przy-lesie" checked="{{przyLesie}}" onChange="{{wybierzPrzyLesie}}" style="flex: none; width: 20px; height: 20px; margin: 0; accent-color: var(--theme-primary, #1D5FA8)">
+        <span style="font-size: 15px; font-weight: 600">Przy Lesie</span>
+      </label>
+      <a href="Start.dc.html" style="min-height: 52px; border-radius: 999px; background: var(--theme-primary, #1D5FA8); color: #FFFFFF; text-decoration: none; display: flex; align-items: center; justify-content: center; font-size: 15px; font-weight: 700">Wybierz</a>
+    </fieldset>
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":390,"height":844}}'>
+class Component extends DCLogic {
+  constructor(props) {
+    super(props);
+    this.state = { rozwiniete: false, osiedle: 'centrum' };
+  }
+  renderVals() {
+    const { rozwiniete, osiedle } = this.state;
+    return {
+      ukryte: !rozwiniete,
+      wyswietlanie: rozwiniete ? 'flex' : 'none',
+      rozwinieteAria: rozwiniete ? 'true' : 'false',
+      obrotStrzalki: rozwiniete ? '180deg' : '0deg',
+      przelaczWybor: () => this.setState({ rozwiniete: !rozwiniete }),
+      centrum: osiedle === 'centrum',
+      polnoc: osiedle === 'polnoc',
+      przyLesie: osiedle === 'przy-lesie',
+      wybierzCentrum: () => this.setState({ osiedle: 'centrum' }),
+      wybierzPolnoc: () => this.setState({ osiedle: 'polnoc' }),
+      wybierzPrzyLesie: () => this.setState({ osiedle: 'przy-lesie' })
+    };
+  }
+}
+</script>
+</body>
+</html>

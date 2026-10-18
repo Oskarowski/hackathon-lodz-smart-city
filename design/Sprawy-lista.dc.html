@@ -1,0 +1,185 @@
+<!doctype html>
+<html lang="pl">
+<head>
+<meta charset="utf-8">
+<title>Moje sprawy</title>
+<script src="./support.js"></script>
+<link rel="stylesheet" href="tokens/theme.css">
+</head>
+<body>
+<x-dc>
+<helmet>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0}
+a{color:inherit}a:hover{color:inherit}
+:focus-visible{outline:3px solid #1C2430;outline-offset:2px;box-shadow:0 0 0 2px #FFFFFF}
+</style>
+</helmet>
+<div style="width: 390px; height: 844px; display: flex; flex-direction: column; background: #F5F7FA; font-family: Montserrat, sans-serif; color: #1C2430; overflow: hidden">
+  <dc-import name="Naglowek" tytul="{{naglowek.tytul}}" podtytul="{{naglowek.podtytul}}" wstecz-href="{{naglowek.wsteczHref}}" wstecz-etykieta="{{naglowek.wsteczEtykieta}}" na-wstecz="{{wrocDoListy}}" hint-size="390px,74px"></dc-import>
+
+  <main style="flex: 1; overflow: auto; padding: 14px 16px 24px; display: flex; flex-direction: column; gap: 12px">
+    <sc-if value="{{widokListy}}" hint-placeholder-val="{{ true }}">
+      <div style="display: flex; flex-direction: column; gap: 12px">
+        <div role="group" aria-label="Filtr spraw" style="display: flex; gap: 8px">
+          <button type="button" aria-pressed="{{filtrWToku.wybrany}}" onClick="{{filtrWToku.wybierz}}" style="flex: none; min-height: 44px; padding: 0 14px; border-radius: 999px; display: flex; align-items: center; gap: 6px; box-sizing: border-box; border: {{filtrWToku.ramka}}; background: {{filtrWToku.tlo}}; color: {{filtrWToku.kolor}}; font: 600 13px Montserrat, sans-serif"><sc-if value="{{filtrWToku.wybrany}}" hint-placeholder-val="{{ true }}"><svg aria-hidden="true" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" style="flex: none"><path d="M20 6L9 17l-5-5"/></svg></sc-if>W toku ({{liczbaWToku}})</button>
+          <button type="button" aria-pressed="{{filtrZakonczone.wybrany}}" onClick="{{filtrZakonczone.wybierz}}" style="flex: none; min-height: 44px; padding: 0 14px; border-radius: 999px; display: flex; align-items: center; gap: 6px; box-sizing: border-box; border: {{filtrZakonczone.ramka}}; background: {{filtrZakonczone.tlo}}; color: {{filtrZakonczone.kolor}}; font: 600 13px Montserrat, sans-serif"><sc-if value="{{filtrZakonczone.wybrany}}" hint-placeholder-val="{{ false }}"><svg aria-hidden="true" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" style="flex: none"><path d="M20 6L9 17l-5-5"/></svg></sc-if>Zakończone ({{liczbaZakonczone}})</button>
+        </div>
+
+        <sc-for list="{{widoczne}}" as="sprawa" hint-placeholder-count="8">
+          <button type="button" id="sprawa-{{sprawa.id}}" onClick="{{sprawa.wybierz}}" style="width: 100%; border: 0; text-align: left; background: #FFFFFF; border-radius: 16px; padding: 14px 16px; display: flex; align-items: center; gap: 12px; color: #1C2430; font-family: Montserrat, sans-serif; cursor: pointer">
+            <span style="flex: 1; display: flex; flex-direction: column; gap: 3px">
+              <span style="font-size: 14px; font-weight: 600">{{sprawa.tytul}}</span>
+              <span style="font-size: 12px; color: #5A6575">{{sprawa.podpis}}</span>
+              <sc-if value="{{sprawa.chipWToku}}" hint-placeholder-val="{{ true }}">
+                <span style="align-self: flex-start; margin-top: 5px; display: flex; align-items: center; gap: 4px; padding: 5px 10px 5px 8px; border-radius: 999px; font-size: 12px; font-weight: 700; white-space: nowrap; color: #174E8C; background: #E8EFF8"><svg aria-hidden="true" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" style="flex: none"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>{{sprawa.status}}</span>
+              </sc-if>
+              <sc-if value="{{sprawa.chipZakonczone}}" hint-placeholder-val="{{ false }}">
+                <span style="align-self: flex-start; margin-top: 5px; display: flex; align-items: center; gap: 4px; padding: 5px 10px 5px 8px; border-radius: 999px; font-size: 12px; font-weight: 700; white-space: nowrap; color: #1E6B33; background: #E3F4E8"><svg aria-hidden="true" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" style="flex: none"><path d="M20 6L9 17l-5-5"/></svg>{{sprawa.status}}</span>
+              </sc-if>
+            </span>
+          </button>
+        </sc-for>
+      </div>
+    </sc-if>
+
+    <sc-if value="{{widokSzczegolow}}" hint-placeholder-val="{{ false }}">
+      <div style="display: flex; flex-direction: column; gap: 12px">
+        <div id="sprawa-szczegoly" tabindex="-1" style="background: #FFFFFF; border-radius: 16px; padding: 14px 16px; display: flex; flex-direction: column; gap: 8px">
+          <sc-if value="{{wybrana.chipWToku}}" hint-placeholder-val="{{ true }}">
+            <span style="align-self: flex-start; display: flex; align-items: center; gap: 4px; padding: 5px 10px 5px 8px; border-radius: 999px; font-size: 12px; font-weight: 700; white-space: nowrap; color: #174E8C; background: #E8EFF8"><svg aria-hidden="true" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" style="flex: none"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>{{wybrana.status}}</span>
+          </sc-if>
+          <sc-if value="{{wybrana.chipZakonczone}}" hint-placeholder-val="{{ false }}">
+            <span style="align-self: flex-start; display: flex; align-items: center; gap: 4px; padding: 5px 10px 5px 8px; border-radius: 999px; font-size: 12px; font-weight: 700; white-space: nowrap; color: #1E6B33; background: #E3F4E8"><svg aria-hidden="true" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" style="flex: none"><path d="M20 6L9 17l-5-5"/></svg>{{wybrana.status}}</span>
+          </sc-if>
+          <span style="font-size: 13px; color: #5A6575">{{wybrana.podpis}}</span>
+        </div>
+
+        <section aria-labelledby="status-sprawy" style="background: #FFFFFF; border-radius: 16px; padding: 16px 14px; display: flex; flex-direction: column; gap: 14px">
+          <h2 id="status-sprawy" style="margin: 0; font-size: 14px; font-weight: 700">Status</h2>
+          <dc-import name="OsEtapow" nazwa="Etapy sprawy" etap-1="{{wybrana.etap1}}" etap-2="{{wybrana.etap2}}" etap-3="{{wybrana.etap3}}" biezacy="{{wybrana.biezacy}}" hint-size="100%,64px"></dc-import>
+        </section>
+
+        <section aria-label="Szczegóły sprawy" style="background: #FFFFFF; border-radius: 16px; padding: 4px 16px">
+          <sc-for list="{{wybrana.wiersze}}" as="wiersz" hint-placeholder-count="3">
+            <sc-if value="{{wiersz.zKreska}}" hint-placeholder-val="{{ true }}">
+              <div style="display: flex; justify-content: space-between; gap: 12px; padding: 12px 0; border-bottom: 1px solid #D9E1EA; font-size: 14px"><span style="color: #5A6575">{{wiersz.etykieta}}</span><span style="font-weight: 600; text-align: right">{{wiersz.wartosc}}</span></div>
+            </sc-if>
+            <sc-if value="{{wiersz.ostatni}}" hint-placeholder-val="{{ false }}">
+              <div style="display: flex; justify-content: space-between; gap: 12px; padding: 12px 0; font-size: 14px"><span style="color: #5A6575">{{wiersz.etykieta}}</span><span style="font-weight: 600; text-align: right">{{wiersz.wartosc}}</span></div>
+            </sc-if>
+          </sc-for>
+        </section>
+
+        <sc-if value="{{wybrana.maLink}}" hint-placeholder-val="{{ false }}">
+          <a href="{{wybrana.link.href}}" style="min-height: 52px; border-radius: 999px; border: 1.5px solid #7D8A9C; color: #1C2430; text-decoration: none; display: flex; align-items: center; justify-content: center; font-size: 15px; font-weight: 600; box-sizing: border-box">{{wybrana.link.etykieta}}</a>
+        </sc-if>
+      </div>
+    </sc-if>
+  </main>
+
+  <dc-import name="PasekZakladek" aktywna="moje-sprawy" hint-size="390px,72px"></dc-import>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":390,"height":844}}'>
+class Component extends DCLogic {
+  constructor(props) {
+    super(props);
+    this.state = { filtr: 'w-toku', wybranaId: null };
+  }
+
+  componentDidUpdate(prevProps, prevState) {
+    if (prevState.wybranaId === null && this.state.wybranaId !== null) {
+      document.getElementById('sprawa-szczegoly').focus();
+    } else if (prevState.wybranaId !== null && this.state.wybranaId === null) {
+      document.getElementById('sprawa-' + prevState.wybranaId).focus();
+    }
+  }
+
+  renderVals() {
+    const sprawy = [
+      { id: 1, grupa: 'w-toku', kategoria: 'w-toku', tytul: 'Odbiór gabarytów', podpis: 'Termin: czw., [DATA]', status: 'Zaplanowane',
+        etap1: 'Przyjęte', etap2: 'Zaplanowane', etap3: 'Odebrane', biezacy: '2',
+        wiersze: [{ etykieta: 'Zgłoszenie', wartosc: 'nr [NUMER]' }, { etykieta: 'Termin odbioru', wartosc: 'czw., [DATA]' }, { etykieta: 'Miejsce', wartosc: '[ADRES]' }],
+        link: null },
+      { id: 2, grupa: 'w-toku', kategoria: 'w-toku', tytul: 'Głos w budżecie obywatelskim', podpis: 'Termomodernizacja szkoły · głos oddany', status: 'Poddane pod głosowanie',
+        etap1: 'Zweryfikowane', etap2: 'Poddane pod głosowanie', etap3: 'Zrealizowane', biezacy: '2',
+        wiersze: [{ etykieta: 'Projekt', wartosc: 'Termomodernizacja i nowa elewacja szkoły podstawowej' }, { etykieta: 'Głosowanie do', wartosc: '[DATA]' }],
+        link: { href: 'BO-projekt.dc.html', etykieta: 'Zobacz projekt' } },
+      { id: 3, grupa: 'w-toku', kategoria: 'w-toku', tytul: 'Dzikie wysypisko', podpis: '[ADRES]', status: 'Przyjęte',
+        etap1: 'Przyjęte', etap2: 'Przekazane Straży Miejskiej', etap3: 'Uprzątnięte', biezacy: '1',
+        wiersze: [{ etykieta: 'Zgłoszenie', wartosc: 'nr [NUMER]' }, { etykieta: 'Historia miejsca', wartosc: '7 zgłoszeń w 30 dni' }, { etykieta: 'Teraz', wartosc: 'sprawdza urzędnik, potem przekaże służbie' }, { etykieta: 'Miejsce', wartosc: '[ADRES], nieużytek' }],
+        link: null },
+      { id: 11, grupa: 'w-toku', kategoria: 'zakonczone', tytul: 'Druk 3D dla dzieci', podpis: 'Instytucja zaproponuje terminy', status: 'Zakwalifikowane',
+        etap1: 'Zgłoszone', etap2: 'Zakwalifikowane', etap3: 'Zaplanowane', biezacy: '3',
+        wiersze: [{ etykieta: 'Próg', wartosc: '100%' }, { etykieta: 'Przekazano', wartosc: 'instytucjom miejskim' }],
+        link: null },
+      { id: 4, grupa: 'w-toku', kategoria: 'zakonczone', tytul: 'Modelarstwo dla dzieci', podpis: 'Dom kultury proponuje terminy', status: 'Zakwalifikowane',
+        etap1: 'Zgłoszone', etap2: 'Zakwalifikowane', etap3: 'Zaplanowane', biezacy: '3',
+        wiersze: [{ etykieta: 'Instytucja', wartosc: 'Dom kultury' }, { etykieta: 'Próg', wartosc: '100%' }],
+        link: { href: 'Zajecia-termin.dc.html', etykieta: 'Wybierz termin' } },
+      { id: 5, grupa: 'w-toku', kategoria: 'w-toku', tytul: 'Zakupy pod drzwi · [IMIĘ SENIORA]', podpis: 'pt., [DATA] · [GODZINA]', status: 'Umówione',
+        etap1: 'Zgłoszone', etap2: 'Umówione', etap3: 'Zakończone', biezacy: '2',
+        wiersze: [{ etykieta: 'Wolontariusz', wartosc: '[IMIĘ WOLONTARIUSZA], poziom 1' }, { etykieta: 'Termin', wartosc: 'pt., [DATA] · [GODZINA]' }],
+        link: { href: 'Pomoc-wizyta.dc.html', etykieta: 'Zobacz, co zobaczy senior' } },
+      { id: 6, grupa: 'w-toku', kategoria: 'w-toku', tytul: '[TEMAT]', podpis: 'Propozycja zajęć', status: 'Zgłoszone',
+        etap1: 'Zgłoszone', etap2: 'Zakwalifikowane', etap3: 'Zaplanowane', biezacy: '1',
+        wiersze: [{ etykieta: 'Dla kogo', wartosc: 'Dzieci' }, { etykieta: 'Przekazano', wartosc: 'instytucjom miejskim' }],
+        link: null },
+      { id: 7, grupa: 'w-toku', kategoria: 'w-toku', tytul: 'Spacer · [IMIĘ SENIORA]', podpis: 'Jutro, [DATA] · 10:00', status: 'Zgłoszone',
+        etap1: 'Zgłoszone', etap2: 'Umówione', etap3: 'Zakończone', biezacy: '1',
+        wiersze: [{ etykieta: 'Zgłoszenie', wartosc: 'nr [NUMER]' }, { etykieta: 'Wymagany poziom', wartosc: '2' }, { etykieta: 'Wolontariusz', wartosc: 'szukamy' }],
+        link: null },
+      { id: 8, grupa: 'w-toku', kategoria: 'w-toku', tytul: '[TEMAT ZAJĘĆ]', podpis: 'sob., [DATA] · [GODZINA]', status: 'Zaplanowane',
+        etap1: 'Zakwalifikowane', etap2: 'Zaplanowane', etap3: 'Zakończone', biezacy: '2',
+        wiersze: [{ etykieta: 'Termin', wartosc: 'sob., [DATA] · [GODZINA]' }, { etykieta: 'Miejsce', wartosc: '[ADRES DOMU KULTURY]' }, { etykieta: 'Zapis', wartosc: 'potwierdzony Kartą Mieszkańca' }],
+        link: null },
+      { id: 9, grupa: 'zakonczone', kategoria: 'zakonczone', tytul: 'Odbiór gabarytów', podpis: 'Odebrane: [DATA]', status: 'Odebrane',
+        etap1: 'Przyjęte', etap2: 'Zaplanowane', etap3: 'Odebrane', biezacy: '4',
+        wiersze: [{ etykieta: 'Zgłoszenie', wartosc: 'nr [NUMER]' }, { etykieta: 'Miejsce', wartosc: '[ADRES]' }],
+        link: null },
+      { id: 10, grupa: 'zakonczone', kategoria: 'zakonczone', tytul: 'Oświetlenie ścieżki w parku osiedlowym', podpis: 'Projekt budżetu obywatelskiego', status: 'Zrealizowane',
+        etap1: 'Zweryfikowane', etap2: 'Poddane pod głosowanie', etap3: 'Zrealizowane', biezacy: '4',
+        wiersze: [{ etykieta: 'Rodzaj', wartosc: 'Projekt osiedlowy' }, { etykieta: 'Koszt', wartosc: '[KWOTA] zł' }],
+        link: null },
+    ].map((s) => ({
+      ...s,
+      chipWToku: s.kategoria === 'w-toku',
+      chipZakonczone: s.kategoria === 'zakonczone',
+      wiersze: s.wiersze.map((w, i) => ({ ...w, ostatni: i === s.wiersze.length - 1, zKreska: i < s.wiersze.length - 1 })),
+      maLink: s.link !== null,
+      link: s.link ?? { href: 'Sprawy-lista.dc.html', etykieta: '' },
+      wybierz: () => this.setState({ wybranaId: s.id }),
+    }));
+
+    const { filtr, wybranaId } = this.state;
+    const filtrPrzycisk = (id) => ({
+      ...(filtr === id
+        ? { wybrany: true, ramka: '1px solid #1C2430', tlo: '#1C2430', kolor: '#FFFFFF' }
+        : { wybrany: false, ramka: '1px solid #7D8A9C', tlo: '#FFFFFF', kolor: '#1C2430' }),
+      wybierz: () => this.setState({ filtr: id }),
+    });
+    const widoczne = sprawy.filter((s) => s.grupa === filtr);
+    const wybrana = sprawy.find((s) => s.id === wybranaId) ?? widoczne[0];
+    const widokSzczegolow = wybranaId !== null;
+
+    return {
+      naglowek: widokSzczegolow
+        ? { tytul: wybrana.tytul, podtytul: 'Moje sprawy', wsteczHref: 'Sprawy-lista.dc.html', wsteczEtykieta: 'Wróć do Moich spraw' }
+        : { tytul: 'Moje sprawy', podtytul: 'Osiedle Parkowe', wsteczHref: 'Start.dc.html', wsteczEtykieta: 'Wróć do Start' },
+      wrocDoListy: widokSzczegolow ? () => this.setState({ wybranaId: null }) : false,
+      widokListy: !widokSzczegolow,
+      widokSzczegolow,
+      filtrWToku: filtrPrzycisk('w-toku'),
+      filtrZakonczone: filtrPrzycisk('zakonczone'),
+      liczbaWToku: sprawy.filter((s) => s.grupa === 'w-toku').length,
+      liczbaZakonczone: sprawy.filter((s) => s.grupa === 'zakonczone').length,
+      widoczne,
+      wybrana,
+    };
+  }
+}
+</script>
+</body>
+</html>

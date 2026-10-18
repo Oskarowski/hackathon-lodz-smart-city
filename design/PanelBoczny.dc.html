@@ -1,0 +1,122 @@
+<!doctype html>
+<html lang="pl">
+<head>
+<meta charset="utf-8">
+<title>Komponent – Pasek boczny paneli</title>
+<script src="./support.js"></script>
+<link rel="stylesheet" href="tokens/theme.css">
+</head>
+<body>
+<x-dc>
+<helmet>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0}
+:focus-visible{outline:3px solid #1C2430;outline-offset:2px;box-shadow:0 0 0 2px #FFFFFF}
+.pb-pasek{width:240px;padding:24px 16px;position:relative}
+.pb-znak{padding:0 8px}
+.pb-poz{position:relative;padding:0 12px;gap:12px}
+.pb-plakietka{margin-left:auto;padding:2px 8px;font-size:12px}
+.pb-stopka{padding:0 8px}
+@container (min-width:641px) and (max-width:1024px){
+.pb-pasek{width:72px;padding:24px 14px}
+.pb-znak{padding:0;align-items:center}
+.pb-skrot{display:none}
+.pb-poz{padding:0;gap:0;justify-content:center}
+.pb-etykieta,.pb-podpis,.pb-stopka,.pb-liczba{position:absolute;width:1px;height:1px;padding:0;margin:0;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+.pb-plakietka{position:absolute;top:8px;right:8px;width:8px;height:8px;margin:0;padding:0}
+.pb-status{position:absolute;left:calc(100% + 8px);width:220px;z-index:10}
+}
+@container (max-width:640px){
+.pb-pasek{width:100cqw}
+}
+</style>
+</helmet>
+<aside class="pb-pasek" style="min-height: 100%; background: #1C2430; color: #FFFFFF; box-sizing: border-box; display: flex; flex-direction: column; gap: 28px; font-family: Montserrat, sans-serif">
+  <div class="pb-znak" style="display: flex; flex-direction: column; gap: 4px">
+    <span role="img" aria-label="Twoje Miasto" style="font-size: 20px; letter-spacing: -0.02em; white-space: nowrap"><span aria-hidden="true" style="font-weight: 300">T<span class="pb-skrot">woje</span></span><span aria-hidden="true" style="font-weight: 800">M<span class="pb-skrot">iasto</span></span><span aria-hidden="true" style="font-weight: 800; color: var(--theme-brand-dot-on-dark, #C9B3F0)">.</span></span>
+    <sc-if value="{{jestInstytucja}}" hint-placeholder-val="{{ true }}">
+    <span class="pb-podpis" style="font-size: 12px; font-weight: 600; color: #AEB8C6">Moje Osiedle · Panel instytucji</span>
+    </sc-if>
+    <sc-if value="{{jestUrzad}}" hint-placeholder-val="{{ false }}">
+    <span class="pb-podpis" style="font-size: 12px; font-weight: 600; color: #AEB8C6">Moje Osiedle · Panel urzędu</span>
+    </sc-if>
+  </div>
+  <sc-if value="{{jestInstytucja}}" hint-placeholder-val="{{ true }}">
+  <nav aria-label="Panel instytucji" style="display: flex; flex-direction: column; gap: 4px">
+    <a href="Panel-pomoc-weryfikacja.dc.html" class="pb-poz" title="Weryfikacja profili" aria-current="{{weryfikacja.biezaca}}" style="min-height: 44px; border-radius: 10px; background: {{weryfikacja.tlo}}; text-decoration: none; display: flex; align-items: center; font-size: 14px; font-weight: {{weryfikacja.waga}}; color: {{weryfikacja.kolor}}">
+      <svg aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l8 3v6c0 4.5-3.4 8.3-8 9-4.6-0.7-8-4.5-8-9V6z"/><path d="M8.5 12l2.5 2.5 4.5-5"/></svg><span class="pb-etykieta">Weryfikacja profili</span></a>
+    <a href="Panel-pomoc-przydzial.dc.html" class="pb-poz" title="Przydział zadań" aria-current="{{przydzial.biezaca}}" style="min-height: 44px; border-radius: 10px; background: {{przydzial.tlo}}; text-decoration: none; display: flex; align-items: center; font-size: 14px; font-weight: {{przydzial.waga}}; color: {{przydzial.kolor}}">
+      <svg aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="6" cy="7" r="3"/><path d="M1.5 20v-1.5A4.5 4.5 0 0 1 6 14a4.5 4.5 0 0 1 4.5 4.5V20"/><circle cx="18" cy="7" r="3"/><path d="M13.5 20v-1.5A4.5 4.5 0 0 1 18 14a4.5 4.5 0 0 1 4.5 4.5V20"/><path d="M10 9h4M12.5 7.5L14 9l-1.5 1.5"/></svg><span class="pb-etykieta">Przydział zadań</span></a>
+    <a href="Panel-pomoc-incydent.dc.html" class="pb-poz" title="Incydenty" aria-current="{{incydenty.biezaca}}" style="min-height: 44px; border-radius: 10px; background: {{incydenty.tlo}}; text-decoration: none; display: flex; align-items: center; font-size: 14px; font-weight: {{incydenty.waga}}; color: {{incydenty.kolor}}">
+      <svg aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M10.3 3.9L1.8 18a2 2 0 0 0 1.7 3h17a2 2 0 0 0 1.7-3L13.7 3.9a2 2 0 0 0-3.4 0z"/><path d="M12 9v4M12 17h.01"/></svg><span class="pb-etykieta">Incydenty</span></a>
+    <a href="Panel-pomoc-raport.dc.html" class="pb-poz" title="Raport godzin" aria-current="{{raport.biezaca}}" style="min-height: 44px; border-radius: 10px; background: {{raport.tlo}}; text-decoration: none; display: flex; align-items: center; font-size: 14px; font-weight: {{raport.waga}}; color: {{raport.kolor}}">
+      <svg aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 20V10M10 20V4M16 20v-7M22 20H2"/></svg><span class="pb-etykieta">Raport godzin</span></a>
+  </nav>
+  </sc-if>
+  <sc-if value="{{jestUrzad}}" hint-placeholder-val="{{ false }}">
+  <div style="display: flex; flex-direction: column">
+    <nav aria-label="Panel urzędu" style="display: flex; flex-direction: column; gap: 4px">
+      <a href="Panel-pulpit.dc.html" class="pb-poz" title="Pulpit" aria-current="{{pulpit.biezaca}}" style="min-height: 44px; border-radius: 10px; background: {{pulpit.tlo}}; text-decoration: none; display: flex; align-items: center; font-size: 14px; font-weight: {{pulpit.waga}}; color: {{pulpit.kolor}}">
+        <svg aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="9" rx="1.5"/><rect x="14" y="3" width="7" height="5" rx="1.5"/><rect x="14" y="12" width="7" height="9" rx="1.5"/><rect x="3" y="16" width="7" height="5" rx="1.5"/></svg><span class="pb-etykieta">Pulpit</span></a>
+      <a href="Panel-wymaga-uwagi.dc.html" class="pb-poz" title="Wymaga uwagi" aria-label="{{wymagaUwagiNazwa}}" aria-current="{{wymagaUwagi.biezaca}}" style="min-height: 44px; border-radius: 10px; background: {{wymagaUwagi.tlo}}; text-decoration: none; display: flex; align-items: center; font-size: 14px; font-weight: {{wymagaUwagi.waga}}; color: {{wymagaUwagi.kolor}}">
+        <svg aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M10.3 3.9L1.8 18a2 2 0 0 0 1.7 3h17a2 2 0 0 0 1.7-3L13.7 3.9a2 2 0 0 0-3.4 0z"/><path d="M12 9v4M12 17h.01"/></svg><span class="pb-etykieta">Wymaga uwagi</span><sc-if value="{{maPlakietke}}" hint-placeholder-val="{{ true }}"><span class="pb-plakietka" style="font-weight: 700; color: #1C2430; background: #F5B83D; border-radius: 999px"><span class="pb-liczba">{{licznik}}</span></span></sc-if></a>
+      <button type="button" class="pb-poz" title="Wszystkie zgłoszenia" onClick="{{pokazWszystkie}}" style="border: 0; font: inherit; text-align: left; cursor: pointer; min-height: 44px; border-radius: 10px; background: transparent; text-decoration: none; display: flex; align-items: center; font-size: 14px; font-weight: 600; color: #D6DDE7">
+        <svg aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6h11M9 12h11M9 18h11"/><path d="M4 6h.01M4 12h.01M4 18h.01"/></svg><span class="pb-etykieta">Wszystkie zgłoszenia</span></button>
+      <button type="button" class="pb-poz" title="Mapa" onClick="{{pokazMape}}" style="border: 0; font: inherit; text-align: left; cursor: pointer; min-height: 44px; border-radius: 10px; background: transparent; text-decoration: none; display: flex; align-items: center; font-size: 14px; font-weight: 600; color: #D6DDE7">
+        <svg aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M9 4L3 6v14l6-2 6 2 6-2V4l-6 2z"/><path d="M9 4v14M15 6v14"/></svg><span class="pb-etykieta">Mapa</span></button>
+      <button type="button" class="pb-poz" title="Raporty" onClick="{{pokazRaporty}}" style="border: 0; font: inherit; text-align: left; cursor: pointer; min-height: 44px; border-radius: 10px; background: transparent; text-decoration: none; display: flex; align-items: center; font-size: 14px; font-weight: 600; color: #D6DDE7">
+        <svg aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 20V10M10 20V4M16 20v-7M22 20H2"/></svg><span class="pb-etykieta">Raporty</span></button>
+    </nav>
+    <p role="status" aria-live="polite" class="pb-status" style="margin: {{status.margines}}; min-height: 0; font-size: 13px; line-height: 1.5; color: #D6DDE7; background: {{status.tlo}}; border-radius: 12px; padding: {{status.odstep}}">{{komunikat}}</p>
+  </div>
+  </sc-if>
+  <sc-if value="{{jestInstytucja}}" hint-placeholder-val="{{ true }}">
+  <span class="pb-stopka" style="margin-top: auto; font-size: 12px; color: #AEB8C6">MOPS · [Imię pracownika]</span>
+  </sc-if>
+  <sc-if value="{{jestUrzad}}" hint-placeholder-val="{{ false }}">
+  <span class="pb-stopka" style="margin-top: auto; font-size: 12px; color: #AEB8C6">[Imię urzędnika] · logowanie SSO</span>
+  </sc-if>
+</aside>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"panel":{"editor":"enum","options":["instytucja","urzad"],"default":"instytucja"},"aktywna":{"editor":"enum","options":["weryfikacja","przydzial","incydenty","raport","pulpit","wymaga-uwagi"],"default":"weryfikacja"},"licznik":{"editor":"text","default":""},"$preview":{"width":240,"height":350}}'>
+class Component extends DCLogic {
+  constructor(props) {
+    super(props);
+    this.state = { komunikat: '' };
+  }
+
+  renderVals() {
+    const panel = this.props.panel ?? 'instytucja';
+    const aktywna = this.props.aktywna ?? 'weryfikacja';
+    const licznik = String(this.props.licznik ?? '');
+    const komunikat = this.state.komunikat;
+    const pozycja = (id) => aktywna === id
+      ? { tlo: 'rgba(255, 255, 255, 0.10)', waga: '700', kolor: '#FFFFFF', biezaca: 'page' }
+      : { tlo: 'transparent', waga: '600', kolor: '#D6DDE7', biezaca: undefined };
+    const wPrzygotowaniu = (nazwa) => () => this.setState({ komunikat: `„${nazwa}” – w przygotowaniu.` });
+    return {
+      jestUrzad: panel === 'urzad',
+      jestInstytucja: panel !== 'urzad',
+      weryfikacja: pozycja('weryfikacja'),
+      przydzial: pozycja('przydzial'),
+      incydenty: pozycja('incydenty'),
+      raport: pozycja('raport'),
+      pulpit: pozycja('pulpit'),
+      wymagaUwagi: pozycja('wymaga-uwagi'),
+      licznik,
+      maPlakietke: licznik !== '' && licznik !== '0',
+      wymagaUwagiNazwa: licznik !== '' && licznik !== '0' ? `Wymaga uwagi (${licznik})` : 'Wymaga uwagi',
+      komunikat,
+      status: komunikat === ''
+        ? { margines: '0', tlo: 'transparent', odstep: '0' }
+        : { margines: '8px 0 0', tlo: '#333A45', odstep: '10px 14px' },
+      pokazWszystkie: wPrzygotowaniu('Wszystkie zgłoszenia'),
+      pokazMape: wPrzygotowaniu('Mapa'),
+      pokazRaporty: wPrzygotowaniu('Raporty'),
+    };
+  }
+}
+</script>
+</body>
+</html>

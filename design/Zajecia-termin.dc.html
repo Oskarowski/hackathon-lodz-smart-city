@@ -1,0 +1,92 @@
+<!doctype html>
+<html lang="pl">
+<head>
+<meta charset="utf-8">
+<title>Wybierz termin</title>
+<script src="./support.js"></script>
+<link rel="stylesheet" href="tokens/theme.css">
+</head>
+<body>
+<x-dc>
+<helmet>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0}
+a{color:inherit}a:hover{color:inherit}
+:focus-visible{outline:3px solid #1C2430;outline-offset:2px;box-shadow:0 0 0 2px #FFFFFF}
+</style>
+</helmet>
+<div style="width: 390px; height: 844px; display: flex; flex-direction: column; background: #F5F7FA; font-family: Montserrat, sans-serif; color: #1C2430; overflow: hidden">
+  <dc-import name="Naglowek" tytul="Wybierz termin" podtytul="Modelarstwo dla dzieci" wstecz-href="Zajecia-lista.dc.html" wstecz-etykieta="Wróć do propozycji zajęć" hint-size="390px,74px"></dc-import>
+
+  <main style="flex: 1; overflow: auto; padding: 18px 16px 24px; display: flex; flex-direction: column; gap: 16px">
+    <div style="display: flex; flex-direction: column; gap: 6px">
+      <h2 style="margin: 0; font-size: 18px; font-weight: 800">Terminy od Domu kultury</h2>
+      <p style="margin: 0; font-size: 13px; line-height: 1.5; color: #5A6575">[ADRES DOMU KULTURY]</p>
+    </div>
+
+    <fieldset style="position: relative; margin: 0; padding: 0; border: 0; min-width: 0; display: flex; flex-direction: column; gap: 12px">
+      <legend style="position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; padding: 0">Wybierz termin</legend>
+      <sc-for list="{{terminy}}" as="termin" hint-placeholder-count="2">
+        <sc-if value="{{termin.wybrany}}" hint-placeholder-val="{{ false }}">
+          <label style="min-height: 72px; padding: 14px 16px; border-radius: 16px; border: 2px solid var(--theme-primary, #1D5FA8); background: #FFFFFF; display: flex; align-items: center; gap: 14px; box-sizing: border-box; cursor: pointer">
+            <input type="radio" name="termin" value="{{termin.id}}" checked="{{termin.wybrany}}" onChange="{{termin.wybierz}}" style="flex: none; width: 20px; height: 20px; margin: 0; accent-color: var(--theme-primary, #1D5FA8)">
+            <span style="display: flex; flex-direction: column; gap: 4px">
+              <span style="font-size: 15px; font-weight: 700">{{termin.kiedy}}</span>
+              <span style="font-size: 13px; color: #5A6575">[N] wolnych miejsc</span>
+            </span>
+          </label>
+        </sc-if>
+        <sc-if value="{{termin.niewybrany}}" hint-placeholder-val="{{ true }}">
+          <label style="min-height: 72px; padding: 14px 16px; border-radius: 16px; border: 2px solid #FFFFFF; background: #FFFFFF; display: flex; align-items: center; gap: 14px; box-sizing: border-box; cursor: pointer">
+            <input type="radio" name="termin" value="{{termin.id}}" checked="{{termin.wybrany}}" onChange="{{termin.wybierz}}" style="flex: none; width: 20px; height: 20px; margin: 0; accent-color: var(--theme-primary, #1D5FA8)">
+            <span style="display: flex; flex-direction: column; gap: 4px">
+              <span style="font-size: 15px; font-weight: 700">{{termin.kiedy}}</span>
+              <span style="font-size: 13px; color: #5A6575">[N] wolnych miejsc</span>
+            </span>
+          </label>
+        </sc-if>
+      </sc-for>
+      <label style="min-height: 72px; padding: 14px 16px; border-radius: 16px; border: 2px solid #FFFFFF; background: #FFFFFF; display: flex; align-items: center; gap: 14px; box-sizing: border-box; color: #5A6575; cursor: not-allowed">
+        <input type="radio" name="termin" value="3" disabled style="flex: none; width: 20px; height: 20px; margin: 0">
+        <span style="display: flex; flex-direction: column; gap: 4px">
+          <span style="font-size: 15px; font-weight: 600">wt., [DATA] · [GODZINA]</span>
+          <span style="font-size: 13px">Brak wolnych miejsc</span>
+        </span>
+      </label>
+    </fieldset>
+  </main>
+
+  <div style="padding: 12px 16px 24px; background: #FFFFFF; border-top: 1px solid #D9E1EA; display: flex; flex-direction: column; gap: 8px">
+    <p style="margin: 0; font-size: 12px; color: #5A6575; text-align: center">Zapis potwierdzisz Kartą Mieszkańca.</p>
+    <a href="Zajecia-zapisano.dc.html" style="min-height: 52px; border-radius: 999px; background: var(--theme-primary, #1D5FA8); color: #FFFFFF; text-decoration: none; display: flex; align-items: center; justify-content: center; gap: 8px; box-sizing: border-box; font-size: 15px; font-weight: 700">
+      <svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="6" width="18" height="12" rx="2"/><path d="M3 10h18M7 15h4"/></svg>
+      Zapisz się Kartą Mieszkańca
+    </a>
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":390,"height":844}}'>
+class Component extends DCLogic {
+  constructor(props) {
+    super(props);
+    this.state = { termin: '1' };
+  }
+  renderVals() {
+    const terminy = [
+      { id: '1', kiedy: 'sob., [DATA] · [GODZINA]' },
+      { id: '2', kiedy: 'sob., [DATA] · [GODZINA]' }
+    ];
+    return {
+      terminy: terminy.map((t) => ({
+        ...t,
+        wybrany: this.state.termin === t.id,
+        niewybrany: this.state.termin !== t.id,
+        wybierz: () => this.setState({ termin: t.id })
+      }))
+    };
+  }
+}
+</script>
+</body>
+</html>

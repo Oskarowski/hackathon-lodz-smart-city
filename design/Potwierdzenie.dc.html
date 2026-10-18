@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="pl">
+<head>
+<meta charset="utf-8">
+<title>Komponent – Potwierdzenie</title>
+<script src="./support.js"></script>
+<link rel="stylesheet" href="tokens/theme.css">
+</head>
+<body>
+<x-dc>
+<helmet>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0}
+</style>
+</helmet>
+<div style="display: flex; flex-direction: column; font-family: Montserrat, sans-serif; color: #1C2430">
+  <div style="display: flex; justify-content: flex-end; padding: 12px 12px 0">
+    <a href="{{zamknijHref}}" aria-label="Zamknij" style="width: 44px; height: 44px; display: flex; align-items: center; justify-content: center; color: #5A6575">
+      <svg aria-hidden="true" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M18 6L6 18M6 6l12 12"/></svg>
+    </a>
+  </div>
+
+  <sc-if value="{{duzy}}" hint-placeholder-val="{{ true }}">
+    <div style="padding: 40px 28px 0; display: flex; flex-direction: column; align-items: center; text-align: center; gap: 20px">
+      <span aria-hidden="true" style="width: 104px; height: 104px; border-radius: 52px; background: #E3F4E8; display: flex; align-items: center; justify-content: center">
+        <span style="width: 76px; height: 76px; border-radius: 38px; background: #1E8E3E; color: #FFFFFF; display: flex; align-items: center; justify-content: center">
+          <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>
+        </span>
+      </span>
+      <h1 style="margin: 0; font-size: 26px; font-weight: 800; line-height: 1.2; letter-spacing: -0.01em">{{tytul}}</h1>
+      <sc-if value="{{maOpis}}" hint-placeholder-val="{{ true }}">
+        <p style="margin: 0; font-size: 15px; line-height: 1.5; color: #2B3442">{{opis}}</p>
+      </sc-if>
+      <sc-if value="{{karta}}" hint-placeholder-val="{{ true }}">
+        <span style="display: flex; align-items: center; gap: 8px; font-size: 13px; font-weight: 600; color: #1E6B33; background: #E3F4E8; border-radius: 999px; padding: 8px 14px">
+          <svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="6" width="18" height="12" rx="2"/><path d="M3 10h18M7 15h4"/></svg>
+          Potwierdzono Kartą Mieszkańca
+        </span>
+      </sc-if>
+    </div>
+  </sc-if>
+
+  <sc-if value="{{kompaktowy}}" hint-placeholder-val="{{ false }}">
+    <div style="padding: 8px 20px 0; display: flex; flex-direction: column; align-items: center; text-align: center; gap: 12px">
+      <span aria-hidden="true" style="width: 84px; height: 84px; border-radius: 42px; background: #E3F4E8; display: flex; align-items: center; justify-content: center">
+        <span style="width: 60px; height: 60px; border-radius: 30px; background: #1E8E3E; color: #FFFFFF; display: flex; align-items: center; justify-content: center"><svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg></span>
+      </span>
+      <h1 style="margin: 0; font-size: 24px; font-weight: 800; line-height: 1.2">{{tytul}}</h1>
+      <sc-if value="{{maOpis}}" hint-placeholder-val="{{ true }}">
+        <span style="font-size: 13px; color: #5A6575">{{opis}}</span>
+      </sc-if>
+      <sc-if value="{{karta}}" hint-placeholder-val="{{ true }}">
+        <span style="display: flex; align-items: center; gap: 8px; font-size: 13px; font-weight: 600; color: #1E6B33; background: #E3F4E8; border-radius: 999px; padding: 8px 14px">
+          <svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="6" width="18" height="12" rx="2"/><path d="M3 10h18M7 15h4"/></svg>
+          Potwierdzono Kartą Mieszkańca
+        </span>
+      </sc-if>
+    </div>
+  </sc-if>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"tytul":{"editor":"text","default":"Twój głos został oddany"},"opis":{"editor":"text","default":"Termomodernizacja i nowa elewacja szkoły podstawowej"},"karta":{"editor":"boolean","default":false},"zamknijHref":{"editor":"text","default":"Start.dc.html"},"wariant":{"editor":"enum","options":["duzy","kompaktowy"],"default":"duzy"},"$preview":{"width":390,"height":316}}'>
+class Component extends DCLogic {
+  renderVals() {
+    const opis = this.props.opis ?? 'Termomodernizacja i nowa elewacja szkoły podstawowej';
+    const wariant = this.props.wariant ?? 'duzy';
+    return {
+      tytul: this.props.tytul ?? 'Twój głos został oddany',
+      opis,
+      maOpis: opis !== '',
+      karta: String(this.props.karta) === 'true',
+      zamknijHref: this.props.zamknijHref ?? 'Start.dc.html',
+      wariant,
+      duzy: wariant !== 'kompaktowy',
+      kompaktowy: wariant === 'kompaktowy',
+    };
+  }
+}
+</script>
+</body>
+</html>

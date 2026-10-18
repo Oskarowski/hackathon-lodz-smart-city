@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="pl">
+<head>
+<meta charset="utf-8">
+<title>Moje Osiedle – zgoda na dane</title>
+<script src="./support.js"></script>
+<link rel="stylesheet" href="tokens/theme.css">
+</head>
+<body>
+<x-dc>
+<helmet>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0}
+a{color:inherit}a:hover{color:inherit}
+:focus-visible{outline:3px solid #1C2430;outline-offset:2px;box-shadow:0 0 0 2px #FFFFFF}
+</style>
+</helmet>
+<div style="width: 390px; height: 844px; display: flex; flex-direction: column; background: #F5F7FA; font-family: Montserrat, sans-serif; color: #1C2430; overflow: hidden">
+  <dc-import name="Naglowek" tytul="Moje Osiedle" podtytul="Krok 1 z 2" wstecz-href="Main.dc.html" wstecz-etykieta="Wróć do aplikacji Twoje Miasto" hint-size="390px,74px"></dc-import>
+
+  <main style="flex: 1; overflow: auto; padding: 20px 16px 16px; display: flex; flex-direction: column; gap: 16px">
+    <div style="display: flex; align-items: baseline; gap: 8px">
+      <span role="img" aria-label="Twoje Miasto" style="font-size: 18px; letter-spacing: -0.03em; line-height: 1"><span aria-hidden="true" style="font-weight: 300">Twoje</span><span aria-hidden="true" style="font-weight: 800">Miasto</span><span aria-hidden="true" style="font-weight: 800; color: var(--theme-accent, #7A3EB1)">.</span></span>
+      <span style="font-size: 14px; font-weight: 600; color: #5A6575">· Moje Osiedle</span>
+    </div>
+
+    <section aria-labelledby="zgoda-tytul" style="background: #FFFFFF; border-radius: 16px; padding: 20px 16px; display: flex; flex-direction: column; gap: 14px">
+      <h2 id="zgoda-tytul" style="margin: 0; font-size: 20px; font-weight: 700; line-height: 1.3">Udostępnij dane z konta miejskiego</h2>
+      <p style="margin: 0; font-size: 14px; line-height: 1.5">Moje Osiedle korzysta z Twojego konta w aplikacji Twoje Miasto. Potrzebujemy:</p>
+      <ul style="margin: 0; padding: 0; list-style: none; display: flex; flex-direction: column; gap: 12px; font-size: 14px; line-height: 1.45">
+        <li style="display: flex; align-items: flex-start; gap: 10px"><svg aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#1E8E3E" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="flex: none"><path d="M20 6L9 17l-5-5"/></svg><span><span style="font-weight: 700">Imię i nazwisko</span> — żeby potwierdzać Twoje zgłoszenia</span></li>
+        <li style="display: flex; align-items: flex-start; gap: 10px"><svg aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#1E8E3E" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="flex: none"><path d="M20 6L9 17l-5-5"/></svg><span><span style="font-weight: 700">Adres zamieszkania</span> — żeby przypisać Cię do osiedla</span></li>
+        <li style="display: flex; align-items: flex-start; gap: 10px"><svg aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#1E8E3E" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="flex: none"><path d="M20 6L9 17l-5-5"/></svg><span><span style="font-weight: 700">Status Karty Mieszkańca</span> — żeby potwierdzać głosy i zapisy</span></li>
+      </ul>
+    </section>
+
+    <p style="margin: 0; font-size: 12px; line-height: 1.5; color: #5A6575">Sąsiedzi nie widzą Twojego adresu. Stan zgody sprawdzisz w zakładce Więcej.</p>
+  </main>
+
+  <div style="padding: 16px 20px 24px; display: flex; flex-direction: column; gap: 10px">
+    <a href="Wejscie-osiedle.dc.html" style="min-height: 52px; border-radius: 999px; background: var(--theme-primary, #1D5FA8); color: #FFFFFF; text-decoration: none; display: flex; align-items: center; justify-content: center; font-size: 15px; font-weight: 700">Zgadzam się</a>
+    <a href="Main.dc.html" style="min-height: 52px; border-radius: 999px; border: 1.5px solid #7D8A9C; color: #1C2430; text-decoration: none; display: flex; align-items: center; justify-content: center; font-size: 15px; font-weight: 600; box-sizing: border-box">Nie teraz</a>
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":390,"height":844}}'>
+class Component extends DCLogic {
+  renderVals() {
+    return {};
+  }
+}
+</script>
+</body>
+</html>

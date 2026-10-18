@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="pl">
+<head>
+<meta charset="utf-8">
+<title>Moje Osiedle – Start</title>
+<script src="./support.js"></script>
+<link rel="stylesheet" href="tokens/theme.css">
+</head>
+<body>
+<x-dc>
+<helmet>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0}
+a{color:inherit}a:hover{color:inherit}
+:focus-visible{outline:3px solid #1C2430;outline-offset:2px;box-shadow:0 0 0 2px #FFFFFF}
+</style>
+</helmet>
+<div style="width: 390px; height: 844px; display: flex; flex-direction: column; background: #F5F7FA; font-family: Montserrat, sans-serif; color: #1C2430; overflow: hidden">
+  <dc-import name="Naglowek" wariant="start" tytul="Moje Osiedle" podtytul="Osiedle Parkowe" wstecz-href="Main.dc.html" wstecz-etykieta="Wróć do aplikacji Twoje Miasto" hint-size="390px,126px"></dc-import>
+
+  <main style="flex: 1; overflow: auto; padding: 16px 16px 24px; display: flex; flex-direction: column; gap: 20px">
+    <a href="Tablica-pilne.dc.html" style="text-decoration: none; background: #FDECEC; border: 1px solid #F3C3C3; border-radius: 14px; padding: 12px 14px; display: flex; gap: 12px; align-items: flex-start; color: #1C2430">
+      <svg aria-hidden="true" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#C62828" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex: none; margin-top: 1px"><circle cx="12" cy="12" r="9"/><path d="M12 8v4M12 16h.01"/></svg>
+      <span style="display: flex; flex-direction: column; gap: 3px">
+        <span style="font-size: 12px; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; color: #A61F1F">Pilne · Oficjalne</span>
+        <span style="font-size: 14px; font-weight: 600; line-height: 1.4">Przerwa w dostawie wody, [ULICA] · Jutro, [DATA] · 8:00–14:00</span>
+      </span>
+    </a>
+
+    <section aria-labelledby="moduly" style="display: flex; flex-direction: column; gap: 12px">
+      <h2 id="moduly" style="margin: 0; font-size: 17px; font-weight: 700">Na osiedlu</h2>
+      <div style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px">
+        <a href="BO-lista.dc.html" style="text-decoration: none; background: #FFFFFF; border-radius: 16px; padding: 16px; min-height: 112px; box-sizing: border-box; display: flex; flex-direction: column; justify-content: space-between; color: #1C2430">
+          <span aria-hidden="true" style="width: 40px; height: 40px; border-radius: 12px; background: var(--theme-primary-soft, #E8EFF8); color: var(--theme-primary, #1D5FA8); display: flex; align-items: center; justify-content: center"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 11h16v9H4z"/><path d="M8 11V7a1 1 0 0 1 1-1h6a1 1 0 0 1 1 1v4"/><path d="M10 9l1.5 1.5L14 8"/></svg></span>
+          <span style="font-size: 14px; font-weight: 700; line-height: 1.3">Budżet obywatelski</span>
+        </a>
+        <a href="Tablica-sasiedzi.dc.html" style="text-decoration: none; background: #FFFFFF; border-radius: 16px; padding: 16px; min-height: 112px; box-sizing: border-box; display: flex; flex-direction: column; justify-content: space-between; color: #1C2430">
+          <span aria-hidden="true" style="width: 40px; height: 40px; border-radius: 12px; background: var(--theme-primary-soft, #E8EFF8); color: var(--theme-primary, #1D5FA8); display: flex; align-items: center; justify-content: center"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="16" rx="3"/><path d="M3 10h18M8 3v4M16 3v4"/></svg></span>
+          <span style="font-size: 14px; font-weight: 700; line-height: 1.3">Tablica</span>
+        </a>
+        <a href="Zajecia-lista.dc.html" style="text-decoration: none; background: #FFFFFF; border-radius: 16px; padding: 16px; min-height: 112px; box-sizing: border-box; display: flex; flex-direction: column; justify-content: space-between; color: #1C2430">
+          <span aria-hidden="true" style="width: 40px; height: 40px; border-radius: 12px; background: var(--theme-primary-soft, #E8EFF8); color: var(--theme-primary, #1D5FA8); display: flex; align-items: center; justify-content: center"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M2 9l10-5 10 5-10 5z"/><path d="M6 11v5c0 1.7 2.7 3 6 3s6-1.3 6-3v-5"/></svg></span>
+          <span style="font-size: 14px; font-weight: 700; line-height: 1.3">Propozycje zajęć</span>
+        </a>
+        <a href="Pomoc-wizyta.dc.html" style="text-decoration: none; background: #FFFFFF; border-radius: 16px; padding: 16px; min-height: 112px; box-sizing: border-box; display: flex; flex-direction: column; justify-content: space-between; color: #1C2430">
+          <span aria-hidden="true" style="width: 40px; height: 40px; border-radius: 12px; background: var(--theme-primary-soft, #E8EFF8); color: var(--theme-primary, #1D5FA8); display: flex; align-items: center; justify-content: center"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.7l-1-1.1a5.5 5.5 0 0 0-7.8 7.8l1.1 1L12 21l7.7-7.6 1.1-1a5.5 5.5 0 0 0 0-7.8z"/></svg></span>
+          <span style="font-size: 14px; font-weight: 700; line-height: 1.3">Pomoc sąsiedzka</span>
+        </a>
+      </div>
+    </section>
+
+    <section aria-labelledby="sprawy" style="display: flex; flex-direction: column; gap: 12px">
+      <h2 id="sprawy" style="margin: 0; font-size: 17px; font-weight: 700">Moje sprawy</h2>
+      <a href="Sprawy-lista.dc.html" style="text-decoration: none; background: #FFFFFF; border-radius: 16px; padding: 14px 16px; display: flex; align-items: center; gap: 12px; color: #1C2430">
+        <span style="flex: 1; display: flex; flex-direction: column; gap: 3px">
+          <span style="font-size: 14px; font-weight: 600">Odbiór gabarytów</span>
+          <span style="font-size: 12px; color: #5A6575">Termin: czw., [DATA]</span>
+          <span style="align-self: flex-start; margin-top: 5px; display: flex; align-items: center; gap: 4px; padding: 5px 10px 5px 8px; border-radius: 999px; font-size: 12px; font-weight: 700; white-space: nowrap; color: #174E8C; background: #E8EFF8"><svg aria-hidden="true" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" style="flex: none"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>Zaplanowane</span>
+        </span>
+      </a>
+      <a href="Sprawy-lista.dc.html" style="text-decoration: none; background: #FFFFFF; border-radius: 16px; padding: 14px 16px; display: flex; align-items: center; gap: 12px; color: #1C2430">
+        <span style="flex: 1; display: flex; flex-direction: column; gap: 3px">
+          <span style="font-size: 14px; font-weight: 600">Głos w budżecie obywatelskim</span>
+          <span style="font-size: 12px; color: #5A6575">Termomodernizacja szkoły · głos oddany</span>
+          <span style="align-self: flex-start; margin-top: 5px; display: flex; align-items: center; gap: 4px; padding: 5px 10px 5px 8px; border-radius: 999px; font-size: 12px; font-weight: 700; white-space: nowrap; color: #174E8C; background: #E8EFF8"><svg aria-hidden="true" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" style="flex: none"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>Poddane pod głosowanie</span>
+        </span>
+      </a>
+      <a href="Sprawy-lista.dc.html" style="text-decoration: none; background: #FFFFFF; border-radius: 16px; padding: 14px 16px; display: flex; align-items: center; gap: 12px; color: #1C2430">
+        <span style="flex: 1; display: flex; flex-direction: column; gap: 3px">
+          <span style="font-size: 14px; font-weight: 600">Dzikie wysypisko</span>
+          <span style="font-size: 12px; color: #5A6575">[ADRES]</span>
+          <span style="align-self: flex-start; margin-top: 5px; display: flex; align-items: center; gap: 4px; padding: 5px 10px 5px 8px; border-radius: 999px; font-size: 12px; font-weight: 700; white-space: nowrap; color: #174E8C; background: #E8EFF8"><svg aria-hidden="true" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" style="flex: none"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>Przyjęte</span>
+        </span>
+      </a>
+    </section>
+  </main>
+
+  <dc-import name="PasekZakladek" aktywna="start" hint-size="390px,72px"></dc-import>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":390,"height":844}}'>
+class Component extends DCLogic {
+  renderVals() {
+    return {};
+  }
+}
+</script>
+</body>
+</html>

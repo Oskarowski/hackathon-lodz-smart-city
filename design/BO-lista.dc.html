@@ -1,0 +1,99 @@
+<!doctype html>
+<html lang="pl">
+<head>
+<meta charset="utf-8">
+<title>Budżet obywatelski – projekty z osiedla</title>
+<script src="./support.js"></script>
+<link rel="stylesheet" href="tokens/theme.css">
+</head>
+<body>
+<x-dc>
+<helmet>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0}
+a{color:inherit}a:hover{color:inherit}
+:focus-visible{outline:3px solid #1C2430;outline-offset:2px;box-shadow:0 0 0 2px #FFFFFF}
+</style>
+</helmet>
+<div style="width: 390px; height: 844px; display: flex; flex-direction: column; background: #F5F7FA; font-family: Montserrat, sans-serif; color: #1C2430; overflow: hidden">
+  <dc-import name="Naglowek" tytul="Budżet obywatelski" podtytul="Projekty z Osiedla Parkowego" wstecz-href="Start.dc.html" wstecz-etykieta="Wróć do Start" hint-size="390px,74px"></dc-import>
+
+  <div role="group" aria-label="Filtr projektów" style="display: flex; gap: 8px; padding: 14px 16px 4px; overflow-x: auto">
+    <button type="button" aria-pressed="{{filtrGlosowanie.wybrany}}" onClick="{{filtrGlosowanie.wybierz}}" style="flex: none; min-height: 44px; padding: 0 14px; border-radius: 999px; display: flex; align-items: center; gap: 6px; box-sizing: border-box; border: {{filtrGlosowanie.ramka}}; background: {{filtrGlosowanie.tlo}}; color: {{filtrGlosowanie.kolor}}; font: 600 13px Montserrat, sans-serif"><sc-if value="{{filtrGlosowanie.wybrany}}" hint-placeholder-val="{{ true }}"><svg aria-hidden="true" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" style="flex: none"><path d="M20 6L9 17l-5-5"/></svg></sc-if>Głosowanie trwa</button>
+    <button type="button" aria-pressed="{{filtrRealizacja.wybrany}}" onClick="{{filtrRealizacja.wybierz}}" style="flex: none; min-height: 44px; padding: 0 14px; border-radius: 999px; display: flex; align-items: center; gap: 6px; box-sizing: border-box; border: {{filtrRealizacja.ramka}}; background: {{filtrRealizacja.tlo}}; color: {{filtrRealizacja.kolor}}; font: 600 13px Montserrat, sans-serif"><sc-if value="{{filtrRealizacja.wybrany}}" hint-placeholder-val="{{ false }}"><svg aria-hidden="true" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" style="flex: none"><path d="M20 6L9 17l-5-5"/></svg></sc-if>W realizacji</button>
+    <button type="button" aria-pressed="{{filtrZrealizowane.wybrany}}" onClick="{{filtrZrealizowane.wybierz}}" style="flex: none; min-height: 44px; padding: 0 14px; border-radius: 999px; display: flex; align-items: center; gap: 6px; box-sizing: border-box; border: {{filtrZrealizowane.ramka}}; background: {{filtrZrealizowane.tlo}}; color: {{filtrZrealizowane.kolor}}; font: 600 13px Montserrat, sans-serif"><sc-if value="{{filtrZrealizowane.wybrany}}" hint-placeholder-val="{{ false }}"><svg aria-hidden="true" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" style="flex: none"><path d="M20 6L9 17l-5-5"/></svg></sc-if>Zrealizowane</button>
+  </div>
+  <p role="status" aria-live="polite" style="position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; margin: 0">{{komunikat}}</p>
+
+  <main style="flex: 1; overflow: auto; padding: 12px 16px 24px; display: flex; flex-direction: column; gap: 12px">
+    <sc-if value="{{pokazGlosowanie}}" hint-placeholder-val="{{ true }}">
+      <p style="margin: 0; font-size: 13px; color: #5A6575">Głosowanie trwa do [DATA]. Głos potwierdzasz Kartą Mieszkańca.</p>
+
+      <a href="BO-projekt.dc.html" style="text-decoration: none; background: #FFFFFF; border-radius: 16px; overflow: hidden; color: #1C2430; display: flex; flex-direction: column">
+        <div style="height: 120px; background: #DCE4EE; display: flex; align-items: center; justify-content: center; font-size: 12px; font-weight: 600; color: #4A5565">[ZDJĘCIE SZKOŁY]</div>
+        <div style="padding: 14px 16px 16px; display: flex; flex-direction: column; gap: 8px">
+          <span style="align-self: flex-start; display: flex; align-items: center; gap: 4px; padding: 5px 10px 5px 8px; border-radius: 999px; font-size: 12px; font-weight: 700; white-space: nowrap; color: #174E8C; background: #E8EFF8"><svg aria-hidden="true" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" style="flex: none"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>Poddane pod głosowanie</span>
+          <span style="font-size: 16px; font-weight: 700; line-height: 1.35">Termomodernizacja i nowa elewacja szkoły podstawowej</span>
+          <span style="font-size: 12px; color: #5A6575">Projekt osiedlowy · Koszt: [KWOTA] zł</span>
+        </div>
+      </a>
+
+      <article style="background: #FFFFFF; border-radius: 16px; padding: 14px 16px; color: #1C2430; display: flex; gap: 14px; align-items: center">
+        <span aria-hidden="true" style="flex: none; width: 64px; height: 64px; border-radius: 12px; background: #DCE4EE"></span>
+        <span style="flex: 1; display: flex; flex-direction: column; gap: 6px">
+          <span style="align-self: flex-start; display: flex; align-items: center; gap: 4px; padding: 5px 10px 5px 8px; border-radius: 999px; font-size: 12px; font-weight: 700; white-space: nowrap; color: #174E8C; background: #E8EFF8"><svg aria-hidden="true" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" style="flex: none"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>Poddane pod głosowanie</span>
+          <span style="font-size: 15px; font-weight: 700; line-height: 1.35">Zielone podwórko – nasadzenia i ławki</span>
+          <span style="font-size: 12px; color: #5A6575">Projekt osiedlowy · Koszt: [KWOTA] zł</span>
+        </span>
+      </article>
+    </sc-if>
+
+    <sc-if value="{{pokazRealizacja}}" hint-placeholder-val="{{ false }}">
+      <p style="margin: 0; background: #FFFFFF; border-radius: 16px; padding: 16px; font-size: 14px; line-height: 1.5; color: #5A6575">Na osiedlu nie ma teraz projektów w realizacji.</p>
+    </sc-if>
+
+    <sc-if value="{{pokazZrealizowane}}" hint-placeholder-val="{{ false }}">
+      <article style="background: #FFFFFF; border-radius: 16px; padding: 14px 16px; color: #1C2430; display: flex; gap: 14px; align-items: center">
+        <span aria-hidden="true" style="flex: none; width: 64px; height: 64px; border-radius: 12px; background: #DCE4EE"></span>
+        <span style="flex: 1; display: flex; flex-direction: column; gap: 6px">
+          <span style="align-self: flex-start; display: flex; align-items: center; gap: 4px; padding: 5px 10px 5px 8px; border-radius: 999px; font-size: 12px; font-weight: 700; white-space: nowrap; color: #1E6B33; background: #E3F4E8"><svg aria-hidden="true" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" style="flex: none"><path d="M20 6L9 17l-5-5"/></svg>Zrealizowane</span>
+          <span style="font-size: 15px; font-weight: 700; line-height: 1.35">Oświetlenie ścieżki w parku osiedlowym</span>
+          <span style="font-size: 12px; color: #5A6575">Projekt osiedlowy · Koszt: [KWOTA] zł</span>
+        </span>
+      </article>
+    </sc-if>
+  </main>
+
+  <dc-import name="PasekZakladek" aktywna="brak" hint-size="390px,72px"></dc-import>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":390,"height":844}}'>
+class Component extends DCLogic {
+  constructor(props) {
+    super(props);
+    this.state = { filtr: 'glosowanie', komunikat: '' };
+  }
+
+  renderVals() {
+    const { filtr, komunikat } = this.state;
+    const filtrPrzycisk = (id, nazwa) => ({
+      ...(filtr === id
+        ? { wybrany: true, ramka: '1px solid #1C2430', tlo: '#1C2430', kolor: '#FFFFFF' }
+        : { wybrany: false, ramka: '1px solid #7D8A9C', tlo: '#FFFFFF', kolor: '#1C2430' }),
+      wybierz: () => this.setState({ filtr: id, komunikat: 'Pokazujemy: ' + nazwa }),
+    });
+    return {
+      komunikat,
+      filtrGlosowanie: filtrPrzycisk('glosowanie', 'Głosowanie trwa'),
+      filtrRealizacja: filtrPrzycisk('realizacja', 'W realizacji'),
+      filtrZrealizowane: filtrPrzycisk('zrealizowane', 'Zrealizowane'),
+      pokazGlosowanie: filtr === 'glosowanie',
+      pokazRealizacja: filtr === 'realizacja',
+      pokazZrealizowane: filtr === 'zrealizowane',
+    };
+  }
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="pl">
+<head>
+<meta charset="utf-8">
+<title>Komponent – Pasek zakładek</title>
+<script src="./support.js"></script>
+<link rel="stylesheet" href="tokens/theme.css">
+</head>
+<body>
+<x-dc>
+<helmet>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0}
+</style>
+</helmet>
+<nav aria-label="Nawigacja Moje Osiedle" style="display: flex; align-items: flex-end; background: #FFFFFF; border-top: 1px solid #D9E1EA; padding: 6px 0 18px; font-family: Montserrat, sans-serif; line-height: 14px; white-space: nowrap; color: #1C2430">
+  <a href="Start.dc.html" aria-current="{{start.biezaca}}" style="flex: 1; min-height: 48px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 4px; text-decoration: none; color: {{start.kolor}}; font-size: 12px; font-weight: {{start.waga}}">
+    <svg aria-hidden="true" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11l9-7 9 7v9a1 1 0 0 1-1 1h-5v-6H9v6H4a1 1 0 0 1-1-1z"/></svg>Start</a>
+  <a href="Tablica-sasiedzi.dc.html" aria-current="{{tablica.biezaca}}" style="flex: 1; min-height: 48px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 4px; text-decoration: none; color: {{tablica.kolor}}; font-size: 12px; font-weight: {{tablica.waga}}">
+    <svg aria-hidden="true" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="3" width="16" height="18" rx="2"/><path d="M8 8h8M8 12h8M8 16h5"/></svg>Tablica</a>
+  <a href="Gabaryty-zdjecie.dc.html" style="flex: 1; display: flex; flex-direction: column; align-items: center; gap: 4px; text-decoration: none; color: #1C2430; font-size: 12px; font-weight: 700">
+    <span aria-hidden="true" style="width: 56px; height: 56px; margin-top: -26px; border-radius: 28px; background: var(--theme-primary, #1D5FA8); color: #FFFFFF; display: flex; align-items: center; justify-content: center; box-shadow: 0 6px 16px rgba(28, 36, 48, 0.25)"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></span>Zgłoś</a>
+  <a href="Sprawy-lista.dc.html" aria-current="{{mojeSprawy.biezaca}}" style="flex: 1; min-height: 48px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 4px; text-decoration: none; color: {{mojeSprawy.kolor}}; font-size: 12px; font-weight: {{mojeSprawy.waga}}">
+    <svg aria-hidden="true" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6h11M9 12h11M9 18h11"/><path d="M4 6h.01M4 12h.01M4 18h.01"/></svg>Moje sprawy</a>
+  <a href="Wiecej.dc.html" aria-current="{{wiecej.biezaca}}" style="flex: 1; min-height: 48px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 4px; text-decoration: none; color: {{wiecej.kolor}}; font-size: 12px; font-weight: {{wiecej.waga}}">
+    <svg aria-hidden="true" width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><circle cx="5" cy="12" r="1.8"/><circle cx="12" cy="12" r="1.8"/><circle cx="19" cy="12" r="1.8"/></svg>Więcej</a>
+</nav>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"aktywna":{"editor":"enum","options":["start","tablica","moje-sprawy","wiecej","brak"],"default":"brak"},"$preview":{"width":390,"height":72}}'>
+class Component extends DCLogic {
+  renderVals() {
+    const aktywna = this.props.aktywna ?? 'brak';
+    const zakladka = (id) => aktywna === id
+      ? { kolor: 'var(--theme-primary, #1D5FA8)', waga: '700', biezaca: 'page' }
+      : { kolor: '#5A6575', waga: '600', biezaca: undefined };
+    return {
+      aktywna,
+      start: zakladka('start'),
+      tablica: zakladka('tablica'),
+      mojeSprawy: zakladka('moje-sprawy'),
+      wiecej: zakladka('wiecej'),
+    };
+  }
+}
+</script>
+</body>
+</html>
