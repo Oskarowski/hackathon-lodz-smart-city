@@ -25,8 +25,14 @@ label:has(input:focus-visible){outline:3px solid #1C2430;outline-offset:2px;box-
     <h1 style="margin: 0; font-size: 16px; font-weight: 700">Zgłoś gabaryt lub wysypisko</h1>
   </header>
 
-  <div style="flex: 1; min-height: 120px; position: relative; margin: 8px 16px 0; border-radius: 20px; background: #2A313B; display: flex; align-items: center; justify-content: center; font-size: 13px; font-weight: 600; color: #AEB8C6">
-    [ZDJĘCIE: WERSALKA I SZAFA POD ŚCIANĄ]
+  <div style="flex: 1; min-height: 120px; position: relative; overflow: hidden; margin: 8px 16px 0; border-radius: 20px; background: #2A313B; display: flex; align-items: center; justify-content: center; padding: 0 64px; text-align: center; font-size: 13px; font-weight: 600; line-height: 1.5; color: #AEB8C6">
+    <video id="podglad-aparatu" aria-hidden="true" style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; display: {{podgladWidok}}"></video>
+    <sc-if value="{{maZdjecie}}" hint-placeholder-val="{{ false }}">
+      <img src="{{zdjecie}}" alt="Twoje zdjęcie do zgłoszenia" style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover">
+    </sc-if>
+    <sc-if value="{{bezObrazu}}" hint-placeholder-val="{{ true }}">
+      <span>{{tekstAparatu}}</span>
+    </sc-if>
     <span aria-hidden="true" style="position: absolute; top: 20px; left: 20px; width: 36px; height: 36px; border-top: 3px solid #FFFFFF; border-left: 3px solid #FFFFFF; border-radius: 8px 0 0 0"></span>
     <span aria-hidden="true" style="position: absolute; top: 20px; right: 20px; width: 36px; height: 36px; border-top: 3px solid #FFFFFF; border-right: 3px solid #FFFFFF; border-radius: 0 8px 0 0"></span>
     <span aria-hidden="true" style="position: absolute; bottom: 20px; left: 20px; width: 36px; height: 36px; border-bottom: 3px solid #FFFFFF; border-left: 3px solid #FFFFFF; border-radius: 0 0 0 8px"></span>
@@ -35,6 +41,24 @@ label:has(input:focus-visible){outline:3px solid #1C2430;outline-offset:2px;box-
 
   <section style="flex: none; max-height: 636px; overflow: auto; box-sizing: border-box; margin-top: 16px; background: #FFFFFF; color: #1C2430; border-radius: 24px 24px 0 0; padding: 22px 20px 26px; display: flex; flex-direction: column; gap: 16px">
     <p role="status" style="position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; margin: 0">{{komunikat}}</p>
+    <sc-if value="{{aparat}}" hint-placeholder-val="{{ false }}">
+      <div style="display: flex; flex-direction: column; gap: 6px">
+        <h2 id="aparat-tytul" tabindex="-1" style="margin: 0; font-size: 20px; font-weight: 800">Zrób zdjęcie</h2>
+        <p style="margin: 0; font-size: 14px; line-height: 1.5; color: #1C2430">Sfotografuj gabaryt lub wysypisko. Rozpoznamy, co to jest, i podpowiemy, gdzie to trafi.</p>
+      </div>
+      <div style="display: flex; flex-direction: column; gap: 8px">
+        <button type="button" onClick="{{zrobZdjecie}}" style="min-height: 52px; border: 0; border-radius: 999px; background: var(--theme-primary, #1D5FA8); color: #FFFFFF; font: 700 15px Montserrat, sans-serif; display: flex; align-items: center; justify-content: center; gap: 8px; cursor: pointer">
+          <svg aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 8h3l2-3h6l2 3h3a1 1 0 0 1 1 1v10a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V9a1 1 0 0 1 1-1z"/><circle cx="12" cy="13.5" r="3.5"/></svg>
+          Zrób zdjęcie
+        </button>
+        <label style="position: relative; min-height: 52px; border-radius: 999px; border: 1.5px solid #7D8A9C; background: #FFFFFF; color: #1C2430; box-sizing: border-box; font: 700 15px Montserrat, sans-serif; display: flex; align-items: center; justify-content: center; gap: 8px; cursor: pointer">
+          <input type="file" accept="image/*" onChange="{{wybranoPlik}}" style="position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; margin: 0">
+          <svg aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="16" rx="3"/><circle cx="9" cy="10" r="2"/><path d="M21 16l-5-5-9 9"/></svg>
+          Wybierz z galerii
+        </label>
+        <input type="file" id="aparat-systemowy" accept="image/*" capture="environment" onChange="{{wybranoPlik}}" tabindex="-1" aria-hidden="true" style="display: none">
+      </div>
+    </sc-if>
     <sc-if value="{{sprawdzanie}}" hint-placeholder-val="{{ true }}">
       <div style="display: flex; flex-direction: column; gap: 10px">
         <h2 id="sprawdzamy-tytul" tabindex="-1" style="margin: 0; font-size: 20px; font-weight: 800">Sprawdzamy zdjęcie…</h2>
@@ -164,9 +188,41 @@ label:has(input:focus-visible){outline:3px solid #1C2430;outline-offset:2px;box-
 class Component extends DCLogic {
   constructor(props) {
     super(props);
-    this.state = { stan: 'sprawdzanie', rozpoznana: 'gabaryt', kategoria: 'gabaryt', zmianaKategorii: false, zmianaMiejsca: false, miejscePoprawione: false, wiecejPrywatnosc: false, pytanieZamkniecia: false };
+    this.state = { stan: 'aparat', zdjecie: '', kamera: 'czekam', rozpoznana: 'gabaryt', kategoria: 'gabaryt', zmianaKategorii: false, zmianaMiejsca: false, miejscePoprawione: false, wiecejPrywatnosc: false, pytanieZamkniecia: false };
   }
   componentDidMount() {
+    this.wlaczAparat();
+  }
+  async wlaczAparat() {
+    if (!navigator.mediaDevices || !navigator.mediaDevices.getUserMedia) {
+      this.setState({ kamera: 'brak' });
+      return;
+    }
+    try {
+      const strumien = await navigator.mediaDevices.getUserMedia({ video: { facingMode: 'environment' }, audio: false });
+      if (this.zamkniety || this.state.stan !== 'aparat') {
+        strumien.getTracks().forEach((t) => t.stop());
+        return;
+      }
+      this.strumien = strumien;
+      const wideo = document.getElementById('podglad-aparatu');
+      wideo.muted = true;
+      wideo.playsInline = true;
+      wideo.srcObject = strumien;
+      await wideo.play().catch(() => {});
+      this.setState({ kamera: 'dziala' });
+    } catch (e) {
+      this.setState({ kamera: 'brak' });
+    }
+  }
+  wylaczAparat() {
+    if (this.strumien) this.strumien.getTracks().forEach((t) => t.stop());
+    this.strumien = null;
+  }
+  ustawZdjecie(zdjecie) {
+    this.wylaczAparat();
+    this.ponowneSprawdzanie = true;
+    this.setState({ zdjecie, stan: 'sprawdzanie', kamera: 'czekam' });
     this.uruchomLicznik();
   }
   componentDidUpdate(prevProps, prevState) {
@@ -176,6 +232,10 @@ class Component extends DCLogic {
       document.getElementById('zamknij').focus();
     } else if (this.state.pytanieZamkniecia) {
       this.ponowneSprawdzanie = false;
+    } else if (prevState.stan !== 'aparat' && this.state.stan === 'aparat') {
+      document.getElementById('aparat-tytul').focus();
+    } else if (prevState.stan === 'aparat' && this.state.stan === 'sprawdzanie') {
+      document.getElementById('sprawdzamy-tytul').focus();
     } else if (prevState.stan === 'gotowe' && this.state.stan === 'sprawdzanie') {
       document.getElementById('sprawdzamy-tytul').focus();
     } else if (prevState.stan === 'sprawdzanie' && this.state.stan === 'gotowe' && this.ponowneSprawdzanie) {
@@ -186,7 +246,9 @@ class Component extends DCLogic {
     }
   }
   componentWillUnmount() {
+    this.zamkniety = true;
     clearTimeout(this.licznik);
+    this.wylaczAparat();
   }
   uruchomLicznik() {
     clearTimeout(this.licznik);
@@ -194,6 +256,9 @@ class Component extends DCLogic {
   }
   renderVals() {
     const gotowe = this.state.stan === 'gotowe';
+    const aparat = this.state.stan === 'aparat';
+    const naZywo = aparat && this.state.kamera === 'dziala';
+    const maZdjecie = !aparat && this.state.zdjecie !== '';
     const kategorie = [
       { id: 'gabaryt', etykieta: 'Meble – gabaryt' },
       { id: 'wysypisko', etykieta: 'Dzikie wysypisko' },
@@ -204,7 +269,36 @@ class Component extends DCLogic {
     const nazwaKategorii = etykieta(this.state.kategoria);
     const celeGabarytu = { gabaryt: 'Gabaryty-zgloszono.dc.html', limit: 'Gabaryty-limit.dc.html', odrzucone: 'Gabaryty-odrzucone.dc.html' };
     return {
-      sprawdzanie: !gotowe,
+      aparat,
+      sprawdzanie: this.state.stan === 'sprawdzanie',
+      zdjecie: this.state.zdjecie,
+      maZdjecie,
+      podgladWidok: naZywo ? 'block' : 'none',
+      bezObrazu: !naZywo && !maZdjecie,
+      tekstAparatu: aparat
+        ? (this.state.kamera === 'brak' ? 'Brak podglądu aparatu. Użyj przycisku „Zrób zdjęcie” albo wybierz zdjęcie z galerii.' : 'Włączamy aparat…')
+        : '[ZDJĘCIE: WERSALKA I SZAFA POD ŚCIANĄ]',
+      zrobZdjecie: () => {
+        const wideo = document.getElementById('podglad-aparatu');
+        if (this.strumien && wideo.videoWidth) {
+          const plotno = document.createElement('canvas');
+          const skala = Math.min(1, 1280 / wideo.videoWidth);
+          plotno.width = Math.round(wideo.videoWidth * skala);
+          plotno.height = Math.round(wideo.videoHeight * skala);
+          plotno.getContext('2d').drawImage(wideo, 0, 0, plotno.width, plotno.height);
+          this.ustawZdjecie(plotno.toDataURL('image/jpeg', 0.85));
+          return;
+        }
+        document.getElementById('aparat-systemowy').click();
+      },
+      wybranoPlik: (e) => {
+        const plik = e.target.files && e.target.files[0];
+        e.target.value = '';
+        if (!plik) return;
+        const czytnik = new FileReader();
+        czytnik.onload = () => this.ustawZdjecie(String(czytnik.result));
+        czytnik.readAsDataURL(plik);
+      },
       gotowe: gotowe,
       komunikat: gotowe ? 'Rozpoznaliśmy: ' + nazwaRozpoznana : '',
       nazwaRozpoznana: nazwaRozpoznana,
@@ -252,9 +346,8 @@ class Component extends DCLogic {
         }
       },
       noweZdjecie: () => {
-        this.ponowneSprawdzanie = true;
-        this.setState({ stan: 'sprawdzanie', kategoria: this.state.rozpoznana, zmianaKategorii: false, zmianaMiejsca: false, miejscePoprawione: false });
-        this.uruchomLicznik();
+        clearTimeout(this.licznik);
+        this.setState({ stan: 'aparat', zdjecie: '', kamera: 'czekam', kategoria: this.state.rozpoznana, zmianaKategorii: false, zmianaMiejsca: false, miejscePoprawione: false }, () => this.wlaczAparat());
       }
     };
   }

@@ -7,207 +7,118 @@
 html,
 body {
   margin: 0;
+  height: 100%;
   font-family: Montserrat, sans-serif;
   color: #1c2430;
   background: #f5f7fa;
   -webkit-tap-highlight-color: transparent;
+  /* No pull-to-refresh or rubber-banding once installed. */
+  overscroll-behavior: none;
 }
 
-/* Phone screens are drawn at 390×844; here they fill whatever frame holds them. */
-.phone-fill {
-  width: 100%;
-  height: 100%;
+/* ---------- Phone-sized screens ---------- */
+
+/* The app owns the whole viewport; on a wide window it keeps the
+   mobile-first column centred instead of stretching the layout. */
+.app--phone {
+  position: fixed;
+  inset: 0;
+  display: flex;
+  justify-content: center;
+  background: #e9edf2;
 }
-.phone-fill > div {
+
+.app-screen {
+  position: relative;
+  width: 100%;
+  max-width: 480px;
+  height: 100%;
+  overflow: hidden;
+  /* Keeps the status bar and home indicator in the screen's own colours. */
+  background: var(--app-top, #ffffff);
+  padding-top: env(safe-area-inset-top);
+  padding-bottom: env(safe-area-inset-bottom);
+}
+
+.app-screen::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: env(safe-area-inset-bottom);
+  background: var(--app-bottom, #ffffff);
+  pointer-events: none;
+}
+
+/* The design files draw at 390×844; here each screen fills the column. */
+.app-screen > div {
   width: 100% !important;
   height: 100% !important;
 }
 
-.mobile {
-  position: fixed;
-  inset: 0;
-  height: 100dvh;
-  overflow: hidden;
-  background: #ffffff;
+/* On short phones the content area scrolls; headers and tab bars keep their size. */
+.app-screen > div > header,
+.app-screen > div > nav,
+.app-screen > div > footer {
+  flex-shrink: 0;
 }
 
-.page-fill {
+@media (min-width: 481px) {
+  .app-screen {
+    border-left: 1px solid #d9e1ea;
+    border-right: 1px solid #d9e1ea;
+  }
+}
+
+/* ---------- Staff panels (fluid pages) ---------- */
+
+.app--page {
   min-height: 100dvh;
 }
 
-/* ---------- Desktop: screen list + phone frame ---------- */
+/* ---------- Development-only screen index ---------- */
 
-.desk {
-  display: flex;
-  height: 100dvh;
-  background: #e9edf2;
-}
-
-.stage {
-  flex: 1;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 24px;
-  min-width: 0;
-}
-
-.phone {
-  position: relative;
-  flex: none;
-}
-
-.phone-body {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 414px;
-  height: 868px;
-  padding: 12px;
-  border-radius: 56px;
-  background: #141920;
-  box-shadow: 0 24px 60px rgba(28, 36, 48, 0.28);
-  transform-origin: top left;
-}
-
-.phone-body > .phone-fill {
-  border-radius: 44px;
-  overflow: hidden;
-  background: #141920;
-  /* Keeps position: fixed overlays inside the phone. */
-  transform: translateZ(0);
-}
-
-/* ---------- Screen picker ---------- */
-
-.picker {
-  width: 300px;
-  flex: none;
-  height: 100%;
-  overflow-y: auto;
-  padding: 24px 16px 32px;
-  background: #ffffff;
-  border-right: 1px solid #d9e1ea;
+.dev-index {
+  max-width: 560px;
+  margin: 0 auto;
+  padding: 32px 20px 48px;
   font-size: 14px;
 }
 
-.picker-head {
-  display: flex;
-  flex-direction: column;
-  gap: 4px;
-  padding: 0 8px 16px;
-}
-
-.picker-brand {
+.dev-index h1 {
+  margin: 0;
   font-size: 20px;
-  font-weight: 800;
-  color: var(--theme-primary, #1d5fa8);
 }
 
-.picker-dot {
-  color: var(--theme-accent, #7a3eb1);
-}
-
-.picker-sub {
-  font-size: 12px;
+.dev-index > p {
+  margin: 4px 0 0;
   color: #5a6575;
+  font-size: 13px;
 }
 
-.picker-install {
-  margin-top: 10px;
-  min-height: 44px;
-  border: 0;
-  border-radius: 999px;
-  background: var(--theme-primary, #1d5fa8);
-  color: #ffffff;
-  font: 700 14px Montserrat, sans-serif;
-  cursor: pointer;
-}
-
-.picker h2 {
-  margin: 16px 8px 6px;
+.dev-index h2 {
+  margin: 24px 0 6px;
   font-size: 11px;
-  font-weight: 700;
   letter-spacing: 0.06em;
   text-transform: uppercase;
   color: #5a6575;
 }
 
-.picker ul {
+.dev-index ul {
   margin: 0;
   padding: 0;
   list-style: none;
 }
 
-.picker a {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  min-height: 36px;
-  padding: 6px 8px;
+.dev-index a {
+  display: block;
+  padding: 8px 10px;
   border-radius: 8px;
   color: #1c2430;
   text-decoration: none;
-  line-height: 1.3;
 }
 
-.picker a:hover {
-  background: #f5f7fa;
-}
-
-.picker a[aria-current='page'] {
+.dev-index a:hover {
   background: #e8eff8;
-  color: #174e8c;
-  font-weight: 700;
-}
-
-.picker-tag {
-  margin-left: auto;
-  padding: 2px 6px;
-  border-radius: 6px;
-  background: #f5f7fa;
-  border: 1px solid #d9e1ea;
-  font-size: 11px;
-  font-weight: 600;
-  color: #5a6575;
-}
-
-.picker-page {
-  min-height: 100dvh;
-  background: #ffffff;
-}
-
-.picker-page .picker {
-  width: 100%;
-  max-width: 560px;
-  margin: 0 auto;
-  border: 0;
-}
-
-.picker-fab {
-  position: fixed;
-  right: 16px;
-  bottom: 16px;
-  z-index: 50;
-  min-height: 44px;
-  padding: 0 18px;
-  border: 0;
-  border-radius: 999px;
-  background: #1c2430;
-  color: #ffffff;
-  font: 700 14px Montserrat, sans-serif;
-  box-shadow: 0 8px 24px rgba(28, 36, 48, 0.25);
-  cursor: pointer;
-}
-
-.picker-drawer {
-  position: fixed;
-  inset: 0;
-  z-index: 40;
-  background: rgba(28, 36, 48, 0.4);
-}
-
-.picker-drawer .picker {
-  max-width: 85vw;
-  box-shadow: 8px 0 32px rgba(28, 36, 48, 0.2);
 }

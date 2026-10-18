@@ -59,14 +59,26 @@ a{color:inherit}a:hover{color:inherit}
   </main>
 
   <div style="padding: 12px 16px 24px; background: #FFFFFF; border-top: 1px solid #D9E1EA">
-    <a href="Tablica-dodano.dc.html" style="min-height: 52px; border-radius: 999px; background: var(--theme-primary, #1D5FA8); color: #FFFFFF; text-decoration: none; display: flex; align-items: center; justify-content: center; box-sizing: border-box; font-size: 15px; font-weight: 700">Opublikuj wydarzenie</a>
+    <a href="Tablica-dodano.dc.html" onClick="{{zapisz}}" style="min-height: 52px; border-radius: 999px; background: var(--theme-primary, #1D5FA8); color: #FFFFFF; text-decoration: none; display: flex; align-items: center; justify-content: center; box-sizing: border-box; font-size: 15px; font-weight: 700">Opublikuj wydarzenie</a>
   </div>
 </div>
 </x-dc>
 <script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":390,"height":844}}'>
 class Component extends DCLogic {
   renderVals() {
-    return {};
+    return {
+      zapisz: () => {
+        const pole = (id) => (document.getElementById(id).value || '').trim();
+        try {
+          sessionStorage.setItem('mojeOsiedle.wydarzenie', JSON.stringify({
+            nazwa: pole('wydarzenie-nazwa'),
+            data: pole('wydarzenie-data'),
+            godzina: pole('wydarzenie-godzina'),
+            miejsce: pole('wydarzenie-miejsce')
+          }));
+        } catch (e) {}
+      }
+    };
   }
 }
 </script>
