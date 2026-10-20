@@ -35,11 +35,11 @@ a{color:inherit}a:hover{color:inherit}
         <div style="display: flex; gap: 14px; align-items: flex-start">
           <span style="flex: none; width: 52px; border-radius: 12px; background: var(--theme-primary-soft, #E8EFF8); color: var(--theme-primary, #1D5FA8); display: flex; flex-direction: column; align-items: center; padding: 6px 0">
             <span style="font-size: 12px; font-weight: 700; text-transform: uppercase">sob.</span>
-            <span style="font-size: 18px; font-weight: 800">[DD]</span>
+            <span style="font-size: 18px; font-weight: 800">24</span>
           </span>
           <div style="display: flex; flex-direction: column; gap: 4px">
             <h3 style="margin: 0; font-size: 17px; font-weight: 700">Szachy pod chmurką</h3>
-            <span style="font-size: 13px; color: #5A6575">sob., [DATA] · 11:00 · {{szachy.miejsce}}</span>
+            <span style="font-size: 13px; color: #5A6575">sob., 24 października · 11:00 · {{szachy.miejsce}}</span>
           </div>
         </div>
         <div style="display: flex; align-items: center; gap: 6px; font-size: 12px; font-weight: 600; color: #2B3442">
@@ -63,11 +63,11 @@ a{color:inherit}a:hover{color:inherit}
         <div style="display: flex; gap: 14px; align-items: flex-start">
           <span style="flex: none; width: 52px; border-radius: 12px; background: var(--theme-primary-soft, #E8EFF8); color: var(--theme-primary, #1D5FA8); display: flex; flex-direction: column; align-items: center; padding: 6px 0">
             <span style="font-size: 12px; font-weight: 700; text-transform: uppercase">niedz.</span>
-            <span style="font-size: 18px; font-weight: 800">[DD]</span>
+            <span style="font-size: 18px; font-weight: 800">25</span>
           </span>
           <div style="display: flex; flex-direction: column; gap: 4px">
             <h3 style="margin: 0; font-size: 17px; font-weight: 700">Wymiana rzeczy na podwórku</h3>
-            <span style="font-size: 13px; color: #5A6575">niedz., [DATA] · 10:00 · {{wymiana.miejsce}}</span>
+            <span style="font-size: 13px; color: #5A6575">niedz., 25 października · 10:00 · {{wymiana.miejsce}}</span>
           </div>
         </div>
         <div style="display: flex; align-items: center; gap: 6px; font-size: 12px; font-weight: 600; color: #2B3442">
@@ -97,18 +97,18 @@ a{color:inherit}a:hover{color:inherit}
           <span style="font-size: 12px; font-weight: 700; color: #A61F1F; background: #FDECEC; border-radius: 6px; padding: 3px 8px; display: flex; align-items: center; gap: 4px">
             <svg aria-hidden="true" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" style="flex: none"><circle cx="12" cy="12" r="9"/><path d="M12 8v4M12 16h.01"/></svg>Pilne
           </span>
-          <span style="font-size: 12px; font-weight: 600; color: #5A6575">[WODOCIĄGI]</span>
+          <span style="font-size: 12px; font-weight: 600; color: #5A6575">ZWiK Łódź</span>
         </span>
-        <span style="font-size: 15px; font-weight: 700">Przerwa w dostawie wody, [ULICA] · Jutro, [DATA] · 8:00–14:00</span>
+        <span style="font-size: 15px; font-weight: 700">Przerwa w dostawie wody, ul. Tymienieckiego 3–25 · Jutro, 20 października · 8:00–14:00</span>
       </article>
       </sc-if>
       <sc-if value="{{pokazKlub}}" hint-placeholder-val="{{ true }}">
       <a href="Tablica-oficjalne.dc.html" style="text-decoration: none; background: #FFFFFF; border-radius: 16px; padding: 14px 16px; display: flex; flex-direction: column; gap: 8px; color: #1C2430">
         <span style="display: flex; align-items: center; gap: 8px">
           <span style="font-size: 12px; font-weight: 700; color: #FFFFFF; background: var(--theme-primary, #1D5FA8); border-radius: 6px; padding: 3px 8px">Oficjalne</span>
-          <span style="font-size: 12px; font-weight: 600; color: #5A6575">Biblioteka Miejska, Filia nr [NR]</span>
+          <span style="font-size: 12px; font-weight: 600; color: #5A6575">Biblioteka Miejska w Łodzi, Filia nr 21</span>
         </span>
-        <span style="font-size: 15px; font-weight: 700">Klub książki · śr., [DATA] · 18:00</span>
+        <span style="font-size: 15px; font-weight: 700">Klub książki · śr., 21 października · 18:00</span>
       </a>
       </sc-if>
     </div>
@@ -144,8 +144,8 @@ class Component extends DCLogic {
       filtrWydarzenia: filtrPrzycisk('wydarzenia', 'Wydarzenia'),
       filtrKomunikaty: filtrPrzycisk('komunikaty', 'Komunikaty'),
       filtrPilne: filtrPrzycisk('pilne', 'Pilne'),
-      szachy: wydarzenie('wpadamSzachy', wpadamSzachy, 12, 'Park osiedlowy', 'Park osiedlowy, przy stolikach'),
-      wymiana: wydarzenie('wpadamWymiana', wpadamWymiana, 5, '[OKOLICA]', '[MIEJSCE]'),
+      szachy: wydarzenie('wpadamSzachy', wpadamSzachy, 12, 'Park Źródliska', 'Park Źródliska, przy stolikach szachowych'),
+      wymiana: wydarzenie('wpadamWymiana', wpadamWymiana, 5, 'Podwórko przy Przędzalnianej', 'Podwórko przy ul. Przędzalnianej 7, pod wiatą'),
       pokazSasiedzi: filtr === 'wszystko' || filtr === 'wydarzenia',
       pokazWoda: filtr !== 'wydarzenia',
       pokazKlub: filtr === 'wszystko' || filtr === 'wydarzenia',

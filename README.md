@@ -62,6 +62,10 @@ produkt, a nie zestaw plansz:
 - `Tablica-dodaj` → `Tablica-dodano` i `Zajecia-propozycja` →
   `Zajecia-zaproponowano` – wpisane dane przechodzą na ekran potwierdzenia
   (`sessionStorage`).
+- Wszystkie pola `[ADRES]`, `[DATA]`, `[IMIĘ]` itd. są wypełnione spójnymi
+  danymi z Łodzi (okolice Parku Źródliska i Księżego Młyna; daty od
+  19 października 2026), a miejsca na zdjęcia mają ilustracje z
+  `public/ilustracje/`.
 
 Przy kolejnej synchronizacji z kanwy trzeba je nanieść ponownie.
 
@@ -72,6 +76,25 @@ hashu) – Netlify, Vercel, Cloudflare Pages, GitHub Pages. Instalacja PWA wymag
 HTTPS (albo `localhost`).
 
 Ikony: `public/favicon.svg` → `npm run icons`.
+
+### GitHub Pages
+
+Workflow `.github/workflows/deploy.yml` buduje i publikuje aplikację przy każdym
+pushu na `master` (albo ręcznie: Actions → Deploy to GitHub Pages → Run workflow).
+
+1. **Settings → Pages → Build and deployment → Source: GitHub Actions.**
+2. Push na `master` – adres pojawi się w podsumowaniu joba `deploy`.
+
+Domena **barrio.jdex.pl** jest zapisana w `public/CNAME` (trafia do `dist/`).
+
+1. DNS w strefie `jdex.pl`: rekord `CNAME` `barrio` → `oskarowski.github.io`.
+2. **Settings → Pages → Custom domain:** `barrio.jdex.pl`, zapisz, poczekaj na
+   weryfikację DNS i zaznacz **Enforce HTTPS** (aparat i instalacja PWA
+   wymagają HTTPS).
+3. Uruchom workflow ponownie.
+
+Zalecane: zweryfikuj domenę `jdex.pl` w **Settings (konta) → Pages → Add a
+domain**, żeby nikt inny nie mógł podpiąć jej subdomen.
 
 ## Dla deweloperów
 

@@ -40,8 +40,8 @@ a{color:inherit}a:hover{color:inherit}
           <div style="display: flex; gap: 12px; align-items: center">
             <div aria-hidden="true" style="flex: none; width: 48px; height: 48px; border-radius: 24px; background: #DCE4EE; color: #4A5565; display: flex; align-items: center; justify-content: center"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 21v-1a8 8 0 0 1 16 0v1"/></svg></div>
             <div style="min-width: 0; display: flex; flex-direction: column; gap: 4px">
-              <h2 id="profil-senior" style="margin: 0; font-size: 17px; font-weight: 700">[IMIĘ I NAZWISKO SENIORA]</h2>
-              <span style="font-size: 13px; color: #5A6575">Osiedle Parkowe · zgłoszenie od opiekuna: [IMIĘ OPIEKUNA]</span>
+              <h2 id="profil-senior" style="margin: 0; font-size: 17px; font-weight: 700">Halina Kowalczyk</h2>
+              <span style="font-size: 13px; color: #5A6575">Osiedle Parkowe · zgłoszenie od opiekuna: Anna Kowalczyk (córka)</span>
             </div>
           </div>
           <span style="display: flex; align-items: center; gap: 8px; font-size: 13px; font-weight: 600">
@@ -73,7 +73,7 @@ a{color:inherit}a:hover{color:inherit}
           <div style="display: flex; gap: 12px; align-items: center">
             <div aria-hidden="true" style="flex: none; width: 48px; height: 48px; border-radius: 24px; background: #DCE4EE; color: #4A5565; display: flex; align-items: center; justify-content: center"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 21v-1a8 8 0 0 1 16 0v1"/></svg></div>
             <div style="min-width: 0; display: flex; flex-direction: column; gap: 4px">
-              <h2 id="profil-wolontariusz-2" style="margin: 0; font-size: 17px; font-weight: 700">[IMIĘ]</h2>
+              <h2 id="profil-wolontariusz-2" style="margin: 0; font-size: 17px; font-weight: 700">Paweł</h2>
               <span style="font-size: 13px; color: #5A6575">Osiedle Parkowe</span>
             </div>
           </div>
@@ -102,7 +102,7 @@ a{color:inherit}a:hover{color:inherit}
           <div style="display: flex; gap: 12px; align-items: center">
             <div aria-hidden="true" style="flex: none; width: 48px; height: 48px; border-radius: 24px; background: #DCE4EE; color: #4A5565; display: flex; align-items: center; justify-content: center"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 21v-1a8 8 0 0 1 16 0v1"/></svg></div>
             <div style="min-width: 0; display: flex; flex-direction: column; gap: 4px">
-              <h2 id="profil-wolontariusz-3" style="margin: 0; font-size: 17px; font-weight: 700">[IMIĘ 2]</h2>
+              <h2 id="profil-wolontariusz-3" style="margin: 0; font-size: 17px; font-weight: 700">Ewa</h2>
               <span style="font-size: 13px; color: #5A6575">Osiedle Parkowe</span>
             </div>
           </div>
@@ -165,14 +165,14 @@ class Component extends DCLogic {
       zatwierdzono: zatwierdzono,
       poproszono: poproszono,
       zatwierdzanie: !zatwierdzono && !poproszono,
-      zatwierdz: () => this.setState({ zatwierdzono: true, komunikat: 'Zatwierdzono profil [IMIĘ I NAZWISKO SENIORA]. Profil jest widoczny dla przydziału zadań.' }),
-      popros: () => this.setState({ poproszono: true, komunikat: 'Wysłaliśmy prośbę do opiekuna o uzupełnienie profilu [IMIĘ I NAZWISKO SENIORA].' }),
+      zatwierdz: () => this.setState({ zatwierdzono: true, komunikat: 'Zatwierdzono profil Halina Kowalczyk. Profil jest widoczny dla przydziału zadań.' }),
+      popros: () => this.setState({ poproszono: true, komunikat: 'Wysłaliśmy prośbę do opiekuna o uzupełnienie profilu Halina Kowalczyk.' }),
       nadano: nadano,
       nadawanie: !nadano,
-      nadaj: () => this.setState({ nadano: true, komunikat: 'Nadano poziom 2: [IMIĘ].' }),
+      nadaj: () => this.setState({ nadano: true, komunikat: 'Nadano poziom 2: Paweł.' }),
       poproszonoOZaswiadczenie: poproszonoOZaswiadczenie,
       proszenieOZaswiadczenie: !poproszonoOZaswiadczenie,
-      poprosOZaswiadczenie: () => this.setState({ poproszonoOZaswiadczenie: true, komunikat: 'Wysłaliśmy prośbę o zaświadczenie o niekaralności: [IMIĘ 2].' })
+      poprosOZaswiadczenie: () => this.setState({ poproszonoOZaswiadczenie: true, komunikat: 'Wysłaliśmy prośbę o zaświadczenie o niekaralności: Ewa.' })
     };
   }
 }

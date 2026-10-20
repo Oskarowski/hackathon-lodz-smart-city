@@ -22,7 +22,7 @@ a{color:inherit}a:hover{color:inherit}
   <main style="flex: 1; overflow: auto; padding: 18px 16px 24px; display: flex; flex-direction: column; gap: 16px">
     <div style="display: flex; flex-direction: column; gap: 6px">
       <h2 style="margin: 0; font-size: 18px; font-weight: 800">Terminy od Domu kultury</h2>
-      <p style="margin: 0; font-size: 13px; line-height: 1.5; color: #5A6575">[ADRES DOMU KULTURY]</p>
+      <p style="margin: 0; font-size: 13px; line-height: 1.5; color: #5A6575">Księży Młyn 14, Łódź</p>
     </div>
 
     <fieldset style="position: relative; margin: 0; padding: 0; border: 0; min-width: 0; display: flex; flex-direction: column; gap: 12px">
@@ -33,7 +33,7 @@ a{color:inherit}a:hover{color:inherit}
             <input type="radio" name="termin" value="{{termin.id}}" checked="{{termin.wybrany}}" onChange="{{termin.wybierz}}" style="flex: none; width: 20px; height: 20px; margin: 0; accent-color: var(--theme-primary, #1D5FA8)">
             <span style="display: flex; flex-direction: column; gap: 4px">
               <span style="font-size: 15px; font-weight: 700">{{termin.kiedy}}</span>
-              <span style="font-size: 13px; color: #5A6575">[N] wolnych miejsc</span>
+              <span style="font-size: 13px; color: #5A6575">8 wolnych miejsc</span>
             </span>
           </label>
         </sc-if>
@@ -42,7 +42,7 @@ a{color:inherit}a:hover{color:inherit}
             <input type="radio" name="termin" value="{{termin.id}}" checked="{{termin.wybrany}}" onChange="{{termin.wybierz}}" style="flex: none; width: 20px; height: 20px; margin: 0; accent-color: var(--theme-primary, #1D5FA8)">
             <span style="display: flex; flex-direction: column; gap: 4px">
               <span style="font-size: 15px; font-weight: 700">{{termin.kiedy}}</span>
-              <span style="font-size: 13px; color: #5A6575">[N] wolnych miejsc</span>
+              <span style="font-size: 13px; color: #5A6575">5 wolnych miejsc</span>
             </span>
           </label>
         </sc-if>
@@ -50,7 +50,7 @@ a{color:inherit}a:hover{color:inherit}
       <label style="min-height: 72px; padding: 14px 16px; border-radius: 16px; border: 2px solid #FFFFFF; background: #FFFFFF; display: flex; align-items: center; gap: 14px; box-sizing: border-box; color: #5A6575; cursor: not-allowed">
         <input type="radio" name="termin" value="3" disabled style="flex: none; width: 20px; height: 20px; margin: 0">
         <span style="display: flex; flex-direction: column; gap: 4px">
-          <span style="font-size: 15px; font-weight: 600">wt., [DATA] · [GODZINA]</span>
+          <span style="font-size: 15px; font-weight: 600">wt., 27 października · 17:00</span>
           <span style="font-size: 13px">Brak wolnych miejsc</span>
         </span>
       </label>
@@ -74,8 +74,8 @@ class Component extends DCLogic {
   }
   renderVals() {
     const terminy = [
-      { id: '1', kiedy: 'sob., [DATA] · [GODZINA]' },
-      { id: '2', kiedy: 'sob., [DATA] · [GODZINA]' }
+      { id: '1', kiedy: 'sob., 24 października · 10:00' },
+      { id: '2', kiedy: 'sob., 31 października · 10:00' }
     ];
     return {
       terminy: terminy.map((t) => ({

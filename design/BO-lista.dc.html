@@ -28,23 +28,23 @@ a{color:inherit}a:hover{color:inherit}
 
   <main style="flex: 1; overflow: auto; padding: 12px 16px 24px; display: flex; flex-direction: column; gap: 12px">
     <sc-if value="{{pokazGlosowanie}}" hint-placeholder-val="{{ true }}">
-      <p style="margin: 0; font-size: 13px; color: #5A6575">Głosowanie trwa do [DATA]. Głos potwierdzasz Kartą Mieszkańca.</p>
+      <p style="margin: 0; font-size: 13px; color: #5A6575">Głosowanie trwa do 30 października. Głos potwierdzasz Kartą Mieszkańca.</p>
 
       <a href="BO-projekt.dc.html" style="text-decoration: none; background: #FFFFFF; border-radius: 16px; overflow: hidden; color: #1C2430; display: flex; flex-direction: column">
-        <div style="height: 120px; background: #DCE4EE; display: flex; align-items: center; justify-content: center; font-size: 12px; font-weight: 600; color: #4A5565">[ZDJĘCIE SZKOŁY]</div>
+        <div style="height: 120px; background: #DCE4EE; display: flex; align-items: center; justify-content: center; font-size: 12px; font-weight: 600; color: #4A5565"><img src="ilustracje/szkola.svg" alt="" style="width: 100%; height: 100%; object-fit: cover"></div>
         <div style="padding: 14px 16px 16px; display: flex; flex-direction: column; gap: 8px">
           <span style="align-self: flex-start; display: flex; align-items: center; gap: 4px; padding: 5px 10px 5px 8px; border-radius: 999px; font-size: 12px; font-weight: 700; white-space: nowrap; color: #174E8C; background: #E8EFF8"><svg aria-hidden="true" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" style="flex: none"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>Poddane pod głosowanie</span>
           <span style="font-size: 16px; font-weight: 700; line-height: 1.35">Termomodernizacja i nowa elewacja szkoły podstawowej</span>
-          <span style="font-size: 12px; color: #5A6575">Projekt osiedlowy · Koszt: [KWOTA] zł</span>
+          <span style="font-size: 12px; color: #5A6575">Projekt osiedlowy · Koszt: 950 000 zł</span>
         </div>
       </a>
 
       <article style="background: #FFFFFF; border-radius: 16px; padding: 14px 16px; color: #1C2430; display: flex; gap: 14px; align-items: center">
-        <span aria-hidden="true" style="flex: none; width: 64px; height: 64px; border-radius: 12px; background: #DCE4EE"></span>
+        <span aria-hidden="true" style="flex: none; width: 64px; height: 64px; border-radius: 12px; background: #DCE4EE; overflow: hidden"><img src="ilustracje/podworko.svg" alt="" style="width: 100%; height: 100%; object-fit: cover"></span>
         <span style="flex: 1; display: flex; flex-direction: column; gap: 6px">
           <span style="align-self: flex-start; display: flex; align-items: center; gap: 4px; padding: 5px 10px 5px 8px; border-radius: 999px; font-size: 12px; font-weight: 700; white-space: nowrap; color: #174E8C; background: #E8EFF8"><svg aria-hidden="true" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" style="flex: none"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>Poddane pod głosowanie</span>
           <span style="font-size: 15px; font-weight: 700; line-height: 1.35">Zielone podwórko – nasadzenia i ławki</span>
-          <span style="font-size: 12px; color: #5A6575">Projekt osiedlowy · Koszt: [KWOTA] zł</span>
+          <span style="font-size: 12px; color: #5A6575">Projekt osiedlowy · Koszt: 180 000 zł</span>
         </span>
       </article>
     </sc-if>
@@ -55,11 +55,11 @@ a{color:inherit}a:hover{color:inherit}
 
     <sc-if value="{{pokazZrealizowane}}" hint-placeholder-val="{{ false }}">
       <article style="background: #FFFFFF; border-radius: 16px; padding: 14px 16px; color: #1C2430; display: flex; gap: 14px; align-items: center">
-        <span aria-hidden="true" style="flex: none; width: 64px; height: 64px; border-radius: 12px; background: #DCE4EE"></span>
+        <span aria-hidden="true" style="flex: none; width: 64px; height: 64px; border-radius: 12px; background: #DCE4EE; overflow: hidden"><img src="ilustracje/oswietlenie.svg" alt="" style="width: 100%; height: 100%; object-fit: cover"></span>
         <span style="flex: 1; display: flex; flex-direction: column; gap: 6px">
           <span style="align-self: flex-start; display: flex; align-items: center; gap: 4px; padding: 5px 10px 5px 8px; border-radius: 999px; font-size: 12px; font-weight: 700; white-space: nowrap; color: #1E6B33; background: #E3F4E8"><svg aria-hidden="true" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" style="flex: none"><path d="M20 6L9 17l-5-5"/></svg>Zrealizowane</span>
           <span style="font-size: 15px; font-weight: 700; line-height: 1.35">Oświetlenie ścieżki w parku osiedlowym</span>
-          <span style="font-size: 12px; color: #5A6575">Projekt osiedlowy · Koszt: [KWOTA] zł</span>
+          <span style="font-size: 12px; color: #5A6575">Projekt osiedlowy · Koszt: 96 000 zł</span>
         </span>
       </article>
     </sc-if>

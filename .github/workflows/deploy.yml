@@ -1,8 +1,7 @@
-# Builds the PWA and publishes it to GitHub Pages.
+# Builds the PWA and publishes it to GitHub Pages at https://barrio.jdex.pl.
 #
-# One-time setup: Settings → Pages → Build and deployment → Source: "GitHub Actions".
-# Custom domain: set the repository variable PAGES_DOMAIN (e.g. osiedle.example.pl)
-# and enter the same domain under Settings → Pages → Custom domain.
+# One-time setup: Settings → Pages → Build and deployment → Source: "GitHub Actions",
+# then Custom domain: barrio.jdex.pl. The domain itself ships in public/CNAME.
 name: Deploy to GitHub Pages
 
 on:
@@ -23,11 +22,11 @@ concurrency:
 
 jobs:
   build:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     steps:
-      - uses: actions/checkout@v5
+      - uses: actions/checkout@v6
 
-      - uses: actions/setup-node@v5
+      - uses: actions/setup-node@v6
         with:
           node-version: 24
           cache: npm
@@ -40,22 +39,26 @@ jobs:
       - name: Build
         run: npm run build
 
-      - name: Add custom domain
-        if: ${{ vars.PAGES_DOMAIN != '' }}
-        run: echo "${{ vars.PAGES_DOMAIN }}" > dist/CNAME
+      - name: Check build output
+        run: |
+          for f in index.html manifest.webmanifest sw.js CNAME; do
+            test -s "dist/$f" || { echo "::error::dist/$f is missing"; exit 1; }
+          done
+          echo "Publishing for $(cat dist/CNAME)"
 
-      - uses: actions/configure-pages@v5
+      - uses: actions/configure-pages@v6
 
-      - uses: actions/upload-pages-artifact@v4
+      # v5 uploads with upload-artifact v7; it must be paired with deploy-pages v5.
+      - uses: actions/upload-pages-artifact@v5
         with:
           path: dist
 
   deploy:
     needs: build
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
     steps:
       - id: deployment
-        uses: actions/deploy-pages@v4
+        uses: actions/deploy-pages@v5
