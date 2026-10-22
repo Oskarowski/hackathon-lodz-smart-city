@@ -33,7 +33,7 @@ a{color:inherit}a:hover{color:inherit}
             <input type="radio" name="termin" value="{{termin.id}}" checked="{{termin.wybrany}}" onChange="{{termin.wybierz}}" style="flex: none; width: 20px; height: 20px; margin: 0; accent-color: var(--theme-primary, #1D5FA8)">
             <span style="display: flex; flex-direction: column; gap: 4px">
               <span style="font-size: 15px; font-weight: 700">{{termin.kiedy}}</span>
-              <span style="font-size: 13px; color: #5A6575">8 wolnych miejsc</span>
+              <span style="font-size: 13px; color: #5A6575">{{termin.miejsca}} wolnych miejsc</span>
             </span>
           </label>
         </sc-if>
@@ -42,7 +42,7 @@ a{color:inherit}a:hover{color:inherit}
             <input type="radio" name="termin" value="{{termin.id}}" checked="{{termin.wybrany}}" onChange="{{termin.wybierz}}" style="flex: none; width: 20px; height: 20px; margin: 0; accent-color: var(--theme-primary, #1D5FA8)">
             <span style="display: flex; flex-direction: column; gap: 4px">
               <span style="font-size: 15px; font-weight: 700">{{termin.kiedy}}</span>
-              <span style="font-size: 13px; color: #5A6575">5 wolnych miejsc</span>
+              <span style="font-size: 13px; color: #5A6575">{{termin.miejsca}} wolnych miejsc</span>
             </span>
           </label>
         </sc-if>
@@ -50,7 +50,7 @@ a{color:inherit}a:hover{color:inherit}
       <label style="min-height: 72px; padding: 14px 16px; border-radius: 16px; border: 2px solid #FFFFFF; background: #FFFFFF; display: flex; align-items: center; gap: 14px; box-sizing: border-box; color: #5A6575; cursor: not-allowed">
         <input type="radio" name="termin" value="3" disabled style="flex: none; width: 20px; height: 20px; margin: 0">
         <span style="display: flex; flex-direction: column; gap: 4px">
-          <span style="font-size: 15px; font-weight: 600">wt., 27 października · 17:00</span>
+          <span style="font-size: 15px; font-weight: 600">{{$demo.zajecia.termin3}}</span>
           <span style="font-size: 13px">Brak wolnych miejsc</span>
         </span>
       </label>
@@ -74,15 +74,20 @@ class Component extends DCLogic {
   }
   renderVals() {
     const terminy = [
-      { id: '1', kiedy: 'sob., 24 października · 10:00' },
-      { id: '2', kiedy: 'sob., 31 października · 10:00' }
+      { id: '1', kiedy: this.demo.zajecia.termin1, miejsca: this.demo.zajecia.miejsca1 },
+      { id: '2', kiedy: this.demo.zajecia.termin2, miejsca: this.demo.zajecia.miejsca2 }
     ];
     return {
       terminy: terminy.map((t) => ({
         ...t,
         wybrany: this.state.termin === t.id,
         niewybrany: this.state.termin !== t.id,
-        wybierz: () => this.setState({ termin: t.id })
+        wybierz: () => {
+          try {
+            sessionStorage.setItem('mojeOsiedle.termin', t.kiedy);
+          } catch (e) {}
+          this.setState({ termin: t.id });
+        }
       }))
     };
   }

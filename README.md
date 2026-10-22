@@ -30,6 +30,23 @@ wstecz. Wszystkie 35 ekranów jest osiągalnych z poziomu aplikacji.
   otwiera systemowe okno instalacji, na iOS pokazuje instrukcję
   („Udostępnij → Dodaj do ekranu początkowego”).
 
+## Dane – każdy telefon widzi co innego
+
+`src/demo.ts` losuje „świat” demo z ziarna zapisanego w `localStorage`: adres
+mieszkańca, przerwę w dostawie wody, sąsiedzkie wydarzenia, seniora i
+wolontariuszy, aktualność, numery spraw, liczniki i statystyki paneli. Na jednym
+urządzeniu dane są stałe (także po odświeżeniu), na kolejnym – inne. Daty liczą
+się od dzisiaj („Jutro” to zawsze jutro, weekend to najbliższy weekend).
+
+Aplikacja nigdzie tego nie pokazuje – dla użytkownika to po prostu jego osiedle.
+
+- `?demo=1234` w adresie wymusza konkretny zestaw (np. na próbę prezentacji);
+  parametr od razu znika z paska adresu, a zestaw zostaje zapamiętany.
+- Nowy zestaw na danym urządzeniu: wyczyść dane witryny (albo otwórz
+  `?demo=` z innym numerem).
+- W szablonach dane są dostępne jako `{{$demo.…}}`, w logice ekranu jako
+  `this.demo` (wstrzykuje je `src/dc/runtime.tsx`).
+
 ## Architektura
 
 - `design/` – pliki z kanwy „Moje Osiedle – makieta” (`*.dc.html`,

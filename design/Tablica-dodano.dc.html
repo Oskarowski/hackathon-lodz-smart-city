@@ -41,7 +41,7 @@ class Component extends DCLogic {
     try {
       w = JSON.parse(sessionStorage.getItem('mojeOsiedle.wydarzenie') || '{}') || {};
     } catch (e) {}
-    let kiedy = 'sob., 24 października';
+    let kiedy = this.demo.zajecia.termin1.split(' · ')[0];
     if (w.data) {
       const d = new Date(w.data + 'T12:00:00');
       if (!isNaN(d)) kiedy = d.toLocaleDateString('pl-PL', { weekday: 'short', day: 'numeric', month: 'long' });

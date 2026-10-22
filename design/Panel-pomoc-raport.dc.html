@@ -30,15 +30,15 @@ a{color:inherit}a:hover{color:inherit}
     <section aria-label="Wskaźniki" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 16px">
       <div style="background: #FFFFFF; border-radius: 16px; padding: 18px 20px; display: flex; flex-direction: column; gap: 6px">
         <span style="font-size: 13px; font-weight: 600; color: #5A6575">Godziny wolontariatu</span>
-        <span style="font-size: 32px; font-weight: 800; letter-spacing: -0.02em">186</span>
+        <span style="font-size: 32px; font-weight: 800; letter-spacing: -0.02em">{{$demo.raport.godziny}}</span>
       </div>
       <div style="background: #FFFFFF; border-radius: 16px; padding: 18px 20px; display: flex; flex-direction: column; gap: 6px">
         <span style="font-size: 13px; font-weight: 600; color: #5A6575">Zrealizowane wizyty</span>
-        <span style="font-size: 32px; font-weight: 800; letter-spacing: -0.02em">142</span>
+        <span style="font-size: 32px; font-weight: 800; letter-spacing: -0.02em">{{$demo.raport.wizyty}}</span>
       </div>
       <div style="background: #FFFFFF; border-radius: 16px; padding: 18px 20px; display: flex; flex-direction: column; gap: 6px">
         <span style="font-size: 13px; font-weight: 600; color: #5A6575">Aktywni wolontariusze</span>
-        <span style="font-size: 32px; font-weight: 800; letter-spacing: -0.02em">23</span>
+        <span style="font-size: 32px; font-weight: 800; letter-spacing: -0.02em">{{$demo.raport.aktywni}}</span>
       </div>
     </section>
 
@@ -58,20 +58,20 @@ a{color:inherit}a:hover{color:inherit}
             <tr>
               <th scope="row" style="text-align: left; padding: 12px; border-bottom: 1px solid #D9E1EA; font-weight: 700">Igor</th>
               <td style="padding: 12px; border-bottom: 1px solid #D9E1EA">2</td>
-              <td style="text-align: right; padding: 12px; border-bottom: 1px solid #D9E1EA">14</td>
-              <td style="text-align: right; padding: 12px; border-bottom: 1px solid #D9E1EA">21</td>
+              <td style="text-align: right; padding: 12px; border-bottom: 1px solid #D9E1EA">{{$demo.raport.igor.wizyty}}</td>
+              <td style="text-align: right; padding: 12px; border-bottom: 1px solid #D9E1EA">{{$demo.raport.igor.godziny}}</td>
             </tr>
             <tr>
-              <th scope="row" style="text-align: left; padding: 12px; border-bottom: 1px solid #D9E1EA; font-weight: 700">Paweł</th>
+              <th scope="row" style="text-align: left; padding: 12px; border-bottom: 1px solid #D9E1EA; font-weight: 700">{{$demo.wolontariusz3}}</th>
               <td style="padding: 12px; border-bottom: 1px solid #D9E1EA">1</td>
-              <td style="text-align: right; padding: 12px; border-bottom: 1px solid #D9E1EA">6</td>
-              <td style="text-align: right; padding: 12px; border-bottom: 1px solid #D9E1EA">8</td>
+              <td style="text-align: right; padding: 12px; border-bottom: 1px solid #D9E1EA">{{$demo.raport.wolontariusz3.wizyty}}</td>
+              <td style="text-align: right; padding: 12px; border-bottom: 1px solid #D9E1EA">{{$demo.raport.wolontariusz3.godziny}}</td>
             </tr>
             <tr>
-              <th scope="row" style="text-align: left; padding: 12px; font-weight: 700">Ewa</th>
+              <th scope="row" style="text-align: left; padding: 12px; font-weight: 700">{{$demo.wolontariusz2.imie}}</th>
               <td style="padding: 12px">2</td>
-              <td style="text-align: right; padding: 12px">11</td>
-              <td style="text-align: right; padding: 12px">17</td>
+              <td style="text-align: right; padding: 12px">{{$demo.raport.wolontariusz2.wizyty}}</td>
+              <td style="text-align: right; padding: 12px">{{$demo.raport.wolontariusz2.godziny}}</td>
             </tr>
           </tbody>
         </table>

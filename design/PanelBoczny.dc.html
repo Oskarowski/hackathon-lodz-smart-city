@@ -72,10 +72,10 @@ body{margin:0}
   </div>
   </sc-if>
   <sc-if value="{{jestInstytucja}}" hint-placeholder-val="{{ true }}">
-  <span class="pb-stopka" style="margin-top: auto; font-size: 12px; color: #AEB8C6">MOPS Łódź · Agnieszka Nowak</span>
+  <span class="pb-stopka" style="margin-top: auto; font-size: 12px; color: #AEB8C6">MOPS Łódź · {{$demo.pracownik}}</span>
   </sc-if>
   <sc-if value="{{jestUrzad}}" hint-placeholder-val="{{ false }}">
-  <span class="pb-stopka" style="margin-top: auto; font-size: 12px; color: #AEB8C6">Tomasz Lewandowski · UMŁ · logowanie SSO</span>
+  <span class="pb-stopka" style="margin-top: auto; font-size: 12px; color: #AEB8C6">{{$demo.urzednik}} · UMŁ · logowanie SSO</span>
   </sc-if>
   <a href="Start.dc.html" class="pb-poz" title="Wróć do aplikacji" style="min-height: 44px; border-radius: 10px; background: transparent; color: #D6DDE7; text-decoration: none; display: flex; align-items: center; box-sizing: border-box; font-size: 13px; font-weight: 600">
     <svg aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex: none"><path d="M15 18l-6-6 6-6"/></svg>

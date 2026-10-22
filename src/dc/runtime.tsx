@@ -3,6 +3,7 @@
 // <dc-import>, event handlers, and links between screens (`X.dc.html` → `#/X`).
 import { Component, createElement, Fragment, type ComponentType, type ReactNode } from 'react';
 import { parseStyle } from './style';
+import { demo } from '../demo';
 
 export type DcNode = string | { t: string; a: Record<string, unknown>; c: DcNode[] };
 
@@ -15,6 +16,9 @@ export interface DcModule {
 }
 
 type Scope = Record<string, unknown>;
+
+/** Available in every template as `{{$demo.…}}` and in logic as `this.demo`. */
+const GLOBALS: Scope = { $demo: demo };
 
 const WHOLE_HOLE = /^\{\{\s*([^}]*?)\s*\}\}$/;
 const HOLES = /\{\{\s*([^}]*?)\s*\}\}/g;
@@ -188,13 +192,17 @@ function renderNode(node: DcNode, scope: Scope): ReactNode {
 
 /** Base class every design file's `class Component extends DCLogic` builds on. */
 export class DCLogic extends Component<Record<string, unknown>, Record<string, unknown>> {
+  get demo() {
+    return demo;
+  }
+
   renderVals(): Record<string, unknown> {
     return {};
   }
 
   render(): ReactNode {
     const mod = (this.constructor as unknown as { dc: DcModule }).dc;
-    const scope: Scope = { ...(this.renderVals() ?? {}) };
+    const scope: Scope = { ...GLOBALS, ...(this.renderVals() ?? {}) };
     return createElement(
       Fragment,
       null,

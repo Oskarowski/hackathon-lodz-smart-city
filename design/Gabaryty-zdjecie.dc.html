@@ -68,7 +68,7 @@ label:has(input:focus-visible){outline:3px solid #1C2430;outline-offset:2px;box-
       </div>
       <ul style="margin: 0; padding: 0; list-style: none; display: flex; flex-direction: column; gap: 10px; font-size: 14px">
         <li style="display: flex; align-items: center; gap: 10px; font-weight: 600"><svg aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#1E8E3E" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>Zdjęcie dodane</li>
-        <li style="display: flex; align-items: center; gap: 10px; font-weight: 600"><svg aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#1E8E3E" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>Miejsce: ul. Przędzalniana 7, Osiedle Parkowe</li>
+        <li style="display: flex; align-items: center; gap: 10px; font-weight: 600"><svg aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#1E8E3E" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>Miejsce: {{$demo.adres}}, Osiedle Parkowe</li>
         <li style="display: flex; align-items: center; gap: 10px; font-weight: 600; color: var(--theme-primary, #1D5FA8)"><svg aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M12 3a9 9 0 1 0 9 9"/></svg>Rozpoznajemy, co to jest</li>
       </ul>
       <div style="display: flex; flex-direction: column; gap: 8px">
@@ -99,10 +99,10 @@ label:has(input:focus-visible){outline:3px solid #1C2430;outline-offset:2px;box-
           <div style="display: flex; align-items: center; gap: 10px; font-weight: 600">
             <svg aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#1E8E3E" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="flex: none"><path d="M20 6L9 17l-5-5"/></svg>
             <sc-if value="{{miejsceZGps}}" hint-placeholder-val="{{ true }}">
-              <span style="flex: 1; min-width: 0">Miejsce: ul. Przędzalniana 7, Osiedle Parkowe</span>
+              <span style="flex: 1; min-width: 0">Miejsce: {{$demo.adres}}, Osiedle Parkowe</span>
             </sc-if>
             <sc-if value="{{miejscePoprawione}}" hint-placeholder-val="{{ false }}">
-              <span style="flex: 1; min-width: 0">Miejsce: ul. Przędzalniana 7, Osiedle Parkowe · poprawione ręcznie</span>
+              <span style="flex: 1; min-width: 0">Miejsce: {{$demo.adres}}, Osiedle Parkowe · poprawione ręcznie</span>
             </sc-if>
             <button type="button" id="popraw-miejsce" aria-expanded="{{miejsceAria}}" onClick="{{przelaczMiejsce}}" style="min-height: 44px; flex: none; padding: 0 4px; border: 0; background: none; color: var(--theme-primary, #1D5FA8); font: 700 13px Montserrat, sans-serif; text-decoration: underline; white-space: nowrap; cursor: pointer">Popraw miejsce</button>
           </div>

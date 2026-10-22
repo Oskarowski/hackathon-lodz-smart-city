@@ -29,10 +29,10 @@ a{color:inherit}a:hover{color:inherit}
       <section aria-labelledby="potrzeba" style="flex: 1 1 320px; min-width: 0; background: #FFFFFF; border-radius: 16px; padding: 20px; box-sizing: border-box; display: flex; flex-direction: column; gap: 12px">
         <h2 id="potrzeba" style="margin: 0; font-size: 13px; font-weight: 700; color: #5A6575">Potrzeba</h2>
         <p style="margin: 0; font-size: 22px; font-weight: 800">Spacer</p>
-        <p style="margin: 0; font-size: 14px; font-weight: 600">Halina Kowalczyk · Osiedle Parkowe</p>
-        <p style="margin: 0; display: flex; align-items: center; gap: 8px; font-size: 14px; font-weight: 600"><svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex: none; stroke: var(--theme-primary, #1D5FA8)"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M16 3v4M8 3v4M3 10h18"/></svg>Jutro, 20 października · 10:00</p>
+        <p style="margin: 0; font-size: 14px; font-weight: 600">{{$demo.senior.name}} · Osiedle Parkowe</p>
+        <p style="margin: 0; display: flex; align-items: center; gap: 8px; font-size: 14px; font-weight: 600"><svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex: none; stroke: var(--theme-primary, #1D5FA8)"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M16 3v4M8 3v4M3 10h18"/></svg>Jutro, {{$demo.jutro}} · 10:00</p>
         <span style="align-self: flex-start; font-size: 11px; font-weight: 700; color: var(--theme-primary, #1D5FA8); background: var(--theme-primary-soft, #E8EFF8); border-radius: 6px; padding: 3px 8px">Wymagany poziom 2</span>
-        <p style="margin: 0; font-size: 13px; color: #5A6575">Zgłoszenie od opiekuna: Anna Kowalczyk (córka)</p>
+        <p style="margin: 0; font-size: 13px; color: #5A6575">Zgłoszenie od opiekuna: {{$demo.senior.carer}}</p>
       </section>
 
       <div style="flex: 1 1 320px; min-width: 0; background: #FFFFFF; border-radius: 16px; padding: 20px; box-sizing: border-box; display: flex; flex-direction: column; gap: 16px">
@@ -44,12 +44,12 @@ a{color:inherit}a:hover{color:inherit}
           </label>
           <label style="min-height: 56px; padding: 12px 14px; border-radius: 12px; border: {{drugi.obrys}}; background: #FFFFFF; display: flex; align-items: center; gap: 12px; box-sizing: border-box; cursor: pointer">
             <input type="radio" name="wolontariusz" value="drugi" checked="{{drugi.wybrany}}" onChange="{{drugi.wybierz}}" style="flex: none; width: 20px; height: 20px; margin: 0; accent-color: var(--theme-primary, #1D5FA8)">
-            <span style="font-size: 14px; font-weight: 700">Ewa · poziom 2 · dostępny jutro</span>
+            <span style="font-size: 14px; font-weight: 700">{{$demo.wolontariusz2.imie}} · poziom 2 · {{$demo.wolontariusz2.dostepny}} jutro</span>
           </label>
           <label style="min-height: 56px; padding: 12px 14px; border-radius: 12px; border: 2px solid #D9E1EA; background: #FFFFFF; display: flex; align-items: center; gap: 12px; box-sizing: border-box; color: #5A6575; cursor: not-allowed">
             <input type="radio" name="wolontariusz" value="trzeci" disabled aria-describedby="za-niski-poziom" style="flex: none; width: 20px; height: 20px; margin: 0">
             <span style="display: flex; flex-direction: column; gap: 2px">
-              <span style="font-size: 14px; font-weight: 600">Paweł · poziom 1</span>
+              <span style="font-size: 14px; font-weight: 600">{{$demo.wolontariusz3}} · poziom 1</span>
               <span id="za-niski-poziom" style="font-size: 12px; color: #5A6575">Za niski poziom dla spaceru</span>
             </span>
           </label>
@@ -85,7 +85,7 @@ class Component extends DCLogic {
   }
   renderVals() {
     const { wybrany, przydzielono } = this.state;
-    const imiona = { igor: 'Igor', drugi: 'Ewa' };
+    const imiona = { igor: 'Igor', drugi: this.demo.wolontariusz2.imie };
     const opcja = (id) => ({
       wybrany: wybrany === id,
       obrys: wybrany === id ? '2px solid var(--theme-primary, #1D5FA8)' : '2px solid #D9E1EA',

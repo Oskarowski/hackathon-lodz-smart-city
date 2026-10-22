@@ -23,7 +23,7 @@ export default function App() {
   const route = useRoute();
   const screen = screenByName.get(route);
 
-  // The app's own screens offer the install action (see the "Więcej" screen).
+  // The app's own screens offer these actions (see the "Więcej" screen).
   useEffect(() => {
     (window as unknown as { mojeOsiedle: { install: () => string } }).mojeOsiedle = {
       install: installMessage,
